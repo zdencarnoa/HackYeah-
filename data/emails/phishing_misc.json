@@ -1,0 +1,200 @@
+[
+  {
+    "id": "phi-01",
+    "sender_name": "Paperline Supplies Billing",
+    "sender_address": "billing@paperline-supp1ies.test",
+    "reply_to": "sarah.mitchell.billing@freemail.test",
+    "to": [
+      "tina.hall@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Updated bank details - invoice INV-20431",
+    "body_text": "Dear Tina,\n\nDue to an audit, our bank account has changed. Please pay invoice INV-20431 to the new account in the attached document\nand confirm once the transfer is done. This invoice is now overdue, please process it today.\n\nKind regards,\nSarah Mitchell\nPaperline Supplies\n",
+    "urls": [],
+    "attachments": [
+      {
+        "filename": "INV-20431_new_bank_details.html",
+        "content_type": "text/html",
+        "size_bytes": 12240
+      }
+    ],
+    "auth": {
+      "spf": "pass",
+      "dkim": "none",
+      "dmarc": "none"
+    },
+    "sending_ip": "203.0.113.51",
+    "deliver_offset_s": 200,
+    "scenario": {
+      "label": "phishing",
+      "category": "fake_invoice",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "phi-02",
+    "sender_name": "James Clark",
+    "sender_address": "james.clark.ceo@freemail.test",
+    "reply_to": null,
+    "to": [
+      "rachel.lewis@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Quick favour - confidential",
+    "body_text": "Rachel,\n\nI'm in a meeting with the board and can't talk. I need you to buy 6 gift cards of 200 EUR each for a client thank-you.\nKeep this between us for now. Send me the codes by email as soon as you have them.\n\nJames\nSent from my phone\n",
+    "urls": [],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "none"
+    },
+    "sending_ip": "203.0.113.77",
+    "deliver_offset_s": 260,
+    "scenario": {
+      "label": "phishing",
+      "category": "ceo_impersonation",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "phi-03",
+    "sender_name": "IT Security",
+    "sender_address": "it-security@lakeside-it-support.test",
+    "reply_to": null,
+    "to": [
+      "karen.thomas@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "MFA re-enrolment required",
+    "body_text": "Hello Karen,\n\nWe are moving to a new MFA system. You will receive several approval prompts on your phone today.\nPlease approve all of them so your account is migrated. If you do not approve, you will lose access tomorrow.\n\nTo finish enrolment, sign in at https://mfa-enrol.lakeside-it-support.test/start\n\nIT Security\n",
+    "urls": [
+      "https://mfa-enrol.lakeside-it-support.test/start"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "softfail",
+      "dkim": "none",
+      "dmarc": "fail"
+    },
+    "sending_ip": "203.0.113.90",
+    "deliver_offset_s": 330,
+    "scenario": {
+      "label": "phishing",
+      "category": "mfa_scam",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "phi-04",
+    "sender_name": "ParcelNow",
+    "sender_address": "delivery@parcelnow-redelivery.test",
+    "reply_to": null,
+    "to": [
+      "vincent.young@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Delivery failed: pay 1.99 EUR to reschedule",
+    "body_text": "We could not deliver your parcel because of unpaid customs fees (1.99 EUR).\n\nReschedule within 48 hours or the parcel will be returned to the sender:\nhttp://parcelnow-redelivery.test/pay?ref=PN99812\n\nParcelNow\n",
+    "urls": [
+      "http://parcelnow-redelivery.test/pay?ref=PN99812"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "none",
+      "dkim": "none",
+      "dmarc": "none"
+    },
+    "sending_ip": "203.0.113.102",
+    "deliver_offset_s": 390,
+    "scenario": {
+      "label": "phishing",
+      "category": "delivery_scam",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "phi-05",
+    "sender_name": "HR Portal",
+    "sender_address": "hr-portal@lakesidelogistics-hr.test",
+    "reply_to": null,
+    "to": [
+      "nancy.harris@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Your HR Portal account will be deactivated",
+    "body_text": "Dear employee,\n\nYour HR Portal account has been flagged as inactive and will be deactivated in 12 hours.\nTo keep access to your payslips, confirm your login here: https://lakesidelogistics-hr.test/confirm\n\nHR Department\n",
+    "urls": [
+      "https://lakesidelogistics-hr.test/confirm"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "none",
+      "dmarc": "none"
+    },
+    "sending_ip": "203.0.113.115",
+    "deliver_offset_s": 450,
+    "scenario": {
+      "label": "phishing",
+      "category": "account_suspension",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "phi-06",
+    "sender_name": "Bob Smith via FileShare",
+    "sender_address": "share@fileshare-docs.test",
+    "reply_to": null,
+    "to": [
+      "carol.williams@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Bob shared \"Salary adjustments 2027.pdf\" with you",
+    "body_text": "Bob Smith has shared a document with you.\n\nSalary adjustments 2027.pdf\nView document: https://fileshare-docs.test/view/8812ab\n\nSign in with your work email to view.\n",
+    "urls": [
+      "https://fileshare-docs.test/view/8812ab"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "none"
+    },
+    "sending_ip": "203.0.113.130",
+    "deliver_offset_s": 510,
+    "scenario": {
+      "label": "phishing",
+      "category": "credential_theft",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "phi-07",
+    "sender_name": "DocuSafe",
+    "sender_address": "sign@docusafe-esign.test",
+    "reply_to": null,
+    "to": [
+      "david.brown@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Please sign: Q4 supplier agreement",
+    "body_text": "You have a document waiting for your signature.\n\nQ4 supplier agreement - Paperline Supplies\nReview and sign: https://docusafe-esign.test/sign/q4-agreement\n\nThis link expires in 24 hours.\n",
+    "urls": [
+      "https://docusafe-esign.test/sign/q4-agreement"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "softfail",
+      "dkim": "none",
+      "dmarc": "none"
+    },
+    "sending_ip": "203.0.113.141",
+    "deliver_offset_s": 570,
+    "scenario": {
+      "label": "phishing",
+      "category": "credential_theft",
+      "campaign_id": null
+    }
+  }
+]

@@ -1,0 +1,350 @@
+[
+  {
+    "id": "leg-01",
+    "sender_name": "IT Helpdesk",
+    "sender_address": "helpdesk@lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "emily.davis@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Your password was changed",
+    "body_text": "Hi Emily,\n\nThis confirms that the password for your Lakeside Logistics account was changed today at 08:42.\n\nIf you made this change, no action is needed.\nIf you did not, contact the IT helpdesk on extension 2400 or open a ticket at https://helpdesk.lakeside-logistics.example/new.\n\nIT Helpdesk\n",
+    "urls": [
+      "https://helpdesk.lakeside-logistics.example/new"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_offset_s": 15,
+    "scenario": {
+      "label": "legitimate",
+      "category": "password_reset_notice",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-02",
+    "sender_name": "Paperline Supplies Billing",
+    "sender_address": "billing@paperline-supplies.example",
+    "reply_to": null,
+    "to": [
+      "alice.johnson@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Invoice INV-20431 for September",
+    "body_text": "Dear Alice,\n\nPlease find attached invoice INV-20431 for office supplies delivered in September.\nAmount due: 1,284.60 EUR. Payment terms: 30 days, to the bank account already on file.\n\nKind regards,\nSarah Mitchell\nPaperline Supplies\n",
+    "urls": [],
+    "attachments": [
+      {
+        "filename": "INV-20431.pdf",
+        "content_type": "application/pdf",
+        "size_bytes": 88412
+      }
+    ],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "192.0.2.25",
+    "deliver_offset_s": 40,
+    "scenario": {
+      "label": "legitimate",
+      "category": "invoice",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-03",
+    "sender_name": "James Clark",
+    "sender_address": "james.clark@lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "all@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "All-hands on Friday: Q3 results and the new Springfield depot",
+    "body_text": "Hi everyone,\n\nOur quarterly all-hands is this Friday at 15:00 in the main canteen, and online for drivers on the road.\nWe will go through Q3 results and the opening plan for the Springfield depot.\n\nSee you there,\nJames\n",
+    "urls": [],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_offset_s": 70,
+    "scenario": {
+      "label": "legitimate",
+      "category": "internal_announcement",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-04",
+    "sender_name": "ParcelNow",
+    "sender_address": "notifications@parcelnow.example",
+    "reply_to": null,
+    "to": [
+      "isabel.taylor@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Your shipment PN-558213 is out for delivery",
+    "body_text": "Hello,\n\nShipment PN-558213 (2 pallets, sender: Atlantic Packaging) is out for delivery today between 10:00 and 14:00.\nTrack it at https://track.parcelnow.example/PN-558213\n\nParcelNow\n",
+    "urls": [
+      "https://track.parcelnow.example/PN-558213"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "192.0.2.40",
+    "deliver_offset_s": 95,
+    "scenario": {
+      "label": "legitimate",
+      "category": "delivery_notification",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-05",
+    "sender_name": "Grace Wilson",
+    "sender_address": "grace.wilson@lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "emily.davis@lakeside-logistics.example",
+      "frank.miller@lakeside-logistics.example",
+      "henry.moore@lakeside-logistics.example",
+      "steven.walker@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Weekly pipeline review - Monday 10:00",
+    "body_text": "Hi team,\n\nCalendar invite for our weekly pipeline review. Please update your deals in the CRM before the meeting.\nRoom: Lakeview 2, or join from https://meet.lakeside-logistics.example/sales-weekly\n\nGrace\n",
+    "urls": [
+      "https://meet.lakeside-logistics.example/sales-weekly"
+    ],
+    "attachments": [
+      {
+        "filename": "invite.ics",
+        "content_type": "text/calendar",
+        "size_bytes": 1830
+      }
+    ],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_offset_s": 130,
+    "scenario": {
+      "label": "legitimate",
+      "category": "meeting_invitation",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-06",
+    "sender_name": "Mary White",
+    "sender_address": "mary.white@lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "all@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Reminder: benefits enrolment closes 15 October",
+    "body_text": "Hello all,\n\nOpen enrolment for the 2027 health and sports card benefits closes on 15 October.\nYou can review your choices in the HR Portal: https://hr.lakeside-logistics.example/benefits\n\nIf you have questions, my door is open.\nMary (HR)\n",
+    "urls": [
+      "https://hr.lakeside-logistics.example/benefits"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_offset_s": 180,
+    "scenario": {
+      "label": "legitimate",
+      "category": "internal_announcement",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-07",
+    "sender_name": "IT Helpdesk",
+    "sender_address": "helpdesk@lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "all@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Planned maintenance: file storage offline Saturday 22:00-23:00",
+    "body_text": "Hi all,\n\nFile storage will be unavailable this Saturday between 22:00 and 23:00 for updates.\nPlease save open documents before then. No action is needed otherwise.\n\nIT Helpdesk\n",
+    "urls": [],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_offset_s": 240,
+    "scenario": {
+      "label": "legitimate",
+      "category": "it_notice",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-08",
+    "sender_name": "Nordic Freight Orders",
+    "sender_address": "orders@nordicfreight.example",
+    "reply_to": null,
+    "to": [
+      "emily.davis@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "PO 7781 confirmed - 12 containers, Baltimore to Rotterdam",
+    "body_text": "Hello Emily,\n\nWe confirm purchase order 7781 for 12 containers, Baltimore to Rotterdam, departing 14 October.\nThe signed order is attached for your records.\n\nBest regards,\nTom Baker\nNordic Freight\n",
+    "urls": [],
+    "attachments": [
+      {
+        "filename": "PO-7781-signed.pdf",
+        "content_type": "application/pdf",
+        "size_bytes": 154220
+      }
+    ],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "192.0.2.61",
+    "deliver_offset_s": 300,
+    "scenario": {
+      "label": "legitimate",
+      "category": "order_confirmation",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-09",
+    "sender_name": "Payroll",
+    "sender_address": "payroll@lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "jack.anderson@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Your September payslip is ready",
+    "body_text": "Hi Jack,\n\nYour payslip for September is available in the HR Portal under Documents > Payslips.\nFor security, payslips are not sent by email.\n\nPayroll team\n",
+    "urls": [],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_offset_s": 360,
+    "scenario": {
+      "label": "legitimate",
+      "category": "payroll_notice",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-10",
+    "sender_name": "Logistics Weekly",
+    "sender_address": "newsletter@logisticsweekly.example",
+    "reply_to": null,
+    "to": [
+      "kevin.jackson@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "This week: port congestion in Rotterdam eases",
+    "body_text": "Logistics Weekly - issue 212\n\n- Rotterdam congestion eases as new berths open\n- EU road toll changes from January\n- Interview: electrifying last-mile fleets\n\nRead online: https://logisticsweekly.example/issues/212\nUnsubscribe: https://logisticsweekly.example/unsubscribe\n",
+    "urls": [
+      "https://logisticsweekly.example/issues/212",
+      "https://logisticsweekly.example/unsubscribe"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "192.0.2.77",
+    "deliver_offset_s": 420,
+    "scenario": {
+      "label": "legitimate",
+      "category": "newsletter",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-11",
+    "sender_name": "File Storage",
+    "sender_address": "no-reply@files.lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "alice.johnson@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Bob shared \"Supplier payment run - October.xlsx\" with you",
+    "body_text": "Bob Smith shared a file with you.\n\nSupplier payment run - October.xlsx\nOpen: https://files.lakeside-logistics.example/s/finance/payment-run-oct\n\nYou are receiving this because you are a member of the Finance team.\n",
+    "urls": [
+      "https://files.lakeside-logistics.example/s/finance/payment-run-oct"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_offset_s": 480,
+    "scenario": {
+      "label": "legitimate",
+      "category": "file_share",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-12",
+    "sender_name": "Microsoft",
+    "sender_address": "account-security-noreply@accountprotection.microsoft.example",
+    "reply_to": null,
+    "to": [
+      "oliver.martin@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "New app connected to your Microsoft account",
+    "body_text": "Microsoft account\n\nA new app, \"Outlook for Android\", was connected to the account o**k@lakeside-logistics.example.\n\nIf this was you, you can ignore this message.\nIf not, review your account activity at https://account.microsoft.example/activity\n\nMicrosoft account team\n",
+    "urls": [
+      "https://account.microsoft.example/activity"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "192.0.2.90",
+    "deliver_offset_s": 540,
+    "scenario": {
+      "label": "legitimate",
+      "category": "security_notification",
+      "campaign_id": null
+    }
+  }
+]

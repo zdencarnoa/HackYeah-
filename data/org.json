@@ -1,0 +1,506 @@
+{
+  "name": "Lakeside Logistics",
+  "domain": "lakeside-logistics.example",
+  "employees": [
+    {
+      "id": "e01",
+      "name": "Alice Johnson",
+      "email": "alice.johnson@lakeside-logistics.example",
+      "department": "Finance",
+      "title": "Accounts Payable Specialist",
+      "manager_id": "e04",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "erp"
+      ]
+    },
+    {
+      "id": "e02",
+      "name": "Bob Smith",
+      "email": "bob.smith@lakeside-logistics.example",
+      "department": "Finance",
+      "title": "Financial Controller",
+      "manager_id": "e04",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "erp"
+      ]
+    },
+    {
+      "id": "e03",
+      "name": "Carol Williams",
+      "email": "carol.williams@lakeside-logistics.example",
+      "department": "Finance",
+      "title": "Payroll Specialist",
+      "manager_id": "e04",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "erp"
+      ]
+    },
+    {
+      "id": "e04",
+      "name": "David Brown",
+      "email": "david.brown@lakeside-logistics.example",
+      "department": "Finance",
+      "title": "Chief Financial Officer",
+      "manager_id": "e17",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "erp"
+      ]
+    },
+    {
+      "id": "e05",
+      "name": "Emily Davis",
+      "email": "emily.davis@lakeside-logistics.example",
+      "department": "Sales",
+      "title": "Account Manager",
+      "manager_id": "e07",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "crm"
+      ]
+    },
+    {
+      "id": "e06",
+      "name": "Frank Miller",
+      "email": "frank.miller@lakeside-logistics.example",
+      "department": "Sales",
+      "title": "Sales Representative",
+      "manager_id": "e07",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "crm"
+      ]
+    },
+    {
+      "id": "e07",
+      "name": "Grace Wilson",
+      "email": "grace.wilson@lakeside-logistics.example",
+      "department": "Sales",
+      "title": "Head of Sales",
+      "manager_id": "e17",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "crm"
+      ]
+    },
+    {
+      "id": "e08",
+      "name": "Henry Moore",
+      "email": "henry.moore@lakeside-logistics.example",
+      "department": "Sales",
+      "title": "Sales Representative",
+      "manager_id": "e07",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "crm"
+      ]
+    },
+    {
+      "id": "e09",
+      "name": "Isabel Taylor",
+      "email": "isabel.taylor@lakeside-logistics.example",
+      "department": "Operations",
+      "title": "Logistics Coordinator",
+      "manager_id": "e12",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "tms"
+      ]
+    },
+    {
+      "id": "e10",
+      "name": "Jack Anderson",
+      "email": "jack.anderson@lakeside-logistics.example",
+      "department": "Operations",
+      "title": "Warehouse Lead",
+      "manager_id": "e12",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "tms"
+      ]
+    },
+    {
+      "id": "e11",
+      "name": "Karen Thomas",
+      "email": "karen.thomas@lakeside-logistics.example",
+      "department": "Operations",
+      "title": "Dispatcher",
+      "manager_id": "e12",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "tms"
+      ]
+    },
+    {
+      "id": "e12",
+      "name": "Kevin Jackson",
+      "email": "kevin.jackson@lakeside-logistics.example",
+      "department": "Operations",
+      "title": "Head of Operations",
+      "manager_id": "e17",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "tms"
+      ]
+    },
+    {
+      "id": "e13",
+      "name": "Mary White",
+      "email": "mary.white@lakeside-logistics.example",
+      "department": "HR",
+      "title": "HR Manager",
+      "manager_id": "e17",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "hr_portal"
+      ]
+    },
+    {
+      "id": "e14",
+      "name": "Nancy Harris",
+      "email": "nancy.harris@lakeside-logistics.example",
+      "department": "HR",
+      "title": "Recruiter",
+      "manager_id": "e13",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "hr_portal"
+      ]
+    },
+    {
+      "id": "e15",
+      "name": "Oliver Martin",
+      "email": "oliver.martin@lakeside-logistics.example",
+      "department": "IT",
+      "title": "IT Administrator",
+      "manager_id": "e17",
+      "is_admin": true,
+      "access": [
+        "mail",
+        "files",
+        "admin_console"
+      ]
+    },
+    {
+      "id": "e16",
+      "name": "Paula Thompson",
+      "email": "paula.thompson@lakeside-logistics.example",
+      "department": "IT",
+      "title": "Helpdesk Technician",
+      "manager_id": "e15",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "admin_console"
+      ]
+    },
+    {
+      "id": "e17",
+      "name": "James Clark",
+      "email": "james.clark@lakeside-logistics.example",
+      "department": "Executive",
+      "title": "Chief Executive Officer",
+      "manager_id": null,
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "erp",
+        "crm",
+        "hr_portal"
+      ]
+    },
+    {
+      "id": "e18",
+      "name": "Rachel Lewis",
+      "email": "rachel.lewis@lakeside-logistics.example",
+      "department": "Executive",
+      "title": "Executive Assistant",
+      "manager_id": "e17",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "erp",
+        "crm",
+        "hr_portal"
+      ]
+    },
+    {
+      "id": "e19",
+      "name": "Steven Walker",
+      "email": "steven.walker@lakeside-logistics.example",
+      "department": "Sales",
+      "title": "Sales Representative",
+      "manager_id": "e07",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "crm"
+      ]
+    },
+    {
+      "id": "e20",
+      "name": "Tina Hall",
+      "email": "tina.hall@lakeside-logistics.example",
+      "department": "Finance",
+      "title": "Accountant",
+      "manager_id": "e04",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "erp"
+      ]
+    },
+    {
+      "id": "e21",
+      "name": "Laura Allen",
+      "email": "laura.allen@lakeside-logistics.example",
+      "department": "Operations",
+      "title": "Fleet Coordinator",
+      "manager_id": "e12",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "tms"
+      ]
+    },
+    {
+      "id": "e22",
+      "name": "Vincent Young",
+      "email": "vincent.young@lakeside-logistics.example",
+      "department": "Operations",
+      "title": "Driver Supervisor",
+      "manager_id": "e12",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "tms"
+      ]
+    },
+    {
+      "id": "e23",
+      "name": "Wendy King",
+      "email": "wendy.king@lakeside-logistics.example",
+      "department": "HR",
+      "title": "HR Assistant",
+      "manager_id": "e13",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "hr_portal"
+      ]
+    },
+    {
+      "id": "e24",
+      "name": "Ryan Wright",
+      "email": "ryan.wright@lakeside-logistics.example",
+      "department": "Sales",
+      "title": "Pre-sales Engineer",
+      "manager_id": "e07",
+      "is_admin": false,
+      "access": [
+        "mail",
+        "files",
+        "crm"
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "idp",
+      "name": "Identity Provider (SSO)",
+      "kind": "identity_provider",
+      "sensitivity": "high",
+      "description": "Single sign-on for every company account. One password opens everything connected to it."
+    },
+    {
+      "id": "mail",
+      "name": "Company Email",
+      "kind": "email",
+      "sensitivity": "high",
+      "description": "Mailboxes and the internal address book. A taken-over mailbox can send convincing phishing to colleagues."
+    },
+    {
+      "id": "files",
+      "name": "File Storage",
+      "kind": "file_storage",
+      "sensitivity": "high",
+      "description": "Shared drives for all departments."
+    },
+    {
+      "id": "erp",
+      "name": "Finance ERP",
+      "kind": "internal_app",
+      "sensitivity": "high",
+      "description": "Invoices, supplier records and payment runs."
+    },
+    {
+      "id": "crm",
+      "name": "CRM",
+      "kind": "internal_app",
+      "sensitivity": "medium",
+      "description": "Customer accounts, deals and contact history."
+    },
+    {
+      "id": "hr_portal",
+      "name": "HR Portal",
+      "kind": "internal_app",
+      "sensitivity": "high",
+      "description": "Employee records, contracts and payroll."
+    },
+    {
+      "id": "tms",
+      "name": "Fleet & Dispatch",
+      "kind": "internal_app",
+      "sensitivity": "medium",
+      "description": "Shipments, routes and driver schedules."
+    },
+    {
+      "id": "admin_console",
+      "name": "Admin Console",
+      "kind": "internal_app",
+      "sensitivity": "high",
+      "description": "Manages user accounts, MFA and SSO settings."
+    },
+    {
+      "id": "invoices_data",
+      "name": "Supplier bank details & invoices",
+      "kind": "data",
+      "sensitivity": "high",
+      "description": "Bank account numbers used for supplier payments."
+    },
+    {
+      "id": "contracts_data",
+      "name": "Customer contracts",
+      "kind": "data",
+      "sensitivity": "high",
+      "description": "Signed contracts and pricing on the shared drive."
+    },
+    {
+      "id": "customer_data",
+      "name": "Customer contact list",
+      "kind": "data",
+      "sensitivity": "medium",
+      "description": "Names, emails and phone numbers of customers."
+    },
+    {
+      "id": "payroll_data",
+      "name": "Payroll records",
+      "kind": "data",
+      "sensitivity": "high",
+      "description": "Salaries, national ID numbers and bank details of employees."
+    },
+    {
+      "id": "shipment_data",
+      "name": "Shipment schedules",
+      "kind": "data",
+      "sensitivity": "medium",
+      "description": "Planned routes and high-value cargo times."
+    }
+  ],
+  "dependencies": [
+    {
+      "source": "idp",
+      "target": "mail",
+      "relation": "signs in to"
+    },
+    {
+      "source": "idp",
+      "target": "files",
+      "relation": "signs in to"
+    },
+    {
+      "source": "idp",
+      "target": "erp",
+      "relation": "signs in to"
+    },
+    {
+      "source": "idp",
+      "target": "crm",
+      "relation": "signs in to"
+    },
+    {
+      "source": "idp",
+      "target": "hr_portal",
+      "relation": "signs in to"
+    },
+    {
+      "source": "idp",
+      "target": "tms",
+      "relation": "signs in to"
+    },
+    {
+      "source": "idp",
+      "target": "admin_console",
+      "relation": "signs in to"
+    },
+    {
+      "source": "erp",
+      "target": "invoices_data",
+      "relation": "stores"
+    },
+    {
+      "source": "files",
+      "target": "contracts_data",
+      "relation": "stores"
+    },
+    {
+      "source": "crm",
+      "target": "customer_data",
+      "relation": "stores"
+    },
+    {
+      "source": "hr_portal",
+      "target": "payroll_data",
+      "relation": "stores"
+    },
+    {
+      "source": "tms",
+      "target": "shipment_data",
+      "relation": "stores"
+    },
+    {
+      "source": "admin_console",
+      "target": "idp",
+      "relation": "administers"
+    }
+  ]
+}

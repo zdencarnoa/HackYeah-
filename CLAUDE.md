@@ -6,7 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a HackYeah hackathon project. Remote: https://github.com/zdencarnoa/HackYeah- (`main` plus one branch per area). The `backend/app/*` folders are empty placeholders so far. `idea.md` is the full product spec for **Security Copilot**: a phishing-detection and incident-response assistant for small and medium-sized organizations that have no security team. Read `idea.md` before making design decisions. It is the source of truth for scope, UX, and the demo script.
 
-No build, lint, or test tooling exists yet. Once a stack is scaffolded, add the real commands here, including how to run a single test.
+Python 3.12 venv at the repo root (`.venv`). From `backend/`:
+- Install: `..\.venv\Scripts\python -m pip install -r requirements.txt`
+- All tests: `..\.venv\Scripts\python -m pytest -q`
+- One test: `..\.venv\Scripts\python -m pytest tests/test_seed.py::test_demo_campaign_matches_the_script`
+- On macOS/Linux use `../.venv/bin/python` instead, e.g. `../.venv/bin/python -m pytest tests/detection -q`
+
+Demo data lives in `data/` (`org.json`, `approved_logins.json`, `emails/*.json`) and is loaded and validated by `app/simulation/seed.py`.
+
+Every message enters detection as an `.eml`: `app.detection.parse_eml` parses uploads, and `message_from_sim` renders a `SimEmail` to `.eml` and parses it the same way. `python -m app.detection.export_eml` writes the demo mail to `data/eml/` (gitignored) for the "Is this safe?" upload.
 
 ## Intended stack (from idea.md §16, not yet chosen for certain)
 
@@ -54,4 +62,4 @@ Demo attacker infrastructure uses reserved `.example` and `.test` domains only.
 
 Work in this order: a working end-to-end demo first, then UX polish, credible detection, clear explanations, the incident-response workflow, campaign correlation, the dependency visualization, and extra AI features last. A small flawless flow from detection to recovery beats many unfinished features.
 
-The demo scenario is in `idea.md` §18–23: a fake "Microsoft Security" email from `micr0soft-example.com`, Alice enters her password, the admin gets an alert, discovers a campaign of 14 messages and 7 recipients, views the blast radius, contains the campaign, and tracks recovery. Build features so this scenario runs smoothly.
+The demo scenario is in `idea.md` §18–23: a fake "Microsoft Security" email from `micr0soft-example.test` (idea.md says `.com`; changed to stay on reserved TLDs), Alice enters her password, the admin gets an alert, discovers a campaign of 14 messages and 7 recipients, views the blast radius, contains the campaign, and tracks recovery. Build features so this scenario runs smoothly.
