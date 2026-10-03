@@ -1,12 +1,12 @@
-"""Where LLM answers come from, in order: the offline cache, a live model, nothing.
+"""Where LLM answers come from, in order (every caller falls back to templates after):
 
-Cache: app/llm/cache/responses.json, generated before the demo by app.llm.batch
-(an open-source model on the GPU server), so the demo needs no network.
-
-Live (optional): any OpenAI-compatible chat endpoint, e.g. Ollama on the
-presenting laptop or an SSH tunnel to the GPU server:
-    LLM_BASE_URL=http://localhost:11434/v1  LLM_MODEL=qwen2.5:3b
-Unset = no live calls. Every caller falls back to templates when this returns None.
+1. cache   app/llm/cache/responses.json, generated before the demo (no network needed)
+2. server  Qwen2.5-14B on the GPU box via SSH tunnel (app/llm/serve_openai.py), ~5 s
+           LLM_SERVER_URL, default http://localhost:8001/v1
+3. local   Ollama on this laptop, qwen2.5:3b, ~25 s on a laptop CPU
+           LLM_LOCAL_URL, default http://localhost:11434/v1; LLM_LOCAL_MODEL
+An endpoint that is not running refuses the connection at once, so a missing tunnel
+or Ollama costs nothing. LLM_LIVE=0 switches live calls off (cache + templates only).
 """
 from __future__ import annotations
 
@@ -23,7 +23,18 @@ from app.llm.prompts import fingerprint
 log = logging.getLogger(__name__)
 
 CACHE_FILE = Path(__file__).resolve().parent / "cache" / "responses.json"
-TIMEOUT_S = float(os.environ.get("LLM_TIMEOUT", "8"))
+
+
+def endpoints() -> list[tuple[str, str, str, float]]:
+    """(name, base URL, model, timeout in s), best first."""
+    if os.environ.get("LLM_LIVE", "1") == "0":
+        return []
+    return [
+        ("server", os.environ.get("LLM_SERVER_URL", "http://localhost:8001/v1"), "qwen2.5-14b",
+         float(os.environ.get("LLM_SERVER_TIMEOUT", "20"))),
+        ("local", os.environ.get("LLM_LOCAL_URL", "http://localhost:11434/v1"),
+         os.environ.get("LLM_LOCAL_MODEL", "qwen2.5:3b"), float(os.environ.get("LLM_LOCAL_TIMEOUT", "90"))),
+    ]
 
 
 @cache
@@ -46,25 +57,23 @@ def parse_json(text: str) -> dict | None:
     return value if isinstance(value, dict) else None
 
 
-def _live(messages: list[dict]) -> dict | None:
-    base = os.environ.get("LLM_BASE_URL")
-    if not base:
-        return None
+def _call(base: str, model: str, timeout: float, messages: list[dict]) -> dict | None:
     try:
-        response = httpx.post(f"{base.rstrip('/')}/chat/completions", timeout=TIMEOUT_S, json={
-            "model": os.environ.get("LLM_MODEL", "qwen2.5:3b"), "messages": messages,
-            "temperature": 0.2, "response_format": {"type": "json_object"}})
+        response = httpx.post(f"{base.rstrip('/')}/chat/completions", timeout=httpx.Timeout(timeout, connect=2.0),
+                              json={"model": model, "messages": messages, "temperature": 0,
+                                    "response_format": {"type": "json_object"}})
         response.raise_for_status()
         return parse_json(response.json()["choices"][0]["message"]["content"])
-    except Exception as exc:  # slow, offline or malformed: the template takes over
-        log.warning("live LLM unavailable: %s", exc)
+    except Exception as exc:  # not running, slow or malformed: try the next source
+        log.info("LLM endpoint %s unavailable: %s", base, exc)
         return None
 
 
 def ask(messages: list[dict]) -> tuple[dict | None, str | None]:
-    """(answer, origin) where origin is "cache" or "live"; (None, None) when neither has one."""
+    """(answer, origin) where origin is "cache", "server" or "local"; (None, None) when none answers."""
     if (hit := _cached().get(fingerprint(messages))) is not None:
         return hit, "cache"
-    if (answer := _live(messages)) is not None:
-        return answer, "live"
+    for name, base, model, timeout in endpoints():
+        if (answer := _call(base, model, timeout, messages)) is not None:
+            return answer, name
     return None, None

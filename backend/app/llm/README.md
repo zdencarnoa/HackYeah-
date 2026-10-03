@@ -6,13 +6,25 @@ raw email, only evidence that is already in an Assessment. Every answer is
 grounding-checked (no domain, URL or number that is not in the evidence); a failed
 answer falls back to a template, so the demo always has text.
 
-Where answers come from, in order:
+Where answers come from, in order (`client.py`):
 
-1. **Offline cache** `cache/responses.json`: generated before the demo by
-   Qwen2.5-14B-Instruct (Apache-2.0) on a GPU box. No network or GPU needed in the demo.
-2. **Live model** (optional): any OpenAI-compatible endpoint, e.g. Ollama on the
-   presenting laptop: `LLM_BASE_URL=http://localhost:11434/v1 LLM_MODEL=qwen2.5:3b`.
-3. **Templates** (`app/scoring/templates.py`, `helpers.py`).
+| # | Source | Speed | Needs |
+|---|---|---|---|
+| 1 | **Offline cache** `cache/responses.json` (Qwen2.5-14B-Instruct, Apache-2.0) | instant | nothing |
+| 2 | **GPU server**: Qwen2.5-14B via `serve_openai.py` + SSH tunnel | ~5 s | server on + tunnel |
+| 3 | **Laptop**: Ollama `qwen2.5:3b` (1.9 GB) | ~25-40 s on a laptop CPU | Ollama running |
+| 4 | **Templates** (`app/scoring/templates.py`, `helpers.py`) | instant | nothing |
+
+A source that is not running refuses the connection at once, so a missing tunnel or
+Ollama costs nothing. `LLM_LIVE=0` turns 2 and 3 off. Overrides: `LLM_SERVER_URL`,
+`LLM_LOCAL_URL`, `LLM_LOCAL_MODEL`, `LLM_SERVER_TIMEOUT`, `LLM_LOCAL_TIMEOUT`.
+
+**GPU server (2):** on the box, in `~/hackyeah/work`:
+`HF_HOME=~/hackyeah/hf nohup ../.venv/bin/python serve_openai.py --port 8001 &`
+(~30 GB GPU memory, listens on 127.0.0.1 only). On the laptop: `ssh -N -L 8001:localhost:8001 lambda-gpu`.
+Stop: `pkill -f serve_openai.py` on the box.
+
+**Laptop (3):** install [Ollama](https://ollama.com), then `ollama pull qwen2.5:3b`.
 
 ## For Person C
 

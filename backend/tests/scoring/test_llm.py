@@ -18,7 +18,7 @@ def signals():
 @pytest.fixture(autouse=True)
 def no_cache_no_live(monkeypatch):
     monkeypatch.setattr(client, "_cached", lambda: {})
-    monkeypatch.delenv("LLM_BASE_URL", raising=False)
+    monkeypatch.setenv("LLM_LIVE", "0")
 
 
 def answer_with(monkeypatch, answer):
