@@ -56,8 +56,8 @@ def test_demo_campaign_matches_the_script():
     assert len(recipients) == 7
     assert len({by_email[r].department for r in recipients}) == 3
     assert campaign[0].to == ["alice.johnson@lakeside-logistics.example"]
-    assert {domain_of(m.sender_address) for m in campaign} == {"micr0soft-example.test"}
-    assert {urlparse(u).hostname for m in campaign for u in m.urls} == {"login.micr0soft-example.test"}
+    assert {domain_of(m.sender_address) for m in campaign} == {"micr0soft-verify.example"}
+    assert {urlparse(u).hostname for m in campaign for u in m.urls} == {"micr0soft-verify.example"}
 
 
 def test_dataset_has_both_classes():

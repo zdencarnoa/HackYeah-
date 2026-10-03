@@ -134,6 +134,67 @@ class SimEmail(BaseModel):
     scenario: ScenarioLabel
 
 
+class TrackedLink(BaseModel):
+    """A link rewritten to /r/{token} for one recipient, so clicks are traceable."""
+
+    token: str
+    message_id: str
+    employee_id: str
+    url: str  # the original link
+
+
+class DeliveredEmail(BaseModel):
+    """What ingestion receives when the attack engine delivers a message.
+
+    Same as SimEmail without the ground truth. `body_text` and `urls` are the
+    originals so analyzers see the real destinations; `links` holds the
+    rewritten per-recipient tracking links.
+    """
+
+    id: str
+    sender_name: str
+    sender_address: str
+    reply_to: str | None = None
+    to: list[str]
+    cc: list[str] = Field(default_factory=list)
+    subject: str
+    body_text: str
+    body_html: str | None = None
+    urls: list[str] = Field(default_factory=list)
+    attachments: list[Attachment] = Field(default_factory=list)
+    auth: AuthResults
+    sending_ip: str
+    delivered_at: datetime
+    recipient_ids: list[str]  # employee ids, with all@ expanded
+    links: list[TrackedLink] = Field(default_factory=list)
+
+
+class InboxMessage(BaseModel):
+    """One message as shown in an employee's simulated inbox."""
+
+    id: str
+    sender_name: str
+    sender_address: str
+    reply_to: str | None = None
+    subject: str
+    body_text: str  # links already rewritten to this employee's /r/{token}
+    body_html: str | None = None  # links also rewritten
+    links: list[TrackedLink]
+    attachments: list[Attachment] = Field(default_factory=list)
+    delivered_at: datetime
+
+
+class AttackStatus(BaseModel):
+    scenario: str | None = None
+    running: bool
+    speed: float
+    demo_seconds_elapsed: float  # demo time since start, after the speed factor
+    delivered_count: int
+    total_count: int
+    next_message_id: str | None = None
+    next_delivery_at_seconds: int | None = None
+
+
 class SimEventType(StrEnum):
     EMAIL_DELIVERED = "email_delivered"
     LINK_CLICKED = "link_clicked"
@@ -159,12 +220,30 @@ class SimEvent(BaseModel):
 BlastNodeKind = Literal["employee", "identity_provider", "service", "data", "people"]
 
 
+class PasswordReuseEvent(BaseModel):
+    """Simulated Chrome Enterprise PASSWORD_REUSE_EVENT.
+
+    Fired when a company password is typed on a domain outside ApprovedLogins.
+    Never contains the password itself.
+    """
+
+    event_type: Literal["passwordReuseEvent"] = "passwordReuseEvent"
+    user: str  # employee email, the account whose password was reused
+    employee_id: str
+    url: str
+    domain: str
+    reused_credential: str  # which company account's password, never the password
+    timestamp: datetime
+    simulated: Literal[True] = True
+
+
 class BlastRadiusNode(BaseModel):
     id: str
     label: str
     kind: BlastNodeKind
     sensitivity: Sensitivity | None = None
-    at_risk: bool
+    at_risk: bool  # reachable from the compromised account
+    reason: str  # why it is (or is not) reachable, in plain language
 
 
 class BlastRadiusEdge(BaseModel):
@@ -208,6 +287,7 @@ class ContainmentRequest(BaseModel):
 
 class ContainmentResult(BaseModel):
     action: ContainmentActionType
+    approved_by: str
     summary: str  # "14 messages would be quarantined"
     affected_count: int
     details: list[str] = Field(default_factory=list)

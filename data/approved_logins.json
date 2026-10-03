@@ -1,6 +1,6 @@
 [
   {
-    "domain": "sso.lakeside-logistics.example",
+    "domain": "login.lakeside-logistics.example",
     "service_id": "idp",
     "description": "Company single sign-on page"
   },

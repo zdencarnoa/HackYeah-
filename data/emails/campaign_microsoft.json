@@ -2,17 +2,17 @@
   {
     "id": "cmp-01",
     "sender_name": "Microsoft Security",
-    "sender_address": "security@micr0soft-example.test",
+    "sender_address": "security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "alice.johnson@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "URGENT: Your account will be suspended",
-    "body_text": "Dear Alice,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (alice.johnson@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a00c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
-    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Alice,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (alice.johnson@lakeside-logistics.example).<br>\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p><a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\" style=\"display:inline-block;background:#0067b8;color:#ffffff;padding:10px 20px;text-decoration:none\">Verify your account now</a></p>\n<p>If the button does not work, open this address: <a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\">https://account.microsoft.example/security/verify</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team<br>\nMicrosoft Corporation</p>\n</body></html>\n",
+    "body_text": "Dear Alice,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (alice.johnson@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://micr0soft-verify.example/verify?session=7f3a00c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Alice,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (alice.johnson@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p>Verify your account now:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a00c9\">micr0soft-verify.example</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team\nMicrosoft Corporation</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a00c9"
+      "https://micr0soft-verify.example/verify?session=7f3a00c9"
     ],
     "attachments": [],
     "auth": {
@@ -31,17 +31,17 @@
   {
     "id": "cmp-02",
     "sender_name": "Microsoft Security",
-    "sender_address": "account-security@micr0soft-example.test",
+    "sender_address": "account-security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "alice.johnson@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "FINAL NOTICE: Your account will be suspended today",
-    "body_text": "Dear Alice,\n\nThis is your final notice. Your Microsoft 365 account (alice.johnson@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a00c9\n\nMicrosoft Security Team\n",
-    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Alice,</p>\n<p>This is your <b>final notice</b>. Your Microsoft 365 account (alice.johnson@lakeside-logistics.example) has not been verified and will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:<br>\n<a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\">https://account.microsoft.example/verify</a></p>\n<p>Microsoft Security Team</p>\n</body></html>\n",
+    "body_text": "Dear Alice,\n\nThis is your final notice. Your Microsoft 365 account (alice.johnson@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://micr0soft-verify.example/verify?session=7f3a00c9\n\nMicrosoft Security Team\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Alice,</p>\n<p>This is your final notice. Your Microsoft 365 account (alice.johnson@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a00c9\">micr0soft-verify.example</a></p>\n<p>Microsoft Security Team</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a00c9"
+      "https://micr0soft-verify.example/verify?session=7f3a00c9"
     ],
     "attachments": [],
     "auth": {
@@ -60,16 +60,17 @@
   {
     "id": "cmp-03",
     "sender_name": "Microsoft Security",
-    "sender_address": "account-security@micr0soft-example.test",
+    "sender_address": "account-security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "carol.williams@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "Action required: verify your account within 24 hours",
-    "body_text": "Dear Carol,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (carol.williams@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a01c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_text": "Dear Carol,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (carol.williams@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://micr0soft-verify.example/verify?session=7f3a01c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Carol,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (carol.williams@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p>Verify your account now:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a01c9\">micr0soft-verify.example</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team\nMicrosoft Corporation</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a01c9"
+      "https://micr0soft-verify.example/verify?session=7f3a01c9"
     ],
     "attachments": [],
     "auth": {
@@ -78,7 +79,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.15",
-    "deliver_offset_s": 145,
+    "deliver_offset_s": 135,
     "scenario": {
       "label": "phishing",
       "category": "credential_theft",
@@ -88,16 +89,17 @@
   {
     "id": "cmp-04",
     "sender_name": "Microsoft Security",
-    "sender_address": "no-reply@micr0soft-example.test",
+    "sender_address": "no-reply@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "carol.williams@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "FINAL NOTICE: Your account will be suspended today",
-    "body_text": "Dear Carol,\n\nThis is your final notice. Your Microsoft 365 account (carol.williams@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a01c9\n\nMicrosoft Security Team\n",
+    "body_text": "Dear Carol,\n\nThis is your final notice. Your Microsoft 365 account (carol.williams@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://micr0soft-verify.example/verify?session=7f3a01c9\n\nMicrosoft Security Team\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Carol,</p>\n<p>This is your final notice. Your Microsoft 365 account (carol.williams@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a01c9\">micr0soft-verify.example</a></p>\n<p>Microsoft Security Team</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a01c9"
+      "https://micr0soft-verify.example/verify?session=7f3a01c9"
     ],
     "attachments": [],
     "auth": {
@@ -116,17 +118,17 @@
   {
     "id": "cmp-05",
     "sender_name": "Microsoft Security",
-    "sender_address": "no-reply@micr0soft-example.test",
+    "sender_address": "no-reply@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "tina.hall@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "Security alert: unusual sign-in activity on your account",
-    "body_text": "Dear Tina,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (tina.hall@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a02c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
-    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Tina,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (tina.hall@lakeside-logistics.example).<br>\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p><a href=\"https://login.micr0soft-example.test/verify?session=7f3a02c9\" style=\"display:inline-block;background:#0067b8;color:#ffffff;padding:10px 20px;text-decoration:none\">Verify your account now</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team<br>\nMicrosoft Corporation</p>\n</body></html>\n",
+    "body_text": "Dear Tina,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (tina.hall@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://micr0soft-verify.example/verify?session=7f3a02c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Tina,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (tina.hall@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p>Verify your account now:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a02c9\">micr0soft-verify.example</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team\nMicrosoft Corporation</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a02c9"
+      "https://micr0soft-verify.example/verify?session=7f3a02c9"
     ],
     "attachments": [],
     "auth": {
@@ -135,7 +137,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.16",
-    "deliver_offset_s": 170,
+    "deliver_offset_s": 150,
     "scenario": {
       "label": "phishing",
       "category": "credential_theft",
@@ -145,16 +147,17 @@
   {
     "id": "cmp-06",
     "sender_name": "Microsoft Security",
-    "sender_address": "security@micr0soft-example.test",
+    "sender_address": "security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "tina.hall@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "FINAL NOTICE: Your account will be suspended today",
-    "body_text": "Dear Tina,\n\nThis is your final notice. Your Microsoft 365 account (tina.hall@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a02c9\n\nMicrosoft Security Team\n",
+    "body_text": "Dear Tina,\n\nThis is your final notice. Your Microsoft 365 account (tina.hall@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://micr0soft-verify.example/verify?session=7f3a02c9\n\nMicrosoft Security Team\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Tina,</p>\n<p>This is your final notice. Your Microsoft 365 account (tina.hall@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a02c9\">micr0soft-verify.example</a></p>\n<p>Microsoft Security Team</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a02c9"
+      "https://micr0soft-verify.example/verify?session=7f3a02c9"
     ],
     "attachments": [],
     "auth": {
@@ -173,16 +176,17 @@
   {
     "id": "cmp-07",
     "sender_name": "Microsoft Security",
-    "sender_address": "security@micr0soft-example.test",
+    "sender_address": "security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "emily.davis@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "URGENT: Your account will be suspended",
-    "body_text": "Dear Emily,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (emily.davis@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a03c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_text": "Dear Emily,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (emily.davis@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://micr0soft-verify.example/verify?session=7f3a03c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Emily,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (emily.davis@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p>Verify your account now:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a03c9\">micr0soft-verify.example</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team\nMicrosoft Corporation</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a03c9"
+      "https://micr0soft-verify.example/verify?session=7f3a03c9"
     ],
     "attachments": [],
     "auth": {
@@ -191,7 +195,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.14",
-    "deliver_offset_s": 195,
+    "deliver_offset_s": 300,
     "scenario": {
       "label": "phishing",
       "category": "credential_theft",
@@ -201,16 +205,17 @@
   {
     "id": "cmp-08",
     "sender_name": "Microsoft Security",
-    "sender_address": "account-security@micr0soft-example.test",
+    "sender_address": "account-security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "emily.davis@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "FINAL NOTICE: Your account will be suspended today",
-    "body_text": "Dear Emily,\n\nThis is your final notice. Your Microsoft 365 account (emily.davis@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a03c9\n\nMicrosoft Security Team\n",
+    "body_text": "Dear Emily,\n\nThis is your final notice. Your Microsoft 365 account (emily.davis@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://micr0soft-verify.example/verify?session=7f3a03c9\n\nMicrosoft Security Team\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Emily,</p>\n<p>This is your final notice. Your Microsoft 365 account (emily.davis@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a03c9\">micr0soft-verify.example</a></p>\n<p>Microsoft Security Team</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a03c9"
+      "https://micr0soft-verify.example/verify?session=7f3a03c9"
     ],
     "attachments": [],
     "auth": {
@@ -229,16 +234,17 @@
   {
     "id": "cmp-09",
     "sender_name": "Microsoft Security",
-    "sender_address": "account-security@micr0soft-example.test",
+    "sender_address": "account-security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "frank.miller@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "Action required: verify your account within 24 hours",
-    "body_text": "Dear Frank,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (frank.miller@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a04c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_text": "Dear Frank,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (frank.miller@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://micr0soft-verify.example/verify?session=7f3a04c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Frank,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (frank.miller@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p>Verify your account now:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a04c9\">micr0soft-verify.example</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team\nMicrosoft Corporation</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a04c9"
+      "https://micr0soft-verify.example/verify?session=7f3a04c9"
     ],
     "attachments": [],
     "auth": {
@@ -247,7 +253,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.15",
-    "deliver_offset_s": 220,
+    "deliver_offset_s": 315,
     "scenario": {
       "label": "phishing",
       "category": "credential_theft",
@@ -257,16 +263,17 @@
   {
     "id": "cmp-10",
     "sender_name": "Microsoft Security",
-    "sender_address": "no-reply@micr0soft-example.test",
+    "sender_address": "no-reply@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "frank.miller@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "FINAL NOTICE: Your account will be suspended today",
-    "body_text": "Dear Frank,\n\nThis is your final notice. Your Microsoft 365 account (frank.miller@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a04c9\n\nMicrosoft Security Team\n",
+    "body_text": "Dear Frank,\n\nThis is your final notice. Your Microsoft 365 account (frank.miller@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://micr0soft-verify.example/verify?session=7f3a04c9\n\nMicrosoft Security Team\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Frank,</p>\n<p>This is your final notice. Your Microsoft 365 account (frank.miller@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a04c9\">micr0soft-verify.example</a></p>\n<p>Microsoft Security Team</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a04c9"
+      "https://micr0soft-verify.example/verify?session=7f3a04c9"
     ],
     "attachments": [],
     "auth": {
@@ -285,16 +292,17 @@
   {
     "id": "cmp-11",
     "sender_name": "Microsoft Security",
-    "sender_address": "no-reply@micr0soft-example.test",
+    "sender_address": "no-reply@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "henry.moore@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "Security alert: unusual sign-in activity on your account",
-    "body_text": "Dear Henry,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (henry.moore@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a05c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_text": "Dear Henry,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (henry.moore@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://micr0soft-verify.example/verify?session=7f3a05c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Henry,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (henry.moore@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p>Verify your account now:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a05c9\">micr0soft-verify.example</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team\nMicrosoft Corporation</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a05c9"
+      "https://micr0soft-verify.example/verify?session=7f3a05c9"
     ],
     "attachments": [],
     "auth": {
@@ -303,7 +311,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.16",
-    "deliver_offset_s": 245,
+    "deliver_offset_s": 330,
     "scenario": {
       "label": "phishing",
       "category": "credential_theft",
@@ -313,16 +321,17 @@
   {
     "id": "cmp-12",
     "sender_name": "Microsoft Security",
-    "sender_address": "security@micr0soft-example.test",
+    "sender_address": "security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "henry.moore@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "FINAL NOTICE: Your account will be suspended today",
-    "body_text": "Dear Henry,\n\nThis is your final notice. Your Microsoft 365 account (henry.moore@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a05c9\n\nMicrosoft Security Team\n",
+    "body_text": "Dear Henry,\n\nThis is your final notice. Your Microsoft 365 account (henry.moore@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://micr0soft-verify.example/verify?session=7f3a05c9\n\nMicrosoft Security Team\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Henry,</p>\n<p>This is your final notice. Your Microsoft 365 account (henry.moore@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a05c9\">micr0soft-verify.example</a></p>\n<p>Microsoft Security Team</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a05c9"
+      "https://micr0soft-verify.example/verify?session=7f3a05c9"
     ],
     "attachments": [],
     "auth": {
@@ -341,16 +350,17 @@
   {
     "id": "cmp-13",
     "sender_name": "Microsoft Security",
-    "sender_address": "security@micr0soft-example.test",
+    "sender_address": "security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "isabel.taylor@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "URGENT: Your account will be suspended",
-    "body_text": "Dear Isabel,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (isabel.taylor@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a06c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_text": "Dear Isabel,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (isabel.taylor@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://micr0soft-verify.example/verify?session=7f3a06c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Isabel,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (isabel.taylor@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p>Verify your account now:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a06c9\">micr0soft-verify.example</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team\nMicrosoft Corporation</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a06c9"
+      "https://micr0soft-verify.example/verify?session=7f3a06c9"
     ],
     "attachments": [],
     "auth": {
@@ -359,7 +369,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.14",
-    "deliver_offset_s": 270,
+    "deliver_offset_s": 345,
     "scenario": {
       "label": "phishing",
       "category": "credential_theft",
@@ -369,16 +379,17 @@
   {
     "id": "cmp-14",
     "sender_name": "Microsoft Security",
-    "sender_address": "account-security@micr0soft-example.test",
+    "sender_address": "account-security@micr0soft-verify.example",
     "reply_to": null,
     "to": [
       "isabel.taylor@lakeside-logistics.example"
     ],
     "cc": [],
     "subject": "FINAL NOTICE: Your account will be suspended today",
-    "body_text": "Dear Isabel,\n\nThis is your final notice. Your Microsoft 365 account (isabel.taylor@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a06c9\n\nMicrosoft Security Team\n",
+    "body_text": "Dear Isabel,\n\nThis is your final notice. Your Microsoft 365 account (isabel.taylor@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://micr0soft-verify.example/verify?session=7f3a06c9\n\nMicrosoft Security Team\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p>Dear Isabel,</p>\n<p>This is your final notice. Your Microsoft 365 account (isabel.taylor@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:\n<a href=\"https://micr0soft-verify.example/verify?session=7f3a06c9\">micr0soft-verify.example</a></p>\n<p>Microsoft Security Team</p>\n</body></html>",
     "urls": [
-      "https://login.micr0soft-example.test/verify?session=7f3a06c9"
+      "https://micr0soft-verify.example/verify?session=7f3a06c9"
     ],
     "attachments": [],
     "auth": {
