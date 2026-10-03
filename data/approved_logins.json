@@ -1,0 +1,27 @@
+[
+  {
+    "domain": "sso.lakeside-logistics.example",
+    "service_id": "idp",
+    "description": "Company single sign-on page"
+  },
+  {
+    "domain": "mail.lakeside-logistics.example",
+    "service_id": "mail",
+    "description": "Webmail"
+  },
+  {
+    "domain": "files.lakeside-logistics.example",
+    "service_id": "files",
+    "description": "File storage web app"
+  },
+  {
+    "domain": "erp.lakeside-logistics.example",
+    "service_id": "erp",
+    "description": "Finance ERP"
+  },
+  {
+    "domain": "hr.lakeside-logistics.example",
+    "service_id": "hr_portal",
+    "description": "HR Portal"
+  }
+]
