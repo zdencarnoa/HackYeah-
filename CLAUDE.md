@@ -10,8 +10,17 @@ Python 3.12 venv at the repo root (`.venv`). From `backend/`:
 - Install: `..\.venv\Scripts\python -m pip install -r requirements.txt`
 - All tests: `..\.venv\Scripts\python -m pytest -q`
 - One test: `..\.venv\Scripts\python -m pytest tests/test_seed.py::test_demo_campaign_matches_the_script`
+- On macOS/Linux use `../.venv/bin/python` instead, e.g. `../.venv/bin/python -m pytest tests/detection -q`
 
 Demo data lives in `data/` (`org.json`, `approved_logins.json`, `emails/*.json`) and is loaded and validated by `app/simulation/seed.py`.
+
+Every message enters detection as an `.eml`: `app.detection.parse_eml` parses uploads, and `message_from_sim` renders a `SimEmail` to `.eml` and parses it the same way. `python -m app.detection.export_eml` writes the demo mail to `data/eml/` (gitignored) for the "Is this safe?" upload.
+
+Detection integration:
+- On delivery, in this order: `message_from_sim(sim)`, then `detect(message)` on the original, then `rewrite_links(message, employee_id)` for each inbox copy. Never run `detect()` on a rewritten copy.
+- `app.detection.router.router` holds `POST /api/analyze/signals`, `GET /r/{token}` and a placeholder `/demo/{host}/{path}` page. C mounts it with `app.include_router(router)`.
+- A click emits a `SimEvent(type=link_clicked)` before redirecting, and only `.example`/`.test` domains are ever forwarded. Tokens are in memory and clicks are only logged until C calls `app.detection.rewrite.configure(store=..., on_click=...)`. D's reset calls `clear_links()`.
+- Env: `DETECTION_BASE_URL` (default `http://localhost:8000`) and `DEMO_SITE_URL` (default `<base>/demo`, where D's fake site goes).
 
 ## Intended stack (from idea.md §16, not yet chosen for certain)
 

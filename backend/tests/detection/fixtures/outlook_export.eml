@@ -1,0 +1,81 @@
+Received: from mail.micr0soft-example.test (mail.micr0soft-example.test [203.0.113.14])
+ by mx.lakeside-logistics.example with ESMTPS id 4F2A1; Sat, 3 Oct 2026 11:02:01 +0200
+Received: from relay.micr0soft-example.test ([203.0.113.20]) by mail.micr0soft-example.test;
+ Sat, 3 Oct 2026 11:01:59 +0200
+Authentication-Results: mx.lakeside-logistics.example;
+	spf=pass smtp.mailfrom=micr0soft-example.test;
+	dkim=none;
+	dmarc=none header.from=micr0soft-example.test
+Authentication-Results: relay.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test
+From: =?utf-8?q?Microsoft_Security?= <Security@Micr0soft-Example.test>
+To: "Johnson, Alice" <alice.johnson@lakeside-logistics.example>
+Cc: carol.williams@lakeside-logistics.example,
+ ALICE.JOHNSON@lakeside-logistics.example
+Reply-To: help@micr0soft-support.test
+Subject: =?utf-8?q?URGENT=3A_Your_account_will_be_suspended_=E2=80=93_dzia=C5=82aj_teraz?=
+Date: Sat, 3 Oct 2026 11:02:00 +0200
+Message-ID: <DB9PR01MB1234.outlook@micr0soft-example.test>
+X-MS-Has-Attach: yes
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="_004_mixed_"
+
+--_004_mixed_
+Content-Type: multipart/alternative; boundary="_000_alt_"
+
+--_000_alt_
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
+
+Szanowna Pani Alice,
+
+Your account will be suspended within 24 hours (konto zostanie zawieszone -=
+ pilne, =BF=F3=B3=E6).
+Verify your account now: https://login.micr0soft-example.test/verify?sessio=
+n=3D7f3a00c9.
+Help: www.micr0soft-example.test/help, or write to help@micr0soft-support.t=
+est.
+
+--_000_alt_
+Content-Type: multipart/related; boundary="_003_rel_"; type="text/html"
+
+--_003_rel_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style>.btn {color: #fff}</style><script>var hidden =3D "Click =
+here";</script></head>
+<body>
+<p>Szanowna Pani Alice,</p>
+<p>Your account will be <b>suspended</b> within 24 hours.</p>
+<p><a class=3D"btn" href=3D"https://login.micr0soft-example.test/verify?ses=
+sion=3D7f3a00c9">Verify your account now</a></p>
+<p>Or open <a href=3D"https://login.micr0soft-example.test/verify?session=
+=3D7f3a00c9">https://account.microsoft.example/verify</a></p>
+<p><a href=3D"mailto:help@micr0soft-support.test">Contact support</a></p>
+<p><img src=3D"cid:image001.png@01DB1A2B" alt=3D"Microsoft"></p>
+</body></html>
+
+--_003_rel_
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"
+Content-ID: <image001.png@01DB1A2B>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAAAAAAAAAAAAAAAAAAA
+
+--_003_rel_--
+
+--_000_alt_--
+
+--_004_mixed_
+Content-Type: application/zip; name="Security_Report.zip"
+Content-Disposition: attachment; filename="Security_Report.zip"
+Content-Transfer-Encoding: base64
+
+UEsDBBQAAQAAADiFQ12dagT2HgAAAB4AAAAXAAAAU2VjdXJpdHlfUmVwb3J0LnBkZi5leGVNWiBw
+bGFjZWhvbGRlciwgbmV2ZXIgZXhlY3V0ZWRQSwECFAMUAAEAAAA4hUNdnWoE9h4AAAAeAAAAFwAA
+AAAAAAAAAAAAgAEAAAAAU2VjdXJpdHlfUmVwb3J0LnBkZi5leGVQSwUGAAAAAAEAAQBFAAAAUwAA
+AAAA
+
+--_004_mixed_--

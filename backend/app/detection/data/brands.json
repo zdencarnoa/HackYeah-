@@ -1,0 +1,53 @@
+[
+  {
+    "key": "microsoft",
+    "name": "Microsoft",
+    "keywords": ["microsoft", "office 365", "office365", "microsoft 365", "o365", "m365", "onedrive",
+                 "sharepoint", "outlook team", "outlook support", "outlook account", "outlook web app"],
+    "domains": ["microsoft.com", "office.com", "office365.com", "microsoftonline.com", "microsoft365.com",
+                "sharepoint.com", "onedrive.com", "live.com", "outlook.com", "microsoft.example"]
+  },
+  {
+    "key": "company",
+    "name": "Lakeside Logistics",
+    "keywords": ["lakeside logistics", "lakeside it", "lakeside hr", "it helpdesk", "it help desk", "it support",
+                 "it security", "it department", "hr portal", "hr department", "payroll"],
+    "domains": ["lakeside-logistics.example"]
+  },
+  {
+    "key": "google",
+    "name": "Google",
+    "keywords": ["google", "gmail", "google drive", "google workspace"],
+    "domains": ["google.com", "google.pl", "gmail.com", "googlemail.com"]
+  },
+  {
+    "key": "pko",
+    "name": "PKO Bank Polski",
+    "keywords": ["pko", "pko bp", "pko bank polski", "ipko"],
+    "domains": ["pkobp.pl", "ipko.pl"]
+  },
+  {
+    "key": "dhl",
+    "name": "DHL",
+    "keywords": ["dhl"],
+    "domains": ["dhl.com", "dhl.pl", "dhl.de"]
+  },
+  {
+    "key": "inpost",
+    "name": "InPost",
+    "keywords": ["inpost", "paczkomat", "paczkomaty"],
+    "domains": ["inpost.pl", "inpost.eu", "inpost.co.uk"]
+  },
+  {
+    "key": "parcelnow",
+    "name": "ParcelNow",
+    "keywords": ["parcelnow", "parcel now"],
+    "domains": ["parcelnow.example"]
+  },
+  {
+    "key": "paperline",
+    "name": "Paperline Supplies",
+    "keywords": ["paperline", "paperline supplies"],
+    "domains": ["paperline-supplies.example"]
+  }
+]
