@@ -122,6 +122,9 @@ class SimEmail(BaseModel):
     cc: list[str] = Field(default_factory=list)
     subject: str
     body_text: str
+    # Optional HTML part. Its links keep their anchor text, so a link can show
+    # one address and lead to another.
+    body_html: str | None = None
     urls: list[str] = Field(default_factory=list)  # as they appear in the body
     attachments: list[Attachment] = Field(default_factory=list)
     auth: AuthResults
@@ -229,3 +232,38 @@ class RecoveryStatus(BaseModel):
     tracks: list[RecoveryTrack]
     remaining_actions: list[ChecklistItem]
     simulated: Literal[True] = True
+
+
+# ---------------------------------------------------------------------------
+# Detection (Person A): a parsed message as every analyzer sees it. Built by
+# app.detection.parse_eml from an uploaded .eml, or from a SimEmail rendered to
+# .eml on delivery, so both paths produce exactly the same shape.
+# ---------------------------------------------------------------------------
+
+
+class Link(BaseModel):
+    # As written in the href or the text. Bare "www." links get "http://".
+    url: str
+    anchor_text: str | None = None  # visible text of the <a>; None for text links
+    found_in: Literal["text", "html"]
+
+
+class MessageAttachment(Attachment):
+    # A zip whose entries carry the encryption flag. Read from the zip's table
+    # of contents in memory; attachments are never unpacked or executed.
+    encrypted: bool = False
+
+
+class Message(BaseModel):
+    id: str  # SimEmail.id for demo mail; for uploads a hash of Message-ID + recipients
+    sender: str  # "security@micr0soft-example.test", lowercased
+    sender_name: str  # "Microsoft Security"; "" when From has no display name
+    reply_to: str | None = None
+    recipients: list[str]  # To + Cc, lowercased
+    subject: str
+    body_text: str  # the text/plain part, else the visible text of the HTML part
+    body_html: str | None = None
+    urls: list[Link] = Field(default_factory=list)  # web links only, deduplicated
+    attachments: list[MessageAttachment] = Field(default_factory=list)
+    headers: list[tuple[str, str]] = Field(default_factory=list)  # repeats kept, in order
+    received_at: datetime  # from the Date header; the parse time if missing or broken

@@ -10,6 +10,7 @@
     "cc": [],
     "subject": "URGENT: Your account will be suspended",
     "body_text": "Dear Alice,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (alice.johnson@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a00c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Alice,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (alice.johnson@lakeside-logistics.example).<br>\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p><a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\" style=\"display:inline-block;background:#0067b8;color:#ffffff;padding:10px 20px;text-decoration:none\">Verify your account now</a></p>\n<p>If the button does not work, open this address: <a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\">https://account.microsoft.example/security/verify</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team<br>\nMicrosoft Corporation</p>\n</body></html>\n",
     "urls": [
       "https://login.micr0soft-example.test/verify?session=7f3a00c9"
     ],
@@ -38,6 +39,7 @@
     "cc": [],
     "subject": "FINAL NOTICE: Your account will be suspended today",
     "body_text": "Dear Alice,\n\nThis is your final notice. Your Microsoft 365 account (alice.johnson@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a00c9\n\nMicrosoft Security Team\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Alice,</p>\n<p>This is your <b>final notice</b>. Your Microsoft 365 account (alice.johnson@lakeside-logistics.example) has not been verified and will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:<br>\n<a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\">https://account.microsoft.example/verify</a></p>\n<p>Microsoft Security Team</p>\n</body></html>\n",
     "urls": [
       "https://login.micr0soft-example.test/verify?session=7f3a00c9"
     ],
@@ -122,6 +124,7 @@
     "cc": [],
     "subject": "Security alert: unusual sign-in activity on your account",
     "body_text": "Dear Tina,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (tina.hall@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a02c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+    "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Tina,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (tina.hall@lakeside-logistics.example).<br>\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p><a href=\"https://login.micr0soft-example.test/verify?session=7f3a02c9\" style=\"display:inline-block;background:#0067b8;color:#ffffff;padding:10px 20px;text-decoration:none\">Verify your account now</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team<br>\nMicrosoft Corporation</p>\n</body></html>\n",
     "urls": [
       "https://login.micr0soft-example.test/verify?session=7f3a02c9"
     ],
