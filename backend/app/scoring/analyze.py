@@ -6,7 +6,8 @@ from app.schemas import Message
 from app.schemas_proposal_b import Assessment
 from app.scoring.fusion import fuse
 from app.scoring.ml_signal import classify, ml_signal
-from app.scoring.templates import explain, recommended_action
+from app.llm.explain import explain_assessment
+from app.scoring.templates import recommended_action
 
 UNSURE_LOW, UNSURE_HIGH = 0.35, 0.65
 
@@ -35,6 +36,6 @@ def analyze(message: Message, use_ml: bool = True) -> Assessment:
         ml_confidence=round(ml.probability, 4) if ml else None,
         ml_model=ml.model if ml else None,
         uncertainties=uncertainties,
-        explanation=explain(result.risk, result.signals),
+        explanation=explain_assessment(result.risk, result.signals, uncertainties),
         recommended_action=recommended_action(result.risk, result.signals),
     )
