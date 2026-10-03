@@ -1,0 +1,25 @@
+Received: from lakeside-it-support.test ([203.0.113.90]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:50:03 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=softfail
+ smtp.mailfrom=lakeside-it-support.test; dkim=none; dmarc=fail
+ header.from=lakeside-it-support.test
+From: IT Security <it-security@lakeside-it-support.test>
+To: karen.thomas@lakeside-logistics.example
+Subject: MFA re-enrolment required
+Date: Sat, 03 Oct 2026 14:50:03 +0000
+Message-ID: <phi-03@lakeside-it-support.test>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hello Karen,
+
+We are moving to a new MFA system. You will receive several approval prompts =
+on your phone today.
+Please approve all of them so your account is migrated. If you do not approve=
+, you will lose access tomorrow.
+
+To finish enrolment, sign in at https://mfa-enrol.lakeside-it-support.test/st=
+art
+
+IT Security

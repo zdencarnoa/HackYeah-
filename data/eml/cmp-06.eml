@@ -1,0 +1,25 @@
+Received: from micr0soft-example.test ([203.0.113.14]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:55:13 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=micr0soft-example.test; dkim=pass
+ header.d=micr0soft-example.test; dmarc=none
+ header.from=micr0soft-example.test
+From: Microsoft Security <security@micr0soft-example.test>
+To: tina.hall@lakeside-logistics.example
+Subject: FINAL NOTICE: Your account will be suspended today
+Date: Sat, 03 Oct 2026 14:55:13 +0000
+Message-ID: <cmp-06@micr0soft-example.test>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear Tina,
+
+This is your final notice. Your Microsoft 365 account (tina.hall@lakeside-log=
+istics.example) has not been verified
+and will be suspended today at 17:00.
+
+Verify immediately to avoid losing access:
+https://login.micr0soft-example.test/verify?session=3D7f3a02c9
+
+Microsoft Security Team
