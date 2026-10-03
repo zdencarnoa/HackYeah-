@@ -1,0 +1,22 @@
+Received: from lakesidelogistics-hr.test ([203.0.113.115]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:52:03 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=lakesidelogistics-hr.test; dkim=none; dmarc=none
+ header.from=lakesidelogistics-hr.test
+From: HR Portal <hr-portal@lakesidelogistics-hr.test>
+To: nancy.harris@lakeside-logistics.example
+Subject: Your HR Portal account will be deactivated
+Date: Sat, 03 Oct 2026 14:52:03 +0000
+Message-ID: <phi-05@lakesidelogistics-hr.test>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear employee,
+
+Your HR Portal account has been flagged as inactive and will be deactivated i=
+n 12 hours.
+To keep access to your payslips, confirm your login here: https://lakesidelog=
+istics-hr.test/confirm
+
+HR Department

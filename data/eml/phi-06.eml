@@ -1,0 +1,20 @@
+Received: from fileshare-docs.test ([203.0.113.130]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:53:03 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=fileshare-docs.test; dkim=pass header.d=fileshare-docs.test;
+ dmarc=none header.from=fileshare-docs.test
+From: Bob Smith via FileShare <share@fileshare-docs.test>
+To: carol.williams@lakeside-logistics.example
+Subject: Bob shared "Salary adjustments 2027.pdf" with you
+Date: Sat, 03 Oct 2026 14:53:03 +0000
+Message-ID: <phi-06@fileshare-docs.test>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Bob Smith has shared a document with you.
+
+Salary adjustments 2027.pdf
+View document: https://fileshare-docs.test/view/8812ab
+
+Sign in with your work email to view.

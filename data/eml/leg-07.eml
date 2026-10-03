@@ -1,0 +1,22 @@
+Received: from lakeside-logistics.example ([198.51.100.10]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:48:33 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=lakeside-logistics.example; dkim=pass
+ header.d=lakeside-logistics.example; dmarc=pass
+ header.from=lakeside-logistics.example
+From: IT Helpdesk <helpdesk@lakeside-logistics.example>
+To: all@lakeside-logistics.example
+Subject: Planned maintenance: file storage offline Saturday 22:00-23:00
+Date: Sat, 03 Oct 2026 14:48:33 +0000
+Message-ID: <leg-07@lakeside-logistics.example>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi all,
+
+File storage will be unavailable this Saturday between 22:00 and 23:00 for up=
+dates.
+Please save open documents before then. No action is needed otherwise.
+
+IT Helpdesk

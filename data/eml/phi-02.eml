@@ -1,0 +1,23 @@
+Received: from freemail.test ([203.0.113.77]) by mx.lakeside-logistics.example
+ with ESMTPS; Sat, 03 Oct 2026 14:48:53 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=freemail.test; dkim=pass header.d=freemail.test; dmarc=none
+ header.from=freemail.test
+From: James Clark <james.clark.ceo@freemail.test>
+To: rachel.lewis@lakeside-logistics.example
+Subject: Quick favour - confidential
+Date: Sat, 03 Oct 2026 14:48:53 +0000
+Message-ID: <phi-02@freemail.test>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Rachel,
+
+I'm in a meeting with the board and can't talk. I need you to buy 6 gift card=
+s of 200 EUR each for a client thank-you.
+Keep this between us for now. Send me the codes by email as soon as you have =
+them.
+
+James
+Sent from my phone
