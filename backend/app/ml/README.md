@@ -11,8 +11,15 @@ URLs are Person A's deterministic signals, not model features.
 | `models/transformer_syn/` | DistilBERT fine-tuned on Kaggle + synthetic modern emails, temperature-calibrated | ~1 s, CPU | main model |
 | `models/baseline.joblib` | TF-IDF (hashed words + chars) + logistic regression | 0.2 s | fallback |
 
-`models/transformer_syn/model.safetensors` (255 MB) is not in git. Get it from the
-team (see below) and drop it into that folder; the other files there are committed.
+`models/transformer_syn/model.safetensors` (255 MB) is not in git (over GitHub's
+100 MB limit). It is attached to the [`model-v1` release](https://github.com/zdencarnoa/HackYeah-/releases/tag/model-v1);
+the other files in that folder are committed. From the repo root:
+
+```bash
+gh release download model-v1 -R zdencarnoa/HackYeah- -D backend/app/ml/models/transformer_syn/
+```
+
+Without it, use the `baseline.joblib` fallback.
 
 ```python
 from app.ml.transformer_model import PhishingTransformer
