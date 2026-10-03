@@ -16,6 +16,8 @@ next-env.d.ts
 
 # Data (Kaggle dataset is downloaded locally, never committed)
 data/raw/
+# DistilBERT weights are 255 MB (over GitHub's 100 MB limit); shared outside git
+backend/app/ml/models/transformer_syn/model.safetensors
 *.sqlite
 *.db
 

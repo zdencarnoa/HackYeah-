@@ -1,0 +1,50 @@
+device: cuda NVIDIA GH200 480GB
+loaded 85992 emails, 78368 after dedup (0 rows with conflicting labels, 7624 removed in total)
+Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights: 100%|██████████| 100/100 [00:00<00:00, 8863.52it/s]
+[transformers] [1mDistilBertForSequenceClassification LOAD REPORT[0m from: distilbert-base-uncased
+Key                     | Status     | 
+------------------------+------------+-
+vocab_transform.weight  | UNEXPECTED | 
+vocab_projector.bias    | UNEXPECTED | 
+vocab_layer_norm.weight | UNEXPECTED | 
+vocab_transform.bias    | UNEXPECTED | 
+vocab_layer_norm.bias   | UNEXPECTED | 
+classifier.bias         | MISSING    | 
+pre_classifier.bias     | MISSING    | 
+pre_classifier.weight   | MISSING    | 
+classifier.weight       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+epoch 1 step 200/1416 loss 0.3041 (4s)
+epoch 1 step 400/1416 loss 0.0968 (9s)
+epoch 1 step 600/1416 loss 0.0629 (13s)
+epoch 1 step 800/1416 loss 0.0524 (17s)
+epoch 1 step 1000/1416 loss 0.0396 (21s)
+epoch 1 step 1200/1416 loss 0.0414 (25s)
+epoch 1 step 1400/1416 loss 0.0449 (29s)
+epoch 2 step 200/1416 loss 0.0170 (4s)
+epoch 2 step 400/1416 loss 0.0158 (8s)
+epoch 2 step 600/1416 loss 0.0153 (12s)
+epoch 2 step 800/1416 loss 0.0108 (17s)
+epoch 2 step 1000/1416 loss 0.0118 (21s)
+epoch 2 step 1200/1416 loss 0.0123 (25s)
+epoch 2 step 1400/1416 loss 0.0143 (29s)
+
+temperature T = 1.992 | ECE before 0.0333 -> after 0.0200
+share of predictions between 10% and 90%: before 2.7% -> after 6.6%
+saved /home/ubuntu/hackyeah/ml/models/temperature_CEAS_08_syn.json
+
+=== holdout source = CEAS_08 (honest) (n=33065) ===
+ROC-AUC 0.9925 | PR-AUC 0.9913
+              precision    recall  f1-score   support
+
+       legit     0.9766    0.9405    0.9582     17083
+    phishing     0.9388    0.9759    0.9570     15982
+
+    accuracy                         0.9576     33065
+   macro avg     0.9577    0.9582    0.9576     33065
+weighted avg     0.9583    0.9576    0.9576     33065
+
+confusion: TN=16067 FP=1016 FN=385 TP=15597

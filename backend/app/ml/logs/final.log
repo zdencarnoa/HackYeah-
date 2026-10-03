@@ -1,0 +1,43 @@
+device: cuda NVIDIA GH200 480GB
+loaded 82472 emails, 74854 after dedup (0 rows with conflicting labels, 7618 removed in total)
+Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights: 100%|██████████| 100/100 [00:00<00:00, 8968.32it/s]
+[transformers] [1mDistilBertForSequenceClassification LOAD REPORT[0m from: distilbert-base-uncased
+Key                     | Status     | 
+------------------------+------------+-
+vocab_transform.weight  | UNEXPECTED | 
+vocab_projector.bias    | UNEXPECTED | 
+vocab_transform.bias    | UNEXPECTED | 
+vocab_layer_norm.bias   | UNEXPECTED | 
+vocab_layer_norm.weight | UNEXPECTED | 
+pre_classifier.weight   | MISSING    | 
+pre_classifier.bias     | MISSING    | 
+classifier.bias         | MISSING    | 
+classifier.weight       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+epoch 1 step 200/2340 loss 0.3555 (4s)
+epoch 1 step 400/2340 loss 0.1001 (8s)
+epoch 1 step 600/2340 loss 0.0648 (13s)
+epoch 1 step 800/2340 loss 0.0638 (17s)
+epoch 1 step 1000/2340 loss 0.0503 (21s)
+epoch 1 step 1200/2340 loss 0.0433 (25s)
+epoch 1 step 1400/2340 loss 0.0334 (29s)
+epoch 1 step 1600/2340 loss 0.0445 (33s)
+epoch 1 step 1800/2340 loss 0.0352 (37s)
+epoch 1 step 2000/2340 loss 0.0334 (41s)
+epoch 1 step 2200/2340 loss 0.0371 (46s)
+epoch 2 step 200/2340 loss 0.0125 (4s)
+epoch 2 step 400/2340 loss 0.0082 (8s)
+epoch 2 step 600/2340 loss 0.0093 (12s)
+epoch 2 step 800/2340 loss 0.0168 (16s)
+epoch 2 step 1000/2340 loss 0.0067 (20s)
+epoch 2 step 1200/2340 loss 0.0065 (25s)
+epoch 2 step 1400/2340 loss 0.0104 (29s)
+epoch 2 step 1600/2340 loss 0.0110 (33s)
+epoch 2 step 1800/2340 loss 0.0072 (37s)
+epoch 2 step 2000/2340 loss 0.0083 (41s)
+epoch 2 step 2200/2340 loss 0.0114 (45s)
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00, 13.35it/s]
+saved to /home/ubuntu/hackyeah/ml/models/transformer
