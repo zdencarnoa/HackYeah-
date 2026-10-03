@@ -1,0 +1,58 @@
+loaded 82472 emails, 74854 after dedup (0 rows with conflicting labels, 7618 removed in total)
+label               0      1
+source                      
+CEAS_08         17083  15982
+Enron           14459  13928
+Ling             2400    457
+Nazario             0   1533
+Nigerian_Fraud      0   3261
+SpamAssasin      4075   1676
+
+trained in 299s
+
+=== random split (optimistic) (n=14971) ===
+ROC-AUC 0.9996 | PR-AUC 0.9996
+              precision    recall  f1-score   support
+
+       legit     0.9924    0.9911    0.9917      7604
+    phishing     0.9908    0.9921    0.9915      7367
+
+    accuracy                         0.9916     14971
+   macro avg     0.9916    0.9916    0.9916     14971
+weighted avg     0.9916    0.9916    0.9916     14971
+
+confusion: TN=7536 FP=68 FN=58 TP=7309
+
+trained without CEAS_08 in 184s
+
+=== holdout source = CEAS_08 (honest) (n=33065) ===
+ROC-AUC 0.9783 | PR-AUC 0.9699
+              precision    recall  f1-score   support
+
+       legit     0.9410    0.9220    0.9314     17083
+    phishing     0.9184    0.9382    0.9282     15982
+
+    accuracy                         0.9298     33065
+   macro avg     0.9297    0.9301    0.9298     33065
+weighted avg     0.9300    0.9298    0.9298     33065
+
+confusion: TN=15750 FP=1333 FN=988 TP=14994
+
+trained without SpamAssasin in 368s
+
+=== holdout source = SpamAssasin (honest) (n=5751) ===
+ROC-AUC 0.9795 | PR-AUC 0.9581
+              precision    recall  f1-score   support
+
+       legit     0.9582    0.9399    0.9490      4075
+    phishing     0.8603    0.9004    0.8799      1676
+
+    accuracy                         0.9284      5751
+   macro avg     0.9093    0.9201    0.9144      5751
+weighted avg     0.9297    0.9284    0.9288      5751
+
+confusion: TN=3830 FP=245 FN=167 TP=1509
+
+training final model on all data...
+
+saved C:\Users\38591\Downloads\hackyeah\ml\models\baseline.joblib (7.6 MB), loads in 5.37s
