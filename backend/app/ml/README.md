@@ -34,7 +34,7 @@ p = model.predict_proba([email_text(subject, body)])[0]   # 0.0–1.0
 | Test | TF-IDF + LR | DistilBERT + synthetic |
 |---|---|---|
 | Random split (optimistic) | 99.2% acc | – |
-| Unseen source CEAS_08 (honest) | 93.0% acc, AUC 0.978 | 96.0% acc, AUC 0.992 |
+| Unseen source CEAS_08 (honest) | 93.0% acc, AUC 0.978 | 95.8-96.0% acc (two runs), AUC 0.992, recall 97.6% |
 | Unseen source SpamAssassin | 92.8% acc, AUC 0.980 | – |
 | Team demo emails (33) | 26/33 | 31/33 (all 12 legit LOW) |
 | Calibration error (ECE, CEAS_08) | – | 3.3% → 2.0% (T = 1.99) |
@@ -69,3 +69,9 @@ python -m app.ml.eval_demo --model transformer         # score the team's demo e
 ```
 
 Extra deps beyond `requirements.txt`: `scikit-learn pandas joblib torch transformers`.
+
+## Figures for the pitch
+
+`python -m app.ml.figures` (from `backend/`) writes `figures/confusion_holdout.png`
+(honest test) and `figures/demo_ml_vs_system.png` (text model alone vs the full
+system on the team's demo emails). Re-run it after the demo emails change.
