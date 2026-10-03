@@ -314,3 +314,10 @@ class DetectionResult(BaseModel):
     # Checks that could not run, in plain language, for B's uncertainties[]:
     # "We could not check ... because the email has no authentication results."
     unchecked: list[str] = Field(default_factory=list)
+
+
+class SignalsResponse(DetectionResult):
+    """POST /api/analyze/signals: an uploaded .eml, parsed, with its signals.
+    For debugging and the UI's "Advanced details"; B's /api/analyze is the main path."""
+
+    message: Message

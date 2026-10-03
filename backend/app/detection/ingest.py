@@ -131,7 +131,7 @@ def _content(part: EmailMessage | None) -> str:
             return ""
 
 
-def _web_url(candidate: str) -> str | None:
+def web_url(candidate: str) -> str | None:
     """The URL if it is a web link; None for mailto:, tel:, #anchors and relative paths."""
     url = URL_WHITESPACE_RE.sub("", candidate).strip()
     if url.lower().startswith(("http://", "https://")):
@@ -144,7 +144,7 @@ def _web_url(candidate: str) -> str | None:
 def _links_from_html(html: str) -> list[Link]:
     links = []
     for a in BeautifulSoup(html, "html.parser").find_all("a", href=True):
-        url = _web_url(a["href"])
+        url = web_url(a["href"])
         if url is None:
             continue
         # An image used as a button shows its alt text instead.
@@ -156,7 +156,7 @@ def _links_from_html(html: str) -> list[Link]:
 def _links_from_text(text: str) -> list[Link]:
     links = []
     for match in TEXT_URL_RE.finditer(text):
-        url = _web_url(match.group().rstrip(TRAILING_PUNCTUATION))
+        url = web_url(match.group().rstrip(TRAILING_PUNCTUATION))
         if url is not None:
             links.append(Link(url=url, found_in="text"))
     return links
