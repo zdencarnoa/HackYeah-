@@ -267,3 +267,50 @@ class Message(BaseModel):
     attachments: list[MessageAttachment] = Field(default_factory=list)
     headers: list[tuple[str, str]] = Field(default_factory=list)  # repeats kept, in order
     received_at: datetime  # from the Date header; the parse time if missing or broken
+
+
+class SignalCategory(StrEnum):
+    # Task 2: headers
+    AUTH_FAILURE = "auth_failure"
+    REPLY_TO_MISMATCH = "reply_to_mismatch"
+    RETURN_PATH_MISMATCH = "return_path_mismatch"
+    # Task 3: who the sender claims to be
+    BRAND_IMPERSONATION = "brand_impersonation"
+    FREEMAIL_IMPERSONATION = "freemail_impersonation"
+    COLLEAGUE_IMPERSONATION = "colleague_impersonation"
+    # Tasks 4 and 5: domains and links
+    LOOKALIKE_DOMAIN = "lookalike_domain"
+    SUSPICIOUS_URL = "suspicious_url"
+    # Task 6: content
+    URGENCY = "urgency"
+    CREDENTIAL_REQUEST = "credential_request"
+    PAYMENT_CHANGE = "payment_change"
+    GIFT_CARD = "gift_card"
+    MFA_CODE_REQUEST = "mfa_code_request"
+    # Task 7: attachments
+    RISKY_ATTACHMENT = "risky_attachment"
+    # Task 8: offline blocklist
+    KNOWN_BAD = "known_bad"
+    # Person B's classifier
+    ML_PHISHING = "ml_phishing"
+
+
+class Signal(BaseModel):
+    """One concrete, checkable fact about a message. Never a verdict: only B's
+    risk fusion sets the risk level."""
+
+    id: str  # stable rule id such as "header.auth"; at most one signal per rule
+    category: SignalCategory
+    # 0 context only, 1 weak (common in legitimate mail too), 2 moderate,
+    # 3 strong (rarely seen in legitimate mail)
+    severity: int = Field(ge=0, le=3)
+    evidence: str  # one plain-language sentence, shown to employees as-is
+    technical_detail: str  # jargon for "Advanced details", e.g. "spf=fail; dmarc=fail"
+    source: Literal["rule", "url", "ml", "intel"]
+
+
+class DetectionResult(BaseModel):
+    signals: list[Signal] = Field(default_factory=list)
+    # Checks that could not run, in plain language, for B's uncertainties[]:
+    # "We could not check ... because the email has no authentication results."
+    unchecked: list[str] = Field(default_factory=list)
