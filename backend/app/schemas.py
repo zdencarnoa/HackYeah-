@@ -127,8 +127,66 @@ class SimEmail(BaseModel):
     auth: AuthResults
     sending_ip: str
     # Seconds after demo start when the attack engine delivers this message.
-    deliver_offset_s: int
+    deliver_after_seconds: int
     scenario: ScenarioLabel
+
+
+class TrackedLink(BaseModel):
+    """A link rewritten to /r/{token} for one recipient, so clicks are traceable."""
+
+    token: str
+    message_id: str
+    employee_id: str
+    url: str  # the original link
+
+
+class DeliveredEmail(BaseModel):
+    """What ingestion receives when the attack engine delivers a message.
+
+    Same as SimEmail without the ground truth. `body_text` and `urls` are the
+    originals so analyzers see the real destinations; `links` holds the
+    rewritten per-recipient tracking links.
+    """
+
+    id: str
+    sender_name: str
+    sender_address: str
+    reply_to: str | None = None
+    to: list[str]
+    cc: list[str] = Field(default_factory=list)
+    subject: str
+    body_text: str
+    urls: list[str] = Field(default_factory=list)
+    attachments: list[Attachment] = Field(default_factory=list)
+    auth: AuthResults
+    sending_ip: str
+    delivered_at: datetime
+    recipient_ids: list[str]  # employee ids, with all@ expanded
+    links: list[TrackedLink] = Field(default_factory=list)
+
+
+class InboxMessage(BaseModel):
+    """One message as shown in an employee's simulated inbox."""
+
+    id: str
+    sender_name: str
+    sender_address: str
+    reply_to: str | None = None
+    subject: str
+    body_text: str  # links already rewritten to this employee's /r/{token}
+    links: list[TrackedLink]
+    attachments: list[Attachment] = Field(default_factory=list)
+    delivered_at: datetime
+
+
+class AttackStatus(BaseModel):
+    running: bool
+    speed: float
+    demo_seconds_elapsed: float  # demo time since start, after the speed factor
+    delivered_count: int
+    total_count: int
+    next_message_id: str | None = None
+    next_delivery_at_seconds: int | None = None
 
 
 class SimEventType(StrEnum):

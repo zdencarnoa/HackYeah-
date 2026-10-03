@@ -20,7 +20,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "198.51.100.10",
-    "deliver_offset_s": 15,
+    "deliver_after_seconds": 15,
     "scenario": {
       "label": "legitimate",
       "category": "password_reset_notice",
@@ -52,7 +52,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "192.0.2.25",
-    "deliver_offset_s": 40,
+    "deliver_after_seconds": 40,
     "scenario": {
       "label": "legitimate",
       "category": "invoice",
@@ -78,7 +78,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "198.51.100.10",
-    "deliver_offset_s": 70,
+    "deliver_after_seconds": 70,
     "scenario": {
       "label": "legitimate",
       "category": "internal_announcement",
@@ -106,7 +106,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "192.0.2.40",
-    "deliver_offset_s": 95,
+    "deliver_after_seconds": 95,
     "scenario": {
       "label": "legitimate",
       "category": "delivery_notification",
@@ -143,7 +143,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "198.51.100.10",
-    "deliver_offset_s": 130,
+    "deliver_after_seconds": 130,
     "scenario": {
       "label": "legitimate",
       "category": "meeting_invitation",
@@ -171,7 +171,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "198.51.100.10",
-    "deliver_offset_s": 180,
+    "deliver_after_seconds": 180,
     "scenario": {
       "label": "legitimate",
       "category": "internal_announcement",
@@ -197,7 +197,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "198.51.100.10",
-    "deliver_offset_s": 240,
+    "deliver_after_seconds": 240,
     "scenario": {
       "label": "legitimate",
       "category": "it_notice",
@@ -229,7 +229,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "192.0.2.61",
-    "deliver_offset_s": 300,
+    "deliver_after_seconds": 300,
     "scenario": {
       "label": "legitimate",
       "category": "order_confirmation",
@@ -255,7 +255,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "198.51.100.10",
-    "deliver_offset_s": 360,
+    "deliver_after_seconds": 360,
     "scenario": {
       "label": "legitimate",
       "category": "payroll_notice",
@@ -284,7 +284,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "192.0.2.77",
-    "deliver_offset_s": 420,
+    "deliver_after_seconds": 420,
     "scenario": {
       "label": "legitimate",
       "category": "newsletter",
@@ -312,7 +312,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "198.51.100.10",
-    "deliver_offset_s": 480,
+    "deliver_after_seconds": 480,
     "scenario": {
       "label": "legitimate",
       "category": "file_share",
@@ -340,7 +340,7 @@
       "dmarc": "pass"
     },
     "sending_ip": "192.0.2.90",
-    "deliver_offset_s": 540,
+    "deliver_after_seconds": 540,
     "scenario": {
       "label": "legitimate",
       "category": "security_notification",

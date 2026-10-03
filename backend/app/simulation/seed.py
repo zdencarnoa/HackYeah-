@@ -32,4 +32,4 @@ def load_emails() -> list[SimEmail]:
     """All demo messages, ordered by delivery time."""
     adapter = TypeAdapter(list[SimEmail])
     emails = [m for name in EMAIL_FILES for m in adapter.validate_python(_read(DATA_DIR / "emails" / name))]
-    return sorted(emails, key=lambda m: m.deliver_offset_s)
+    return sorted(emails, key=lambda m: m.deliver_after_seconds)

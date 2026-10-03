@@ -24,7 +24,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.51",
-    "deliver_offset_s": 200,
+    "deliver_after_seconds": 200,
     "scenario": {
       "label": "phishing",
       "category": "fake_invoice",
@@ -50,7 +50,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.77",
-    "deliver_offset_s": 260,
+    "deliver_after_seconds": 260,
     "scenario": {
       "label": "phishing",
       "category": "ceo_impersonation",
@@ -78,7 +78,7 @@
       "dmarc": "fail"
     },
     "sending_ip": "203.0.113.90",
-    "deliver_offset_s": 330,
+    "deliver_after_seconds": 330,
     "scenario": {
       "label": "phishing",
       "category": "mfa_scam",
@@ -106,7 +106,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.102",
-    "deliver_offset_s": 390,
+    "deliver_after_seconds": 390,
     "scenario": {
       "label": "phishing",
       "category": "delivery_scam",
@@ -134,7 +134,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.115",
-    "deliver_offset_s": 450,
+    "deliver_after_seconds": 450,
     "scenario": {
       "label": "phishing",
       "category": "account_suspension",
@@ -162,7 +162,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.130",
-    "deliver_offset_s": 510,
+    "deliver_after_seconds": 510,
     "scenario": {
       "label": "phishing",
       "category": "credential_theft",
@@ -190,7 +190,7 @@
       "dmarc": "none"
     },
     "sending_ip": "203.0.113.141",
-    "deliver_offset_s": 570,
+    "deliver_after_seconds": 570,
     "scenario": {
       "label": "phishing",
       "category": "credential_theft",
