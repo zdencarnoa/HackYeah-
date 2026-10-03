@@ -180,6 +180,7 @@ class InboxMessage(BaseModel):
 
 
 class AttackStatus(BaseModel):
+    scenario: str | None = None
     running: bool
     speed: float
     demo_seconds_elapsed: float  # demo time since start, after the speed factor
@@ -214,12 +215,30 @@ class SimEvent(BaseModel):
 BlastNodeKind = Literal["employee", "identity_provider", "service", "data", "people"]
 
 
+class PasswordReuseEvent(BaseModel):
+    """Simulated Chrome Enterprise PASSWORD_REUSE_EVENT.
+
+    Fired when a company password is typed on a domain outside ApprovedLogins.
+    Never contains the password itself.
+    """
+
+    event_type: Literal["passwordReuseEvent"] = "passwordReuseEvent"
+    user: str  # employee email, the account whose password was reused
+    employee_id: str
+    url: str
+    domain: str
+    reused_credential: str  # which company account's password, never the password
+    timestamp: datetime
+    simulated: Literal[True] = True
+
+
 class BlastRadiusNode(BaseModel):
     id: str
     label: str
     kind: BlastNodeKind
     sensitivity: Sensitivity | None = None
-    at_risk: bool
+    at_risk: bool  # reachable from the compromised account
+    reason: str  # why it is (or is not) reachable, in plain language
 
 
 class BlastRadiusEdge(BaseModel):
@@ -263,6 +282,7 @@ class ContainmentRequest(BaseModel):
 
 class ContainmentResult(BaseModel):
     action: ContainmentActionType
+    approved_by: str
     summary: str  # "14 messages would be quarantined"
     affected_count: int
     details: list[str] = Field(default_factory=list)

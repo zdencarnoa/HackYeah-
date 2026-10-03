@@ -346,5 +346,113 @@
       "category": "security_notification",
       "campaign_id": null
     }
+  },
+  {
+    "id": "leg-13",
+    "sender_name": "IT Helpdesk",
+    "sender_address": "helpdesk@lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "alice.johnson@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Your password expires in 7 days",
+    "body_text": "Hi Alice,\n\nYour Lakeside Logistics password expires in 7 days. You can change it any time at the company sign-in page:\nhttps://login.lakeside-logistics.example/password\n\nIT will never ask for your password by email or phone.\n\nIT Helpdesk\n",
+    "urls": [
+      "https://login.lakeside-logistics.example/password"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_after_seconds": 60,
+    "scenario": {
+      "label": "legitimate",
+      "category": "password_reset_notice",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-14",
+    "sender_name": "Nordic Freight",
+    "sender_address": "tom.baker@nordicfreight.example",
+    "reply_to": null,
+    "to": [
+      "grace.wilson@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Quarterly review - Thursday 14:00?",
+    "body_text": "Hi Grace,\n\nWould Thursday at 14:00 work for our quarterly review? I'll bring the volume forecast for Q1.\nIf another time suits you better, just let me know.\n\nBest,\nTom Baker\nNordic Freight\n",
+    "urls": [],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "192.0.2.61",
+    "deliver_after_seconds": 210,
+    "scenario": {
+      "label": "legitimate",
+      "category": "meeting_invitation",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "leg-15",
+    "sender_name": "IT Helpdesk",
+    "sender_address": "helpdesk@lakeside-logistics.example",
+    "reply_to": null,
+    "to": [
+      "laura.allen@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Your new laptop is ready for pickup",
+    "body_text": "Hi Laura,\n\nYour replacement laptop is ready. You can pick it up from the IT room (2nd floor) any weekday between 9:00 and 16:00.\nPlease bring your old device with you.\n\nIT Helpdesk\n",
+    "urls": [],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "sending_ip": "198.51.100.10",
+    "deliver_after_seconds": 500,
+    "scenario": {
+      "label": "legitimate",
+      "category": "it_notice",
+      "campaign_id": null
+    }
+  },
+  {
+    "id": "amb-01",
+    "sender_name": "FreightPay Billing",
+    "sender_address": "billing@freightpay-portal.example",
+    "reply_to": null,
+    "to": [
+      "alice.johnson@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "Invoices now available in our new portal",
+    "body_text": "Hello Alice,\n\nFreightPay has moved invoicing to a new customer portal. From this month, your invoices will be available at:\nhttps://portal.freightpay.example/invoices\n\nPlease sign in with the account details provided by your FreightPay account manager.\n\nKind regards,\nFreightPay Billing\n",
+    "urls": [
+      "https://portal.freightpay.example/invoices"
+    ],
+    "attachments": [],
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "none"
+    },
+    "sending_ip": "192.0.2.110",
+    "deliver_after_seconds": 250,
+    "scenario": {
+      "label": "legitimate",
+      "category": "ambiguous",
+      "campaign_id": null
+    }
   }
 ]

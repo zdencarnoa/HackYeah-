@@ -4,7 +4,7 @@ On delivery each message loses its ground truth, gets per-recipient tracking
 links (/r/{token}), lands in the simulated inboxes, is announced on the event
 bus and is handed to ingestion through `on_deliver`.
 
-See attack_engine_explained.md next to this file for a walkthrough.
+See docs/attack_engine_explained.md for a walkthrough.
 """
 
 import asyncio
@@ -32,6 +32,10 @@ logger = logging.getLogger(__name__)
 PUBLIC_BASE_URL = os.environ.get("SIM_PUBLIC_BASE_URL", "http://localhost:8000")
 
 DeliveryHook = Callable[[DeliveredEmail], None]
+
+# Attack scenarios that can be launched. Each one replays the whole demo mailbox
+# (background mail plus the attack waves) on its timeline.
+SCENARIOS = {"microsoft": "Operation Account Verification"}
 
 
 def log_delivery(delivered_email: DeliveredEmail) -> None:
@@ -72,6 +76,7 @@ class AttackEngine:
         self._demo_seconds_banked = 0.0  # demo time collected before the current run
         self._run_started_at: datetime | None = None  # None while paused
         self.speed = 1.0
+        self.scenario: str | None = None
         self.delivered_emails_by_id: dict[str, DeliveredEmail] = {}
         self.inbox_message_ids_by_employee: dict[str, list[str]] = {
             employee.id: [] for employee in self.organization.employees
@@ -96,6 +101,7 @@ class AttackEngine:
     def status(self) -> AttackStatus:
         next_email = None if self.is_finished else self._emails_in_delivery_order[self._next_email_index]
         return AttackStatus(
+            scenario=self.scenario,
             running=self.is_running,
             speed=self.speed,
             demo_seconds_elapsed=round(self.demo_seconds_elapsed(), 1),
@@ -105,10 +111,13 @@ class AttackEngine:
             next_delivery_at_seconds=next_email.deliver_after_seconds if next_email else None,
         )
 
-    def start(self, speed: float = 1.0) -> None:
+    def start(self, speed: float = 1.0, scenario: str = "microsoft") -> None:
         """Start or resume delivery. Calling it while running changes the speed."""
         if speed <= 0:
             raise ValueError("speed must be positive")
+        if scenario not in SCENARIOS:
+            raise ValueError(f"unknown scenario {scenario!r}")
+        self.scenario = scenario
         if self.is_finished:
             return
         self._stop_clock_and_bank_time()

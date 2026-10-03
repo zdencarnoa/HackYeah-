@@ -28,7 +28,71 @@
     "scenario": {
       "label": "phishing",
       "category": "fake_invoice",
-      "campaign_id": null
+      "campaign_id": "camp-invoice-fraud"
+    }
+  },
+  {
+    "id": "phi-08",
+    "sender_name": "Paperline Supplies Billing",
+    "sender_address": "accounts@paperline-supp1ies.test",
+    "reply_to": "sarah.mitchell.billing@freemail.test",
+    "to": [
+      "bob.smith@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "New bank account for Paperline Supplies payments",
+    "body_text": "Dear Bob,\n\nPlease note that Paperline Supplies has changed banks. All open invoices, including INV-20431,\nmust be paid to the new account listed in the attached letter. Payments to the old account will be returned.\nPlease update your supplier records today.\n\nKind regards,\nSarah Mitchell\nPaperline Supplies\n",
+    "urls": [],
+    "attachments": [
+      {
+        "filename": "Paperline_bank_change_letter.html",
+        "content_type": "text/html",
+        "size_bytes": 11873
+      }
+    ],
+    "auth": {
+      "spf": "pass",
+      "dkim": "none",
+      "dmarc": "none"
+    },
+    "sending_ip": "203.0.113.51",
+    "deliver_after_seconds": 280,
+    "scenario": {
+      "label": "phishing",
+      "category": "fake_invoice",
+      "campaign_id": "camp-invoice-fraud"
+    }
+  },
+  {
+    "id": "phi-09",
+    "sender_name": "Paperline Supplies Billing",
+    "sender_address": "billing@paperline-supp1ies.test",
+    "reply_to": "sarah.mitchell.billing@freemail.test",
+    "to": [
+      "david.brown@lakeside-logistics.example"
+    ],
+    "cc": [],
+    "subject": "URGENT: overdue payment INV-20431 - account on hold",
+    "body_text": "Dear David,\n\nInvoice INV-20431 is now 14 days overdue and your account has been placed on hold.\nTo avoid delivery stops, please approve payment today to our new bank account (details attached).\n\nKind regards,\nSarah Mitchell\nPaperline Supplies\n",
+    "urls": [],
+    "attachments": [
+      {
+        "filename": "INV-20431_payment_details.html",
+        "content_type": "text/html",
+        "size_bytes": 12011
+      }
+    ],
+    "auth": {
+      "spf": "pass",
+      "dkim": "none",
+      "dmarc": "none"
+    },
+    "sending_ip": "203.0.113.52",
+    "deliver_after_seconds": 420,
+    "scenario": {
+      "label": "phishing",
+      "category": "fake_invoice",
+      "campaign_id": "camp-invoice-fraud"
     }
   },
   {

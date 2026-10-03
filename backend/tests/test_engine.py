@@ -52,7 +52,7 @@ def test_ground_truth_never_leaves_the_engine(engine):
     received_by_ingestion = []
     engine.on_deliver = received_by_ingestion.append
     engine.jump_to_demo_second(AFTER_EVERYTHING)
-    assert len(received_by_ingestion) == 33
+    assert len(received_by_ingestion) == 39
     for delivered_email in received_by_ingestion:
         fields = delivered_email.model_dump()
         assert "scenario" not in fields and "deliver_after_seconds" not in fields
@@ -87,7 +87,7 @@ def test_click_records_event_and_unknown_token_is_ignored(engine, event_bus):
     click_event = event_bus.event_history[-1]
     assert click_event.type == SimEventType.LINK_CLICKED
     assert click_event.employee_id == ALICE
-    assert click_event.data["domain"] == "login.micr0soft-example.test"
+    assert click_event.data["domain"] == "micr0soft-verify.example"
     assert engine.record_click("nope") is None
 
 
@@ -96,7 +96,7 @@ def test_failing_ingestion_hook_does_not_stop_delivery(engine):
         raise RuntimeError("ingestion is down")
 
     engine.on_deliver = broken_ingestion
-    assert len(engine.jump_to_demo_second(AFTER_EVERYTHING)) == 33
+    assert len(engine.jump_to_demo_second(AFTER_EVERYTHING)) == 39
 
 
 def test_step_delivers_next_message_and_moves_timeline(engine):
@@ -139,28 +139,29 @@ def test_full_run_finishes_with_real_clock():
             await asyncio.sleep(0.01)
 
     asyncio.run(asyncio.wait_for(scenario(), timeout=5))
-    assert engine.status().delivered_count == 33 and engine.is_finished
+    assert engine.status().delivered_count == 39 and engine.is_finished
 
 
 def test_http_flow():
     from app.simulation.dev_app import app
-    from app.simulation.runtime import engine
+    from app.simulation.runtime import engine, reset_demo
 
-    engine.reset()
+    reset_demo()
     client = TestClient(app)
     while "cmp-01" not in engine.delivered_emails_by_id:
-        assert client.post("/sim/attack/step").status_code == 200
+        assert client.post("/api/sim/attack/control/step").status_code == 200
 
-    [alice_message] = [m for m in client.get(f"/sim/inbox/{ALICE}").json() if m["id"] == "cmp-01"]
+    [alice_message] = [m for m in client.get(f"/api/sim/inbox/{ALICE}").json() if m["id"] == "cmp-01"]
     token = alice_message["links"][0]["token"]
+    # A phishing link shows the fake login page inline (not a redirect).
     response = client.get(f"/r/{token}", follow_redirects=False)
-    assert response.status_code == 302
-    assert response.headers["location"] == f"/sim/landing/{token}"
+    assert response.status_code == 200
+    assert "SIMULATION" in response.text
 
-    legit_message = next(m for m in client.get("/sim/inbox/e09").json() if m["id"] == "leg-04")
+    legit_message = next(m for m in client.get("/api/sim/inbox/e09").json() if m["id"] == "leg-04")
     response = client.get(f"/r/{legit_message['links'][0]['token']}", follow_redirects=False)
     assert response.headers["location"].startswith("/sim/external?url=")
 
     assert client.get("/r/unknown").status_code == 404
-    assert client.get("/sim/inbox/nobody").status_code == 404
-    engine.reset()
+    assert client.get("/api/sim/inbox/nobody").status_code == 404
+    reset_demo()

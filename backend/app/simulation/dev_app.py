@@ -7,9 +7,10 @@ import logging
 
 from fastapi import FastAPI
 
-from app.simulation.router import router
+from app.simulation.router import api_router, router
 
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI(title="Security Copilot - simulation (dev)")
 app.include_router(router)
+app.include_router(api_router)
