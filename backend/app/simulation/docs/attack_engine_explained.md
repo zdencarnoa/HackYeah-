@@ -44,8 +44,8 @@ Why each one matters:
 
 ## 2. Two kinds of time: real seconds and demo seconds
 
-Every email has a `deliver_after_seconds` value, for example
-`"deliver_after_seconds": 120`. That means "deliver this 120 seconds after
+Every email has a `deliver_offset_s` value, for example
+`"deliver_offset_s": 120`. That means "deliver this 120 seconds after
 the demo starts".
 
 All 33 emails together take 12 minutes (the last arrives at second 720), which is too long for a live
@@ -61,7 +61,7 @@ So there are two clocks:
 
 - **Real seconds**: what your watch shows.
 - **Demo seconds**: how far along the email timeline we are. Every email's
-  `deliver_after_seconds` is in demo seconds.
+  `deliver_offset_s` is in demo seconds.
 
 Formula: `demo seconds = real seconds × speed`.
 
@@ -163,7 +163,7 @@ Parameters:
 | `public_base_url`  | start of tracking links                       | `PUBLIC_BASE_URL`        |
 
 What it sets up:
-- `_emails_in_delivery_order`: the emails sorted by `deliver_after_seconds`.
+- `_emails_in_delivery_order`: the emails sorted by `deliver_offset_s`.
 - `_ground_truth_by_message_id`: the "right answer" for each email id. It is
   kept here so it never has to travel with the email.
 - `_employee_id_by_address`: a lookup from `alice.johnson@...` to `e01`.
@@ -229,7 +229,7 @@ loop. `start()` resumes from the same point.
 #### `step()`
 "Deliver the next email right now." This is the presenter's safety button:
 on stage you don't have to wait for a timer. It jumps the timeline to the
-next email's `deliver_after_seconds`, so the later emails keep their spacing.
+next email's `deliver_offset_s`, so the later emails keep their spacing.
 
 #### `jump_to_demo_second(target_demo_second)`
 Moves the timeline forward to `target_demo_second` and delivers everything that
@@ -242,7 +242,7 @@ is now due.
   has arrived by second 130?").
 
 #### `deliver_due_emails()`
-Delivers, in order, every email whose `deliver_after_seconds` is at or before
+Delivers, in order, every email whose `deliver_offset_s` is at or before
 the current demo time, and returns the list of those just delivered. It
 stops at the first email that isn't due yet. Because the list is sorted,
 nothing after that one can be due either.
@@ -293,7 +293,7 @@ The core of the engine. For one email:
    An email with 1 link sent to `all@` (24 people) gets 24 tokens.
 3. Adds the email id to each recipient's inbox.
 4. Builds the `DeliveredEmail`. It copies every field **except** `scenario`
-   (the right answer) and `deliver_after_seconds`, and adds `delivered_at`,
+   (the right answer) and `deliver_offset_s`, and adds `delivered_at`,
    `recipient_ids` and `links`.
 5. Saves it in `delivered_emails_by_id`.
 6. Publishes an `EMAIL_DELIVERED` event.

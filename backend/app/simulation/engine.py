@@ -58,7 +58,7 @@ class AttackEngine:
         self.on_deliver = on_deliver
         self._emails_in_delivery_order = sorted(
             emails if emails is not None else load_emails(),
-            key=lambda email: email.deliver_after_seconds,
+            key=lambda email: email.deliver_offset_s,
         )
         self._ground_truth_by_message_id = {email.id: email.scenario for email in self._emails_in_delivery_order}
         self._get_current_time = get_current_time
@@ -108,7 +108,7 @@ class AttackEngine:
             delivered_count=self._next_email_index,
             total_count=len(self._emails_in_delivery_order),
             next_message_id=next_email.id if next_email else None,
-            next_delivery_at_seconds=next_email.deliver_after_seconds if next_email else None,
+            next_delivery_at_seconds=next_email.deliver_offset_s if next_email else None,
         )
 
     def start(self, speed: float = 1.0, scenario: str = "microsoft") -> None:
@@ -134,7 +134,7 @@ class AttackEngine:
         if self.is_finished:
             return []
         next_email = self._emails_in_delivery_order[self._next_email_index]
-        return self.jump_to_demo_second(next_email.deliver_after_seconds)
+        return self.jump_to_demo_second(next_email.deliver_offset_s)
 
     def jump_to_demo_second(self, target_demo_second: float) -> list[DeliveredEmail]:
         """Move the timeline forward to `target_demo_second` and deliver everything due."""
@@ -151,7 +151,7 @@ class AttackEngine:
         delivered_now = []
         while (
             not self.is_finished
-            and self._emails_in_delivery_order[self._next_email_index].deliver_after_seconds <= current_demo_second
+            and self._emails_in_delivery_order[self._next_email_index].deliver_offset_s <= current_demo_second
         ):
             delivered_now.append(self._deliver(self._emails_in_delivery_order[self._next_email_index]))
             self._next_email_index += 1
@@ -164,7 +164,7 @@ class AttackEngine:
             if self.is_finished:
                 break
             next_email = self._emails_in_delivery_order[self._next_email_index]
-            demo_seconds_to_wait = next_email.deliver_after_seconds - self.demo_seconds_elapsed()
+            demo_seconds_to_wait = next_email.deliver_offset_s - self.demo_seconds_elapsed()
             real_seconds_to_wait = demo_seconds_to_wait / self.speed
             await asyncio.sleep(max(real_seconds_to_wait, 0))
         self._stop_clock_and_bank_time()
@@ -211,7 +211,7 @@ class AttackEngine:
             self.inbox_message_ids_by_employee[employee_id].append(sim_email.id)
 
         delivered_email = DeliveredEmail(
-            **sim_email.model_dump(exclude={"scenario", "deliver_after_seconds"}),
+            **sim_email.model_dump(exclude={"scenario", "deliver_offset_s"}),
             delivered_at=self._get_current_time(),
             recipient_ids=recipient_ids,
             links=tracked_links,
@@ -240,9 +240,13 @@ class AttackEngine:
             delivered_email = self.delivered_emails_by_id[message_id]
             this_employees_links = [link for link in delivered_email.links if link.employee_id == employee_id]
             body_with_tracking_links = delivered_email.body_text
+            html_with_tracking_links = delivered_email.body_html
             # Longest first, so a URL that is the start of a longer one can't break it.
             for link in sorted(this_employees_links, key=lambda link: len(link.url), reverse=True):
-                body_with_tracking_links = body_with_tracking_links.replace(link.url, self.tracking_url(link.token))
+                tracking_url = self.tracking_url(link.token)
+                body_with_tracking_links = body_with_tracking_links.replace(link.url, tracking_url)
+                if html_with_tracking_links:
+                    html_with_tracking_links = html_with_tracking_links.replace(link.url, tracking_url)
             inbox_messages.append(InboxMessage(
                 id=delivered_email.id,
                 sender_name=delivered_email.sender_name,
@@ -250,6 +254,7 @@ class AttackEngine:
                 reply_to=delivered_email.reply_to,
                 subject=delivered_email.subject,
                 body_text=body_with_tracking_links,
+                body_html=html_with_tracking_links,
                 links=this_employees_links,
                 attachments=delivered_email.attachments,
                 delivered_at=delivered_email.delivered_at,

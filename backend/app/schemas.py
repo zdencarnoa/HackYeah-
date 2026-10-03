@@ -122,12 +122,15 @@ class SimEmail(BaseModel):
     cc: list[str] = Field(default_factory=list)
     subject: str
     body_text: str
+    # Optional HTML part. Its links keep their anchor text, so a link can show
+    # one address and lead to another.
+    body_html: str | None = None
     urls: list[str] = Field(default_factory=list)  # as they appear in the body
     attachments: list[Attachment] = Field(default_factory=list)
     auth: AuthResults
     sending_ip: str
     # Seconds after demo start when the attack engine delivers this message.
-    deliver_after_seconds: int
+    deliver_offset_s: int
     scenario: ScenarioLabel
 
 
@@ -156,6 +159,7 @@ class DeliveredEmail(BaseModel):
     cc: list[str] = Field(default_factory=list)
     subject: str
     body_text: str
+    body_html: str | None = None
     urls: list[str] = Field(default_factory=list)
     attachments: list[Attachment] = Field(default_factory=list)
     auth: AuthResults
@@ -174,6 +178,7 @@ class InboxMessage(BaseModel):
     reply_to: str | None = None
     subject: str
     body_text: str  # links already rewritten to this employee's /r/{token}
+    body_html: str | None = None  # links also rewritten
     links: list[TrackedLink]
     attachments: list[Attachment] = Field(default_factory=list)
     delivered_at: datetime

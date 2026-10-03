@@ -42,7 +42,7 @@ def engine(event_bus, clock):
 
 
 def test_delivers_only_what_is_due(engine):
-    due_ids = [email.id for email in load_emails() if email.deliver_after_seconds <= 130]
+    due_ids = [email.id for email in load_emails() if email.deliver_offset_s <= 130]
     delivered = engine.jump_to_demo_second(130)
     assert [email.id for email in delivered] == due_ids
     assert engine.status().delivered_count == len(due_ids)
@@ -55,7 +55,7 @@ def test_ground_truth_never_leaves_the_engine(engine):
     assert len(received_by_ingestion) == 39
     for delivered_email in received_by_ingestion:
         fields = delivered_email.model_dump()
-        assert "scenario" not in fields and "deliver_after_seconds" not in fields
+        assert "scenario" not in fields and "deliver_offset_s" not in fields
 
 
 def test_all_company_mail_expands_to_every_employee(engine):
@@ -103,7 +103,7 @@ def test_step_delivers_next_message_and_moves_timeline(engine):
     first_email = load_emails()[0]
     [delivered] = engine.step()
     assert delivered.id == first_email.id
-    assert engine.demo_seconds_elapsed() == first_email.deliver_after_seconds
+    assert engine.demo_seconds_elapsed() == first_email.deliver_offset_s
 
 
 def test_reset_clears_deliveries(engine):
