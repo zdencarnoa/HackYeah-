@@ -67,3 +67,16 @@ def test_b3_template_fallback_covers_every_demo_email(monkeypatch):
         assert a.explanation.source == "template"
         assert a.explanation.summary and a.recommended_action
         assert a.risk == expected(sim), sim.id
+
+
+# Scan-on-delivery must never wait on a live model
+def test_live_llm_off_never_calls_a_model(monkeypatch):
+    monkeypatch.setenv("LLM_LIVE", "1")
+    monkeypatch.setattr(client, "_cached", lambda: {})
+    monkeypatch.setattr(client, "_call", lambda *a, **k: pytest.fail("live model called"))
+    a = analyze(message_from_sim(EMAILS[0]), use_ml=False, live_llm=False)
+    assert a.explanation.source == "template"
+
+
+def test_warm_up_reports_the_loaded_model():
+    assert ml_module.warm_up() in ("distilbert-v1", ml_module.FALLBACK, None)

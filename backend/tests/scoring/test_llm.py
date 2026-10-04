@@ -22,8 +22,8 @@ def no_cache_no_live(monkeypatch):
 
 
 def answer_with(monkeypatch, answer):
-    monkeypatch.setattr(explain_module, "ask", lambda messages: (answer, "cache"))
-    monkeypatch.setattr(helpers, "ask", lambda messages: (answer, "cache"))
+    monkeypatch.setattr(explain_module, "ask", lambda messages, live=True: (answer, "cache"))
+    monkeypatch.setattr(helpers, "ask", lambda messages, live=True: (answer, "cache"))
 
 
 def test_grounding_rejects_invented_domains_and_numbers():

@@ -57,6 +57,15 @@ class _Classifier:
 _classifier: _Classifier | None = None
 
 
+def warm_up() -> str | None:
+    """Load the classifier now (e.g. in the app's lifespan) instead of on the first email.
+    Returns the model name, or None when scoring runs without ML."""
+    global _classifier
+    if _classifier is None:
+        _classifier = _Classifier()
+    return _classifier.name
+
+
 def classify(message: Message) -> MlResult | None:
     """Phishing probability for the message text, or None when no model can be loaded."""
     global _classifier

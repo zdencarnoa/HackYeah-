@@ -69,11 +69,12 @@ def _call(base: str, model: str, timeout: float, messages: list[dict]) -> dict |
         return None
 
 
-def ask(messages: list[dict]) -> tuple[dict | None, str | None]:
-    """(answer, origin) where origin is "cache", "server" or "local"; (None, None) when none answers."""
+def ask(messages: list[dict], live: bool = True) -> tuple[dict | None, str | None]:
+    """(answer, origin) where origin is "cache", "server" or "local"; (None, None) when none answers.
+    live=False never waits on a model: cache only (for scan-on-delivery)."""
     if (hit := _cached().get(fingerprint(messages))) is not None:
         return hit, "cache"
-    for name, base, model, timeout in endpoints():
+    for name, base, model, timeout in endpoints() if live else []:
         if (answer := _call(base, model, timeout, messages)) is not None:
             return answer, name
     return None, None
