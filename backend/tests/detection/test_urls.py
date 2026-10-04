@@ -8,7 +8,7 @@ from tests.detection.helpers import make_eml
 
 BY_ID = {sim.id: sim for sim in load_emails()}
 LEGIT = [sim for sim in load_emails() if sim.scenario.label == "legitimate"]
-ATTACK_URL = "https://login.micr0soft-example.test/verify?session=7f3a00c9"
+ATTACK_URL = "https://micr0soft-verify.example/verify?session=7f3a00c9"
 
 
 def signals_for(text="Hello", html=None):
@@ -31,8 +31,8 @@ def test_link_text_showing_another_site_is_a_mismatch():
     assert signal.category == SignalCategory.SUSPICIOUS_URL
     assert signal.source == "url"
     assert signal.evidence == ("The link shows account.microsoft.example but actually leads to "
-                               "login.micr0soft-example.test.")
-    assert "registrable micr0soft-example.test" in signal.technical_detail
+                               "micr0soft-verify.example.")
+    assert "registrable micr0soft-verify.example" in signal.technical_detail
 
 
 @pytest.mark.parametrize("text", ["account.microsoft.com", "Go to www.microsoft.com now",
@@ -142,7 +142,7 @@ def test_deterministic():
 def test_html_campaign_variants_show_microsoft_but_lead_elsewhere(sim_id):
     signal = {s.id: s for s in check_urls(message_from_sim(BY_ID[sim_id])).signals}["url.text_mismatch"]
     assert signal.severity == 3
-    assert "login.micr0soft-example.test" in signal.evidence
+    assert "micr0soft-verify.example" in signal.evidence
 
 
 def test_whole_campaign_links_to_a_verify_page():

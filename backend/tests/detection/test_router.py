@@ -36,7 +36,7 @@ def test_upload_returns_message_and_signals():
     response = upload(render_eml(BY_ID["cmp-01"]))
     assert response.status_code == 200
     body = response.json()
-    assert body["message"]["sender"] == "security@micr0soft-example.test"
+    assert body["message"]["sender"] == "security@micr0soft-verify.example"
     assert body["message"]["id"].startswith("eml-")
     assert FIVE <= {signal["category"] for signal in body["signals"]}
     assert body["unchecked"] == []
@@ -67,7 +67,7 @@ def test_click_round_trip_records_the_click_and_redirects_to_the_demo_page():
 
     assert response.status_code == 302
     assert response.headers["location"] == (rewrite.DEMO_SITE_URL +
-                                            "/login.micr0soft-example.test/verify?session=7f3a00c9")
+                                            "/micr0soft-verify.example/verify?session=7f3a00c9")
     (event,) = rewrite.recorded_clicks
     assert (event.type, event.employee_id, event.message_id) == ("link_clicked", "e01", "cmp-01")
 
@@ -91,9 +91,9 @@ def test_unknown_token_is_a_friendly_404():
 
 
 def test_demo_placeholder_is_labelled_and_has_no_form():
-    response = client.get("/demo/login.micr0soft-example.test/verify")
+    response = client.get("/demo/micr0soft-verify.example/verify")
     assert response.status_code == 200
-    assert "SIMULATION" in response.text and "login.micr0soft-example.test" in response.text
+    assert "SIMULATION" in response.text and "micr0soft-verify.example" in response.text
     assert "<form" not in response.text.lower()
 
 
