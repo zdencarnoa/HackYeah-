@@ -38,11 +38,11 @@ def _demo_explanations():
 
 
 def _escalation_sets():
-    """Evidence kinds as they accumulate during an incident, with and without a user report."""
-    for i in range(1, len(ESCALATION)):
-        base = ESCALATION[:i]
-        yield sorted(base)
-        yield sorted(base + ["user_report"])
+    """Every non-empty combination of evidence kinds: real incidents hold any subset
+    (e.g. only password_reuse + unusual_signin), not just escalation prefixes."""
+    for size in range(1, len(ESCALATION) + 1):
+        for combo in itertools.combinations(ESCALATION, size):
+            yield sorted(combo)
 
 
 def _demo_domains():

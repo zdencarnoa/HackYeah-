@@ -11,6 +11,7 @@ from app.api import events, routes
 from app.db import session
 from app.db.models import EmployeeRow
 from app.detection.router import router as detection_router
+from app.scoring.ml_signal import warm_up
 from app.scoring.router import router as scoring_router
 from app.simulation import pipeline, runtime
 from app.simulation.org_seed import seed_org
@@ -33,9 +34,13 @@ async def lifespan(app: FastAPI):
     # Wire the simulation to the live pipeline: score on delivery, route
     # password reuse to incidents, link containment. A late-binding factory keeps
     # using whichever DB is configured; unwire on shutdown so nothing leaks.
+    # B's classifier is loaded once here, so delivery scoring uses the same rules + ML
+    # verdict as "Is this safe?" without a delay on the first email. Without the ML
+    # packages or weights, warm_up() returns None and scoring runs on rules alone.
+    ml_model = await asyncio.to_thread(warm_up)
     unwire = pipeline.wire_live(
         runtime.engine, runtime.credentials, runtime.containment,
-        session_factory=lambda: session.SessionLocal(),
+        session_factory=lambda: session.SessionLocal(), use_ml=ml_model is not None,
     )
     try:
         yield

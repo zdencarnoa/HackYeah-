@@ -46,5 +46,5 @@ python app/llm/generate_offline.py prompts.jsonl responses.jsonl   # GPU box
 python -m app.llm.batch import responses.jsonl     # laptop -> cache/responses.json
 ```
 
-Current cache: 192 answers (16 demo email explanations, 80 employee notifications,
-96 incident summaries over C's 4 incident types).
+Current cache: 697 answers (16 demo email explanations, 310 employee notifications,
+372 incident summaries: every combination of evidence kinds over C's 4 incident types).
