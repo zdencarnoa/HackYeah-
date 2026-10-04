@@ -25,7 +25,8 @@ def _ml_available():
 def test_legitimate_demo_emails_are_low(use_ml):
     if use_ml and not _ml_available():
         pytest.skip("no ML model installed")
-    risks = {e.subject: analyze(message_from_sim(e), use_ml=use_ml).risk for e in LEGIT}
+    risks = {e.id: analyze(message_from_sim(e), use_ml=use_ml).risk for e in LEGIT}
+    assert risks.pop("amb-01") >= Severity.MEDIUM  # sign-in link on an unrelated domain: look closer
     assert all(r == Severity.LOW for r in risks.values()), risks
 
 
