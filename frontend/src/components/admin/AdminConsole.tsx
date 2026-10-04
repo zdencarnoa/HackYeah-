@@ -9,6 +9,7 @@
 
 import { useState } from "react";
 
+import { LIVE } from "@/lib/api";
 import type { Incident } from "@/lib/contracts";
 import {
   alerts as alertsOf,
@@ -22,6 +23,7 @@ import {
   type FlaggedEmail,
 } from "@/lib/demo/selectors";
 import { useDemoState, useNow } from "@/lib/demo/store";
+import { useLiveAlerts } from "@/lib/live/alerts";
 
 import { AdminHeader } from "./AdminHeader";
 import { AlertBanner } from "./AlertBanner";
@@ -52,7 +54,8 @@ export function AdminConsole() {
   const flagged = flaggedEmails(state, now);
   const campaigns = campaignViews(state, now);
   const incidents = incidentsOf(state, now);
-  const alerts = alertsOf(state, now);
+  const liveAlerts = useLiveAlerts();
+  const alerts = LIVE ? liveAlerts : alertsOf(state, now);
   const compromised = compromisedEmployeeIds(state, now);
   const deliveredCount = deliveredEmails(state, now).length;
 
