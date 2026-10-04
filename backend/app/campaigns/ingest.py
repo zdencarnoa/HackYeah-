@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.db.models import EmployeeRow, MessageRow
 from app.incidents.service import add_evidence
-from app.schemas_proposal import Campaign, Evidence, MessageIn
+from app.schemas import Campaign, Evidence, MessageIn
 
 from .correlation import correlate
 

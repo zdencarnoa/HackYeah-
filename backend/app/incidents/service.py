@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 
 from app.api import events
 from app.db.models import EmployeeRow, EvidenceRow, IncidentRow, MessageRow
-from app.schemas_proposal import (
+from app.schemas import (
     Evidence,
     Incident,
     Interaction,

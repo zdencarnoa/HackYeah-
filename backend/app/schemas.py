@@ -1,17 +1,26 @@
 """Shared contracts between backend areas and the frontend.
 
-DRAFT. Only the simulation section (Person D) is filled in so far. Other areas
-add their sections here, and changes to existing models are agreed with the team
-because the frontend mocks are built against this file.
+One source of truth for every area: simulation (D), detection (A), the risk
+verdict (B), and incidents & campaigns (C). Changes are agreed with the team
+because the frontend and the other areas build against this file.
 """
 
 from __future__ import annotations
 
-from datetime import datetime
-from enum import StrEnum
+from datetime import datetime, timezone
+from enum import IntEnum, StrEnum
 from typing import Literal
+from uuid import uuid4
 
 from pydantic import BaseModel, Field
+
+
+def _now() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def _id() -> str:
+    return uuid4().hex[:12]
 
 
 # ---------------------------------------------------------------------------
@@ -229,12 +238,12 @@ class PasswordReuseEvent(BaseModel):
 
     event_type: Literal["passwordReuseEvent"] = "passwordReuseEvent"
     user: str  # employee email, the account whose password was reused
-    employee_id: str
+    employee_id: str | None = None  # the simulator fills this; a real Chrome feed would not
     url: str
     domain: str
-    reused_credential: str  # which company account's password, never the password
-    timestamp: datetime
-    simulated: Literal[True] = True
+    reused_credential: str = "work_account"  # label only, never the password
+    timestamp: datetime = Field(default_factory=_now)
+    simulated: bool = True
 
 
 class BlastRadiusNode(BaseModel):
@@ -300,7 +309,7 @@ class RecoveryTrack(BaseModel):
     percent: int = Field(ge=0, le=100)
 
 
-class ChecklistItem(BaseModel):
+class RecoveryChecklistItem(BaseModel):
     id: str
     label: str
     done: bool = False
@@ -310,7 +319,7 @@ class RecoveryStatus(BaseModel):
     campaign_id: str | None = None
     incident_id: str | None = None
     tracks: list[RecoveryTrack]
-    remaining_actions: list[ChecklistItem]
+    remaining_actions: list[RecoveryChecklistItem]
     simulated: Literal[True] = True
 
 
@@ -401,3 +410,134 @@ class SignalsResponse(DetectionResult):
     For debugging and the UI's "Advanced details"; B's /api/analyze is the main path."""
 
     message: Message
+
+
+# ---------------------------------------------------------------------------
+# Risk verdict (Person B): the fused risk level and the grounded explanation.
+# Risk fusion sets `risk`; the LLM only writes the explanation.
+# ---------------------------------------------------------------------------
+
+
+class Severity(IntEnum):
+    LOW = 0
+    MEDIUM = 1
+    HIGH = 2
+    CRITICAL = 3
+
+
+class Explanation(BaseModel):
+    summary: str  # one plain-language sentence: the verdict
+    reasons: list[str]  # plain-language evidence, strongest first (from Signal.evidence)
+    source: Literal["llm", "template"]  # template = deterministic fallback, no network needed
+
+
+class Assessment(BaseModel):
+    message_id: str
+    risk: Severity  # set only by risk fusion, never by the LLM
+    score: int  # fusion points behind the risk level, for "Advanced details"
+    signals: list[Signal]  # A's signals plus B's ml_phishing signal, strongest first
+    ml_confidence: float | None = None  # calibrated phishing probability 0-1; None if unavailable
+    ml_model: str | None = None  # "distilbert-v1" or "tfidf-fallback"
+    uncertainties: list[str] = Field(default_factory=list)  # what could not be checked
+    explanation: Explanation
+    recommended_action: str  # every result ends with a next action
+    assessed_at: datetime = Field(default_factory=_now)
+
+
+# ---------------------------------------------------------------------------
+# Incidents & campaigns (Person C): evidence intake, incident timeline and
+# campaign correlation. The decision flow and the admin dashboard read these.
+# ---------------------------------------------------------------------------
+
+
+EvidenceKind = Literal[
+    "email_scored", "link_clicked", "password_reuse", "unusual_signin", "user_report"
+]
+InteractionKind = Literal["none", "clicked", "downloaded", "password", "other_info"]
+
+
+class Evidence(BaseModel):
+    id: str = Field(default_factory=_id)
+    kind: EvidenceKind
+    employee_id: str
+    message_id: str | None = None
+    domain: str | None = None
+    source: Literal["automatic", "reported"] = "automatic"
+    timestamp: datetime = Field(default_factory=_now)
+    interaction_kind: InteractionKind | None = None  # only for user_report
+    risk: Severity | None = None  # only for email_scored
+
+
+class TimelineItem(BaseModel):
+    timestamp: datetime
+    employee_id: str
+    text: str  # plain language
+    source: Literal["automatic", "reported"]  # UI shows Automatic / Reported tag
+
+
+class ChecklistItem(BaseModel):
+    """An incident-response step. (The recovery progress list uses RecoveryChecklistItem.)"""
+
+    action: str
+    rationale: str
+    done: bool = False
+
+
+class Incident(BaseModel):
+    id: str
+    type: str
+    severity: Severity
+    campaign_id: str | None = None
+    affected_employees: list[str]
+    evidence: list[Evidence]
+    checklist: list[ChecklistItem] = Field(default_factory=list)
+    timeline: list[TimelineItem]
+    created_at: datetime
+
+
+class Interaction(BaseModel):
+    message_id: str
+    employee_id: str
+    kind: InteractionKind
+
+
+class InteractionResult(BaseModel):
+    guidance: list[str]
+    already_detected: list[str]  # e.g. ["link_clicked", "password_reuse"]
+    incident: Incident | None = None
+
+
+class PubSubMessage(BaseModel):
+    data: str  # base64(JSON PasswordReuseEvent)
+    messageId: str | None = None
+    attributes: dict[str, str] = Field(default_factory=dict)
+
+
+class PubSubPush(BaseModel):
+    message: PubSubMessage
+    subscription: str | None = None
+
+
+class MessageIn(BaseModel):
+    """A's Message fields C needs, plus B's risk level. The delivery glue builds
+    this from a DeliveredEmail and its Assessment."""
+
+    id: str
+    sender: str
+    recipient: str  # employee email (or id)
+    subject: str
+    body: str
+    urls: list[str] = Field(default_factory=list)  # original URLs, before link rewriting
+    received_at: datetime = Field(default_factory=_now)
+    risk: Severity  # from B's Assessment
+
+
+class Campaign(BaseModel):
+    id: str
+    name: str
+    message_ids: list[str]
+    recipients: list[str]
+    departments: list[str]
+    shared_traits: list[str]  # plain-language observations
+    incident_id: str | None = None  # lets the UI jump from campaign to incident
+    updated_at: datetime

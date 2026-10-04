@@ -6,7 +6,7 @@ as a plain-language sentence), so nothing is invented.
 from __future__ import annotations
 
 from app.schemas import Signal, SignalCategory as C
-from app.schemas_proposal_b import Explanation, Severity
+from app.schemas import Explanation, Severity
 
 MAX_REASONS = 5
 

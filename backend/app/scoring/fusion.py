@@ -17,7 +17,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from app.schemas import Signal, SignalCategory as C
-from app.schemas_proposal_b import Severity
+from app.schemas import Severity
 
 WEIGHT = {0: 0, 1: 1, 2: 3, 3: 6}  # signal severity -> points
 MEDIUM_AT, HIGH_AT = 3, 6

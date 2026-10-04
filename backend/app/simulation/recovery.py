@@ -2,7 +2,7 @@
 plus a short checklist the admin ticks off by hand.
 """
 
-from app.schemas import ChecklistItem, RecoveryStatus, RecoveryTrack
+from app.schemas import RecoveryChecklistItem, RecoveryStatus, RecoveryTrack
 from app.simulation.containment import ContainmentService
 
 # (id, label). Automatic items are done when containment did them.
@@ -37,7 +37,7 @@ class RecoveryTracker:
             raise KeyError(item_id)
         self.manually_done_item_ids.add(item_id)
 
-    def checklist(self) -> list[ChecklistItem]:
+    def checklist(self) -> list[RecoveryChecklistItem]:
         c = self.containment
         automatic_done = {
             "investigation_opened": c.investigation_started,
@@ -45,8 +45,8 @@ class RecoveryTracker:
             "sender_blocked": bool(c.blocked_senders or c.blocked_domains),
             "users_notified": bool(c.notified_employee_ids),
         }
-        return [ChecklistItem(id=i, label=label, done=automatic_done[i]) for i, label in AUTOMATIC_ITEMS] + [
-            ChecklistItem(id=i, label=label, done=i in self.manually_done_item_ids) for i, label in MANUAL_ITEMS
+        return [RecoveryChecklistItem(id=i, label=label, done=automatic_done[i]) for i, label in AUTOMATIC_ITEMS] + [
+            RecoveryChecklistItem(id=i, label=label, done=i in self.manually_done_item_ids) for i, label in MANUAL_ITEMS
         ]
 
     def status(self) -> RecoveryStatus:

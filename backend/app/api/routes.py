@@ -8,7 +8,7 @@ from app.campaigns import correlation
 from app.campaigns.ingest import UnknownRecipient, ingest_message
 from app.db.models import CampaignRow
 from app.incidents import service
-from app.schemas_proposal import (
+from app.schemas import (
     Campaign, Evidence, Incident, Interaction, InteractionResult, MessageIn, PubSubPush,
 )
 

@@ -6,7 +6,7 @@ available, with ML switched on.
 import pytest
 
 from app.detection import message_from_sim
-from app.schemas_proposal_b import Severity
+from app.schemas import Severity
 from app.scoring.analyze import analyze
 from app.scoring.ml_signal import classify
 from app.simulation.seed import load_emails

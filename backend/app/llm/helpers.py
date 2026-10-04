@@ -9,7 +9,7 @@ from __future__ import annotations
 from app.llm.client import ask
 from app.llm.grounding import grounded
 from app.llm.prompts import notification_messages, rationale_messages, summary_messages
-from app.schemas_proposal_b import Severity
+from app.schemas import Severity
 
 EVIDENCE_WORDS = {
     "email_scored": "a suspicious email was detected",
