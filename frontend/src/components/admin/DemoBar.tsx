@@ -14,6 +14,7 @@ import { nextDeliveryAt } from "@/lib/demo/selectors";
 import type { DemoState } from "@/lib/demo/state";
 import { demoActions } from "@/lib/demo/store";
 import { clearLiveAlerts } from "@/lib/live/alerts";
+import { resetLiveIncidents } from "@/lib/live/incidents";
 import { useLiveAttack } from "@/lib/live/attack";
 
 const OPEN_KEY = "security-copilot-demo-bar-open";
@@ -40,7 +41,8 @@ function isTyping(target: EventTarget | null): boolean {
   return target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName);
 }
 
-export function DemoBar({ state, now }: { state: DemoState; now: number }) {
+/** `state` is the mock session; the live console passes null and the bar reads the attack engine instead. */
+export function DemoBar({ state, now }: { state: DemoState | null; now: number }) {
   const [open, setOpen] = useState(readOpen);
   const [confirmReset, setConfirmReset] = useState(false);
 
@@ -66,15 +68,15 @@ export function DemoBar({ state, now }: { state: DemoState; now: number }) {
   const [busy, setBusy] = useState(false);
 
   // Live mode shows what the attack engine reports; mock mode shows the local session.
-  const started = LIVE ? Boolean(live.status && (live.status.running || live.status.delivered_count > 0)) : state.session.startedAt !== null;
-  const speed = LIVE ? (live.status?.speed ?? speedChoice) : state.session.speed;
+  const started = LIVE ? Boolean(live.status && (live.status.running || live.status.delivered_count > 0)) : state?.session.startedAt != null;
+  const speed = LIVE ? (live.status?.speed ?? speedChoice) : (state?.session.speed ?? speedChoice);
   const finished = LIVE && live.status !== null && live.status.delivered_count >= live.status.total_count;
   const nextInSeconds = LIVE
     ? live.status?.next_delivery_at_seconds != null
       ? Math.max(0, Math.ceil((live.status.next_delivery_at_seconds - live.status.demo_seconds_elapsed) / Math.max(speed, 0.001)))
       : null
     : (() => {
-        const next = nextDeliveryAt(state, now);
+        const next = state ? nextDeliveryAt(state, now) : null;
         return next === null ? null : Math.max(0, Math.ceil((next - now) / 1000));
       })();
   const next = LIVE ? (finished ? null : nextInSeconds) : nextInSeconds;
@@ -109,6 +111,7 @@ export function DemoBar({ state, now }: { state: DemoState; now: number }) {
     const result = await liveApi.reset();
     if (result.ok) {
       clearLiveAlerts();
+      resetLiveIncidents();
       live.show(null, null);
       const status = await liveApi.attackStatus();
       if (status.ok) live.show(status.data);

@@ -23,7 +23,6 @@ import {
   type FlaggedEmail,
 } from "@/lib/demo/selectors";
 import { useDemoState, useNow } from "@/lib/demo/store";
-import { useLiveAlerts } from "@/lib/live/alerts";
 
 import { AdminHeader } from "./AdminHeader";
 import { AlertBanner } from "./AlertBanner";
@@ -32,6 +31,7 @@ import { CampaignStrip } from "./CampaignStrip";
 import { DemoBar } from "./DemoBar";
 import { EmailDetailPanel, type DetailTab } from "./EmailDetailPanel";
 import { FlaggedEmailList } from "./FlaggedEmailList";
+import { LiveAdminConsole } from "./live/LiveAdminConsole";
 import { OverviewTiles } from "./OverviewTiles";
 
 type EmailKind = "campaign" | "single";
@@ -46,7 +46,12 @@ function readAcknowledged(): string[] {
   }
 }
 
+/** Live mode shows incidents from the API; otherwise the mock demo console. */
 export function AdminConsole() {
+  return LIVE ? <LiveAdminConsole /> : <MockAdminConsole />;
+}
+
+function MockAdminConsole() {
   const state = useDemoState();
   const now = useNow(500);
   const sessionId = state.session.id;
@@ -54,8 +59,7 @@ export function AdminConsole() {
   const flagged = flaggedEmails(state, now);
   const campaigns = campaignViews(state, now);
   const incidents = incidentsOf(state, now);
-  const liveAlerts = useLiveAlerts();
-  const alerts = LIVE ? liveAlerts : alertsOf(state, now);
+  const alerts = alertsOf(state, now);
   const compromised = compromisedEmployeeIds(state, now);
   const deliveredCount = deliveredEmails(state, now).length;
 
