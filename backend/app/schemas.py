@@ -478,9 +478,17 @@ class TimelineItem(BaseModel):
 class ChecklistItem(BaseModel):
     """An incident-response step. (The recovery progress list uses RecoveryChecklistItem.)"""
 
+    id: str
+    key: str  # stable name, e.g. "revoke_sessions"
     action: str
     rationale: str
+    area: Literal["account", "messages", "notifications", "investigation"]
     done: bool = False
+    needs_approval: bool = False  # containment steps wait for the admin
+    containment_kind: str | None = None  # D's action name, e.g. "quarantine"
+    approved_by: str | None = None
+    approved_at: datetime | None = None
+    done_at: datetime | None = None
 
 
 class Incident(BaseModel):
@@ -541,3 +549,40 @@ class Campaign(BaseModel):
     shared_traits: list[str]  # plain-language observations
     incident_id: str | None = None  # lets the UI jump from campaign to incident
     updated_at: datetime
+
+
+class ApproveBody(BaseModel):
+    approved_by: str = "admin"
+
+
+class CompleteBody(BaseModel):
+    done: bool = True  # False re-opens a step
+
+
+class AreaProgress(BaseModel):
+    done: int
+    total: int
+    percent: int
+
+
+class RecoveryProgress(BaseModel):
+    incident_id: str
+    percent: int
+    areas: dict[str, AreaProgress]
+    remaining: list[str]
+
+
+class TextResult(BaseModel):
+    text: str
+    source: Literal["template", "llm"]
+
+
+class Dashboard(BaseModel):
+    open_incidents: int
+    by_severity: dict[str, int]
+    active_campaigns: int
+    affected_employees: int
+    pending_approvals: int
+    checklist_done: int
+    checklist_total: int
+    latest_critical_incident_id: str | None = None

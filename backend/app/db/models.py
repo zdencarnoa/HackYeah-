@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from uuid import uuid4
 
-from sqlalchemy import JSON, DateTime, ForeignKey, Integer, String
+from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, String, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -74,3 +74,21 @@ class EvidenceRow(Base):
     incident_id: Mapped[str | None] = mapped_column(
         ForeignKey("incidents.id"), index=True, nullable=True
     )
+
+
+class ChecklistRow(Base):
+    __tablename__ = "checklist_items"
+    __table_args__ = (UniqueConstraint("incident_id", "key"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=_id)
+    incident_id: Mapped[str] = mapped_column(ForeignKey("incidents.id"), index=True)
+    key: Mapped[str] = mapped_column(String)
+    position: Mapped[int] = mapped_column(Integer)  # index in the template, keeps order stable
+    action: Mapped[str] = mapped_column(String)
+    rationale: Mapped[str] = mapped_column(String)
+    area: Mapped[str] = mapped_column(String)
+    needs_approval: Mapped[bool] = mapped_column(Boolean, default=False)
+    containment_kind: Mapped[str | None] = mapped_column(String, nullable=True)
+    done: Mapped[bool] = mapped_column(Boolean, default=False)
+    approved_by: Mapped[str | None] = mapped_column(String, nullable=True)
+    approved_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    done_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)

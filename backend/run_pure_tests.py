@@ -4,15 +4,17 @@ No pip install needed."""
 import sys
 
 sys.path.insert(0, ".")
-import tests.test_matching as t
+import tests.test_checklist_templates as t2
+import tests.test_matching as t1
 
 failed = 0
-for name in sorted(n for n in dir(t) if n.startswith("test_")):
-    try:
-        getattr(t, name)()
-        print("PASS", name)
-    except Exception as e:  # noqa: BLE001
-        failed += 1
-        print("FAIL", name, "->", repr(e))
+for mod in (t1, t2):
+    for name in sorted(n for n in dir(mod) if n.startswith("test_")):
+        try:
+            getattr(mod, name)()
+            print("PASS", name)
+        except Exception as e:  # noqa: BLE001
+            failed += 1
+            print("FAIL", name, "->", repr(e))
 print("\nAll good." if not failed else f"\n{failed} test(s) failed.")
 sys.exit(1 if failed else 0)
