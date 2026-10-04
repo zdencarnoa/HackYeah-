@@ -100,7 +100,7 @@ def attach(engine: AttackEngine, session_factory: SessionFactory, use_ml: bool =
     return pipeline
 
 
-def attach_credentials(credentials: CredentialSimulator, session_factory: SessionFactory) -> None:
+def attach_credentials(credentials: CredentialSimulator, session_factory: SessionFactory) -> Callable[[], None]:
     """D2: feed the simulator's credential events into C's incident system.
 
     When a password is entered on a phishing page, the simulator produces a
@@ -123,7 +123,26 @@ def attach_credentials(credentials: CredentialSimulator, session_factory: Sessio
                     source="automatic", timestamp=event.at))
 
     credentials.on_password_reuse = on_password_reuse
-    credentials.event_bus.subscribe(on_sim_event)
+    return credentials.event_bus.subscribe(on_sim_event)  # unsubscribe handle
+
+
+def wire_live(engine, credentials, containment, session_factory: SessionFactory,
+              use_ml: bool = False) -> Callable[[], None]:
+    """D5: wire all three bridges onto the live simulation objects at app startup.
+
+    Returns an `unwire()` that restores the previous hooks, so a shared runtime
+    stays clean (used on app shutdown and between tests).
+    """
+    previous = (engine.on_deliver, credentials.on_password_reuse, containment.on_contained)
+    attach(engine, session_factory, use_ml=use_ml)
+    unsubscribe = attach_credentials(credentials, session_factory)
+    attach_containment(containment, session_factory)
+
+    def unwire() -> None:
+        engine.on_deliver, credentials.on_password_reuse, containment.on_contained = previous
+        unsubscribe()
+
+    return unwire
 
 
 def reset_all(session_factory: SessionFactory) -> None:

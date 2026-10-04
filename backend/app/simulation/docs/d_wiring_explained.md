@@ -11,7 +11,7 @@ backend instead of in isolation:
 | D2 | the fake login → C's password-reuse handler | done |
 | D3 | one reset for the whole demo, D's state + C's database | done |
 | D4 | "Contain campaign" → C's incident record | done |
-| D5 | the simulation routes mounted on the live app | todo |
+| D5 | the simulation routes mounted on the live app | done |
 
 This file grows one section per task.
 
@@ -233,3 +233,54 @@ only fires after a successful, approved containment.
 and score (D1), a password on the phishing page opens a CRITICAL incident (D2),
 then "Contain campaign" flips that incident to `contained`. A second test confirms
 a non-admin is still refused.
+
+---
+
+## D5 — Mount the simulation on the live app
+
+**The goal.** Everything above works in tests; D5 turns it on in the real app, so
+the demo runs over HTTP from one backend.
+
+**What changed in `app/main.py`.**
+
+- **Routers mounted.** The simulation's web routes (`/r/{token}`, the fake
+  sign-in pages) and its API (`/api/sim/...`, `/api/blast-radius/...`) are now
+  included, along with detection's and scoring's routers.
+- **Pipeline wired at startup.** The lifespan calls `pipeline.wire_live(...)`,
+  which attaches all three bridges (score on delivery, password reuse → incident,
+  containment → incident) to the shared runtime objects. It seeds D's org once
+  (only if the employee table is empty) and uses a late-binding session factory,
+  so it always talks to whichever database is configured. On shutdown it calls the
+  returned `unwire()` to restore the default hooks.
+
+**One ownership call settled.** Detection and the simulation both defined
+`/r/{token}`. In the live demo, links are delivered and clicked through the attack
+engine, so the simulation's route is mounted first and owns `/r`. Detection's
+version stays for its own uploaded-email analysis and is covered by its own tests.
+(This is the A/D "one link rewriter" question — resolved in D's favour for the live
+click path.)
+
+**Test (`tests/test_live_app.py`).** Drives the whole demo over HTTP against
+`main.app` with a fresh database: reset → launch the attack → every email scored
+and the campaign correlated → Alice clicks and submits a password → a CRITICAL
+incident appears for the admin → "Contain campaign" flips it to contained →
+recovery shows containment at 100% → reset clears everything. A second test checks
+the simulation routes are mounted.
+
+---
+
+## Wiring all of D into the live app, in one place
+
+`app/main.py` now does, at startup:
+
+```python
+with session.SessionLocal() as db:        # seed D's org once
+    if no employees: seed_org(db)
+unwire = pipeline.wire_live(               # D1 + D2 + D4
+    runtime.engine, runtime.credentials, runtime.containment,
+    session_factory=lambda: session.SessionLocal(),
+)
+# ... and POST /api/sim/reset runs reset_all (D3) when a DB is configured
+```
+
+With that, the base demo runs end to end against the live backend.
