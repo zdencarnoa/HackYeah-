@@ -1,7 +1,13 @@
-"""Tasks 9 and 10: detection's HTTP routes. C mounts them in the app:
+"""Tasks 9 and 10: detection's HTTP routes.
 
-    from app.detection.router import router
-    app.include_router(router)
+`signals_router` has only POST /api/analyze/signals. `router` has that plus the
+standalone /r/{token} and /demo placeholder. In the live app the simulation owns
+/r/{token} (it serves the fake sign-in page and records clicks), so C mounts only:
+
+    from app.detection.router import signals_router
+    app.include_router(signals_router)
+
+Mounting `router` as well would register /r/{token} twice.
 """
 
 from html import escape
@@ -14,7 +20,8 @@ from app.detection.ingest import parse_eml
 from app.detection.rewrite import DEMO_TLDS, demo_target, follow
 from app.schemas import SignalsResponse
 
-router = APIRouter()
+signals_router = APIRouter()
+link_router = APIRouter()
 
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024
 
@@ -40,7 +47,7 @@ PLACEHOLDER_PAGE = PAGE.format(
          "<p>Nothing on this page is real, and nothing is sent anywhere.</p>")
 
 
-@router.post("/api/analyze/signals", response_model=SignalsResponse)
+@signals_router.post("/api/analyze/signals", response_model=SignalsResponse)
 async def analyze_signals(file: UploadFile = File(...)) -> SignalsResponse:
     """An uploaded .eml, parsed, with its signals."""
     raw = await file.read(MAX_UPLOAD_BYTES + 1)
@@ -54,7 +61,7 @@ async def analyze_signals(file: UploadFile = File(...)) -> SignalsResponse:
     return SignalsResponse(message=message, signals=result.signals, unchecked=result.unchecked)
 
 
-@router.get("/r/{token}")
+@link_router.get("/r/{token}")
 def follow_link(token: str):
     """A click on a rewritten link: recorded first, then sent on to a demo page only."""
     record = follow(token)
@@ -66,9 +73,14 @@ def follow_link(token: str):
     return RedirectResponse(target, status_code=302)
 
 
-@router.get("/demo/{host}/{path:path}", response_class=HTMLResponse)
+@link_router.get("/demo/{host}/{path:path}", response_class=HTMLResponse)
 def demo_placeholder(host: str, path: str = ""):
     """Stands in for D's fake site until DEMO_SITE_URL points there."""
     if not host.endswith(DEMO_TLDS):
         raise HTTPException(status_code=404)
     return PLACEHOLDER_PAGE.replace("{host}", escape(host)).replace("{path}", escape("/" + path if path else ""))
+
+
+router = APIRouter()
+router.include_router(signals_router)
+router.include_router(link_router)

@@ -18,7 +18,8 @@ Every message enters detection as an `.eml`: `app.detection.parse_eml` parses up
 
 Detection integration:
 - On delivery, in this order: `message_from_sim(sim)`, then `detect(message)` on the original, then `rewrite_links(message, employee_id)` for each inbox copy. Never run `detect()` on a rewritten copy.
-- `app.detection.router.router` holds `POST /api/analyze/signals`, `GET /r/{token}` and a placeholder `/demo/{host}/{path}` page. C mounts it with `app.include_router(router)`.
+- Live app: mount only `app.detection.router.signals_router` (`POST /api/analyze/signals`). The simulation owns `/r/{token}` (fake sign-in page, `LINK_CLICKED`), so `rewrite_links` and detection's `/r` route are standalone and not used in the live path; D calls `message_from_sim(delivered)` then `detect()` on the original before anything is rewritten.
+- `app.detection.router.router` (signals plus the standalone `/r` and `/demo`) holds `POST /api/analyze/signals`, `GET /r/{token}` and a placeholder `/demo/{host}/{path}` page. C mounts it with `app.include_router(router)`.
 - A click emits a `SimEvent(type=link_clicked)` before redirecting, and only `.example`/`.test` domains are ever forwarded. Tokens are in memory and clicks are only logged until C calls `app.detection.rewrite.configure(store=..., on_click=...)`. D's reset calls `clear_links()`.
 - Env: `DETECTION_BASE_URL` (default `http://localhost:8000`) and `DEMO_SITE_URL` (default `<base>/demo`, where D's fake site goes).
 
