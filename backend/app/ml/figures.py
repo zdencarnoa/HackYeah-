@@ -82,7 +82,7 @@ def figure_holdout() -> Path:
 def demo_counts():
     os.environ.setdefault("LLM_LIVE", "0")
     from app.detection import message_from_sim
-    from app.schemas_proposal_b import Severity
+    from app.schemas import Severity
     from app.scoring.analyze import analyze
     from app.simulation.seed import load_emails
 

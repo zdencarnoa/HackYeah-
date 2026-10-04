@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from app.detection import detect
 from app.schemas import Message
-from app.schemas_proposal_b import Assessment
+from app.schemas import Assessment
 from app.scoring.fusion import fuse
 from app.scoring.ml_signal import classify, ml_signal
 from app.llm.explain import explain_assessment

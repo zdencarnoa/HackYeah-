@@ -1,7 +1,7 @@
 import pytest
 
 from app.schemas import Signal, SignalCategory as C
-from app.schemas_proposal_b import Severity
+from app.schemas import Severity
 from app.scoring.fusion import fuse
 from app.scoring.ml_signal import MlResult, ml_signal
 from app.scoring.templates import explain, recommended_action

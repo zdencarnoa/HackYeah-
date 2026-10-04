@@ -12,7 +12,7 @@ from fastapi import APIRouter, File, HTTPException, UploadFile
 from app.detection.ingest import parse_eml
 from app.detection.router import MAX_UPLOAD_BYTES
 from app.schemas import Message
-from app.schemas_proposal_b import Assessment
+from app.schemas import Assessment
 from app.scoring.analyze import analyze
 
 router = APIRouter()

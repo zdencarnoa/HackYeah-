@@ -4,7 +4,7 @@ from app.llm import client, explain as explain_module, helpers
 from app.llm.grounding import grounded
 from app.llm.prompts import explanation_messages, fingerprint
 from app.schemas import Signal, SignalCategory as C
-from app.schemas_proposal_b import Severity
+from app.schemas import Severity
 from app.scoring.fusion import fuse
 
 EVIDENCE = "The sender's domain micr0soft-example.test imitates Microsoft."

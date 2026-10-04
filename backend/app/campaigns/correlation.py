@@ -10,7 +10,7 @@ from app.api import events
 from app.db.models import CampaignRow, EmployeeRow, IncidentRow, MessageRow
 from app.incidents.escalation import APPROVED_LOGINS
 from app.incidents.service import as_utc, link_incidents_to_campaign
-from app.schemas_proposal import Campaign, Severity
+from app.schemas import Campaign, Severity
 
 from .matching import JOIN_SCORE, MsgFeatures, campaign_name, features, pair_score, shared_traits
 

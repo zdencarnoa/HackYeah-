@@ -9,7 +9,7 @@ from app.llm.client import ask
 from app.llm.grounding import grounded, short_strings
 from app.llm.prompts import explanation_messages
 from app.schemas import Signal
-from app.schemas_proposal_b import Explanation, Severity
+from app.schemas import Explanation, Severity
 from app.scoring.templates import MAX_REASONS, SUMMARY, reasons
 
 # ML uncertainties depend on which model a laptop has; keep them out of the prompt so
