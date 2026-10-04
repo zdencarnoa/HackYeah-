@@ -1,0 +1,8 @@
+# Optional: the ML classifier (Person B). Without these the backend still runs:
+# scoring falls back to rules + templates and reports the missing model as an uncertainty.
+#   pip install -r requirements-ml.txt
+#   python -m app.ml.download_model      # DistilBERT weights from the model-v1 release
+torch>=2.2
+transformers>=4.45
+scikit-learn>=1.4
+joblib>=1.3

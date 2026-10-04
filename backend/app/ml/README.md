@@ -13,13 +13,16 @@ URLs are Person A's deterministic signals, not model features.
 
 `models/transformer_syn/model.safetensors` (255 MB) is not in git (over GitHub's
 100 MB limit). It is attached to the [`model-v1` release](https://github.com/zdencarnoa/HackYeah-/releases/tag/model-v1);
-the other files in that folder are committed. From the repo root:
+the other files in that folder are committed. **Setup, once per machine (from `backend/`):**
 
 ```bash
-gh release download model-v1 -R zdencarnoa/HackYeah- -D backend/app/ml/models/transformer_syn/
+pip install -r requirements-ml.txt       # torch, transformers, scikit-learn, joblib
+python -m app.ml.download_model          # needs `gh auth login` or GITHUB_TOKEN; SHA-256 checked
 ```
 
-Without it, use the `baseline.joblib` fallback.
+Without the weights the TF-IDF fallback runs; it is capped to a weak signal, so the
+demo verdicts are the same (tested). Without the ML packages, scoring runs on rules
+alone and states the missing model as an uncertainty.
 
 ```python
 from app.ml.transformer_model import PhishingTransformer
