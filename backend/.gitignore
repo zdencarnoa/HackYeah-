@@ -1,2 +1,15 @@
-security_copilot.db
+# Python environment and caches
+.venv/
+venv/
 __pycache__/
+*.pyc
+.pytest_cache/
+
+# Local database (recreated on first start)
+security_copilot.db
+*.db
+
+# Secrets and editor files
+.env
+.vscode/
+.idea/
