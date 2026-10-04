@@ -54,9 +54,17 @@ class TimelineItem(BaseModel):
 
 
 class ChecklistItem(BaseModel):
+    id: str  # NEW
+    key: str  # NEW: stable name, e.g. "revoke_sessions"
     action: str
     rationale: str
+    area: Literal["account", "messages", "notifications", "investigation"]  # NEW: D's recovery areas
     done: bool = False
+    needs_approval: bool = False  # NEW: containment items wait for the admin
+    containment_kind: str | None = None  # NEW: D's action name, e.g. "quarantine"
+    approved_by: str | None = None  # NEW
+    approved_at: datetime | None = None  # NEW
+    done_at: datetime | None = None  # NEW
 
 
 class Incident(BaseModel):
@@ -124,3 +132,40 @@ class Campaign(BaseModel):
     shared_traits: list[str]  # plain-language observations, see campaigns/matching.py
     incident_id: str | None = None  # NEW: lets the UI jump from campaign to incident
     updated_at: datetime
+
+
+class ApproveBody(BaseModel):  # NEW
+    approved_by: str = "admin"
+
+
+class CompleteBody(BaseModel):  # NEW
+    done: bool = True  # False re-opens a step
+
+
+class AreaProgress(BaseModel):  # NEW
+    done: int
+    total: int
+    percent: int
+
+
+class RecoveryProgress(BaseModel):  # NEW: payload of the recovery.updated event
+    incident_id: str
+    percent: int
+    areas: dict[str, AreaProgress]
+    remaining: list[str]  # actions still open, in checklist order
+
+
+class TextResult(BaseModel):  # NEW
+    text: str
+    source: Literal["template", "llm"]
+
+
+class Dashboard(BaseModel):  # NEW: overview tiles
+    open_incidents: int
+    by_severity: dict[str, int]
+    active_campaigns: int
+    affected_employees: int
+    pending_approvals: int
+    checklist_done: int
+    checklist_total: int
+    latest_critical_incident_id: str | None = None
