@@ -12,7 +12,8 @@ from app.simulation.seed import load_emails
 
 EMAILS = load_emails()
 CAMPAIGN = [sim for sim in EMAILS if sim.scenario.campaign_id == "camp-ms-verify"]
-LEGIT = [sim for sim in EMAILS if sim.scenario.label == "legitimate"]
+# amb-01 is deliberately ambiguous (MEDIUM), so it is not held to the "no strong signal" bar.
+LEGIT = [sim for sim in EMAILS if sim.scenario.label == "legitimate" and sim.id != "amb-01"]
 PHISHING = [sim for sim in EMAILS if sim.scenario.label == "phishing"]
 FIVE = {SignalCategory.LOOKALIKE_DOMAIN, SignalCategory.URGENCY, SignalCategory.CREDENTIAL_REQUEST,
         SignalCategory.SUSPICIOUS_URL, SignalCategory.BRAND_IMPERSONATION}
@@ -75,3 +76,13 @@ def test_parse_and_detect_take_well_under_100_ms():
         detect(parse_eml(raw))
     per_email_ms = 1000 * (time.perf_counter() - start) / len(raws)
     assert per_email_ms < 100, per_email_ms
+
+
+def test_ambiguous_email_is_medium_with_a_dmarc_note():
+    message = message_from_sim(next(sim for sim in EMAILS if sim.id == "amb-01"))
+    result = detect(message)
+    severities = {s.id: s.severity for s in result.signals}
+    assert severities["content.credential_request"] == 2
+    assert severities["url.foreign_domain"] == 1
+    assert max(severities.values()) == 2
+    assert any("DMARC" in note for note in result.unchecked)
