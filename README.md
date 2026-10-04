@@ -10,7 +10,7 @@ message → detection → risk score → explanation → employee decision
         → incident → campaign correlation → blast radius → containment → recovery
 ```
 
-The full product spec and demo script are in [`idea.md`](idea.md). Everything runs on synthetic
+The case for the product is in [`WHY_THIS_MATTERS.md`](WHY_THIS_MATTERS.md). Everything runs on synthetic
 data, and every containment action is **simulated**: nothing touches real accounts or mailboxes.
 Attacker infrastructure uses reserved `.example` / `.test` domains only.
 
@@ -36,7 +36,8 @@ Attacker infrastructure uses reserved `.example` / `.test` domains only.
 | `frontend/` | Next.js + React + TypeScript + Tailwind UI, React Flow graph |
 | `data/` | demo org, approved logins, demo emails |
 | `scripts/ui_demo_test.py` | end-to-end demo check through the real UI |
-| `docs/PERSON_B.md` | scoring / ML / LLM details |
+| `backend/app/llm/README.md` | LLM tiers and setup |
+| `WHY_THIS_MATTERS.md` | sourced case for SMB phishing defence |
 
 ## Quick start
 
@@ -122,7 +123,7 @@ summaries and recommendations; it never decides risk. Three tiers, tried in orde
 
 Explanations for the demo emails are pre-generated and cached in `backend/app/llm/cache/`, so they
 never wait on a model. `LLM_LIVE=0` turns the live tiers off. Overrides: `LLM_SERVER_URL`,
-`LLM_LOCAL_URL`, `LLM_LOCAL_MODEL`. Details: `backend/app/llm/README.md` and `docs/PERSON_B.md`.
+`LLM_LOCAL_URL`, `LLM_LOCAL_MODEL`. Details: `backend/app/llm/README.md`.
 
 ## Demo scenario
 
