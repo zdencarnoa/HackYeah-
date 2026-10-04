@@ -1,0 +1,89 @@
+"""Delivery pipeline (D1): score every delivered email and record it.
+
+This is the glue that turns the attack into live detection. For each message the
+attack engine delivers, it:
+
+  1. renders the original email to A's `Message` (`message_from_sim`),
+  2. scores it to a risk level with A's rules and B's fusion, and
+  3. hands it to C's `ingest_message()`, which stores it, files `email_scored`
+     evidence and runs campaign correlation.
+
+So detection does not depend on the employee: every delivered email is scored on
+arrival. Scoring here stops at the risk level and skips B's LLM explanation; the
+full Assessment with its plain-language reasons is produced on demand when the
+employee opens "Is this safe?" (B's /api/analyze), not on every delivery. The
+engine already runs `on_deliver` inside a try/except, so a failure here is logged
+and never stops delivery.
+"""
+
+import logging
+from collections.abc import Callable
+
+from sqlalchemy.orm import Session
+
+from app.campaigns.ingest import UnknownRecipient, ingest_message
+from app.detection import detect
+from app.detection.sim_eml import message_from_sim
+from app.schemas import DeliveredEmail, MessageIn, Severity
+from app.scoring.fusion import fuse
+from app.scoring.ml_signal import classify, ml_signal
+from app.simulation.engine import AttackEngine
+
+logger = logging.getLogger(__name__)
+
+SessionFactory = Callable[[], Session]
+
+
+class DeliveryPipeline:
+    """Callable used as `engine.on_deliver`. Scores a delivered email and ingests it.
+
+    C's message store keys on the message id with a single recipient, so one row is
+    written per delivered email, to its primary recipient. Demo campaign messages
+    are one-to-one, so this is exact for them; broadcast (`all@`) mail is LOW risk
+    and does not drive incidents, so attributing it to the first recipient is fine.
+    """
+
+    def __init__(self, engine: AttackEngine, session_factory: SessionFactory, use_ml: bool = True):
+        self.engine = engine
+        self.session_factory = session_factory
+        self.use_ml = use_ml
+
+    def score(self, delivered: DeliveredEmail) -> Severity | None:
+        """Risk level for a delivered email, the fast way: rules + fusion, no LLM."""
+        sim_email = self.engine.sim_email_by_id.get(delivered.id)
+        if sim_email is None:
+            logger.warning("no source email for %s; cannot score", delivered.id)
+            return None
+        message = message_from_sim(sim_email, delivered.delivered_at)
+        signals = list(detect(message).signals)
+        if self.use_ml and (sig := ml_signal(classify(message))) is not None:
+            signals.append(sig)
+        return fuse(signals).risk
+
+    def __call__(self, delivered: DeliveredEmail) -> None:
+        risk = self.score(delivered)
+        if risk is None or not delivered.recipient_ids:
+            return
+        recipient_id = delivered.recipient_ids[0]
+        message_in = MessageIn(
+            id=delivered.id,
+            sender=delivered.sender_address,
+            recipient=recipient_id,
+            subject=delivered.subject,
+            body=delivered.body_text,
+            urls=list(delivered.urls),
+            received_at=delivered.delivered_at,
+            risk=risk,
+        )
+        with self.session_factory() as db:
+            try:
+                ingest_message(db, message_in)
+            except UnknownRecipient:
+                logger.warning("ingest: unknown recipient %s for %s", recipient_id, delivered.id)
+
+
+def attach(engine: AttackEngine, session_factory: SessionFactory, use_ml: bool = True) -> DeliveryPipeline:
+    """Make the engine score and ingest on delivery. Returns the pipeline."""
+    pipeline = DeliveryPipeline(engine, session_factory, use_ml=use_ml)
+    engine.on_deliver = pipeline
+    return pipeline
