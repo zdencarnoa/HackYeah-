@@ -9,7 +9,7 @@ backend instead of in isolation:
 |------|------------------|--------|
 | D1 | delivery → scoring (A + B) → incidents/campaigns (C) | done |
 | D2 | the fake login → C's password-reuse handler | done |
-| D3 | one reset for the whole demo, D's state + C's database | todo |
+| D3 | one reset for the whole demo, D's state + C's database | done |
 | D4 | "Contain campaign" → C's incident record | todo |
 | D5 | the simulation routes mounted on the live app | todo |
 
@@ -175,3 +175,30 @@ secret.
 | `test_password_on_phishing_page_opens_an_incident` | a phishing-page password files `password_reuse` evidence and opens a CRITICAL incident, tagged automatic |
 | `test_follow_up_unusual_sign_in_joins_the_timeline` | the later sign-in is filed as `unusual_signin` evidence |
 | `test_password_on_approved_domain_is_silent` | a password on the real sign-in page fires nothing |
+
+---
+
+## D3 — One reset for the whole demo
+
+**The goal.** Between rehearsals, one call should put everything back to the start:
+no delivered mail, no incidents, a clean slate — but with the company still in
+place so the next run works.
+
+**What it does (`pipeline.reset_all`).** One function, in order:
+
+1. `reset_demo()` — clears D's in-memory state (engine, credentials, containment,
+   recovery) and sends a `DEMO_RESET` event so the UI clears too.
+2. `reset_db()` — drops and recreates C's tables (messages, incidents, evidence,
+   campaigns).
+3. `seed_org()` — re-seeds the 24 employees, so ingestion can find recipients again.
+
+**Why `reset_demo()` stays DB-free.** `reset_demo()` resets only D's side and has
+no database import, so the simulation keeps running on its own in the standalone
+dev app and in unit tests. `reset_all()` is the demo-wide reset that also touches
+C's database. The `POST /api/sim/reset` endpoint calls `reset_all` when a database
+is configured (the live app) and falls back to `reset_demo` when there isn't one
+(the dev app).
+
+**Test (`tests/test_reset_all.py`).** Builds up both sides — delivered mail in the
+engine, and a message, incident and evidence in the database — then calls
+`reset_all` and checks everything is cleared while the 24-employee org is back.

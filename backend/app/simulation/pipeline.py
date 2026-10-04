@@ -124,3 +124,20 @@ def attach_credentials(credentials: CredentialSimulator, session_factory: Sessio
 
     credentials.on_password_reuse = on_password_reuse
     credentials.event_bus.subscribe(on_sim_event)
+
+
+def reset_all(session_factory: SessionFactory) -> None:
+    """D3: one call restores the whole demo for a rehearsal.
+
+    Resets D's in-memory state (engine, credentials, containment, recovery) and
+    C's database (messages, incidents, evidence, campaigns), then re-seeds the
+    organization so ingestion can resolve recipients again.
+    """
+    from app.db.session import reset_db
+    from app.simulation import runtime
+    from app.simulation.org_seed import seed_org
+
+    runtime.reset_demo()  # D's state + a DEMO_RESET event
+    reset_db()            # drop and recreate C's tables
+    with session_factory() as db:
+        seed_org(db)

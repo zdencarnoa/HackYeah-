@@ -147,5 +147,14 @@ async def mark_recovery_item_done(item_id: str):
 
 @api_router.post("/sim/reset", response_model=AttackStatus)
 async def reset():
-    reset_demo()
+    # Reset the whole demo when a database is configured (the live app); fall back
+    # to D's in-memory reset alone when it is not (the standalone dev app).
+    from app.db import session as db_session
+
+    if db_session.engine is not None and db_session.SessionLocal is not None:
+        from app.simulation.pipeline import reset_all
+
+        reset_all(db_session.SessionLocal)
+    else:
+        reset_demo()
     return engine.status()
