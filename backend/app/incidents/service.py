@@ -70,7 +70,8 @@ def to_incident(db: Session, inc: IncidentRow) -> Incident:
                        .order_by(ChecklistRow.position)).all()
     evidence = [_to_evidence(r) for r in rows]
     return Incident(
-        id=inc.id, type=inc.type, severity=Severity(inc.severity), campaign_id=inc.campaign_id,
+        id=inc.id, type=inc.type, severity=Severity(inc.severity), status=inc.status,
+        campaign_id=inc.campaign_id,
         affected_employees=sorted({e.employee_id for e in evidence}),
         evidence=evidence,
         checklist=[_to_item(c) for c in items],
