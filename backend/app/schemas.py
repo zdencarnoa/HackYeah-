@@ -487,6 +487,7 @@ class Incident(BaseModel):
     id: str
     type: str
     severity: Severity
+    status: str = "open"  # "open" until containment runs, then "contained"
     campaign_id: str | None = None
     affected_employees: list[str]
     evidence: list[Evidence]

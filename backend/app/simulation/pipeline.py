@@ -141,3 +141,49 @@ def reset_all(session_factory: SessionFactory) -> None:
     reset_db()            # drop and recreate C's tables
     with session_factory() as db:
         seed_org(db)
+
+
+def mark_incidents_contained(db, employee_ids: list[str], message_ids: list[str]) -> list[str]:
+    """Set the open incidents touched by a containment to "contained" and announce it.
+
+    An incident is touched if it belongs to a contained message's campaign, or if it
+    holds evidence for one of the contained (affected) employees. Returns their ids.
+    """
+    from sqlalchemy import select
+
+    from app.api import events
+    from app.db.models import EvidenceRow, IncidentRow, MessageRow
+
+    incidents: dict[str, IncidentRow] = {}
+    if message_ids:
+        campaign_ids = set(db.scalars(
+            select(MessageRow.campaign_id).where(
+                MessageRow.id.in_(message_ids), MessageRow.campaign_id.is_not(None))
+        ).all())
+        if campaign_ids:
+            for inc in db.scalars(select(IncidentRow).where(
+                    IncidentRow.campaign_id.in_(campaign_ids), IncidentRow.status == "open")).all():
+                incidents[inc.id] = inc
+    if employee_ids:
+        for inc in db.scalars(
+            select(IncidentRow).join(EvidenceRow, EvidenceRow.incident_id == IncidentRow.id).where(
+                EvidenceRow.employee_id.in_(employee_ids), IncidentRow.status == "open")
+        ).all():
+            incidents[inc.id] = inc
+
+    for inc in incidents.values():
+        inc.status = "contained"
+    db.commit()
+    for inc_id in incidents:
+        events.publish("containment.done", {"incident_id": inc_id, "status": "contained"})
+    return list(incidents)
+
+
+def attach_containment(containment, session_factory: SessionFactory) -> None:
+    """D4: when a campaign is contained, mark its incident contained in C's database."""
+
+    def on_contained(request, results) -> None:
+        with session_factory() as db:
+            mark_incidents_contained(db, list(request.employee_ids), list(request.message_ids))
+
+    containment.on_contained = on_contained

@@ -2,6 +2,7 @@
 changes only in-memory state, returns `simulated: true` and is audit-logged.
 """
 
+import logging
 from collections.abc import Callable
 from datetime import datetime
 from urllib.parse import urlparse
@@ -16,6 +17,8 @@ from app.schemas import (
 )
 from app.simulation.engine import AttackEngine
 from app.simulation.events import EventBus, utcnow
+
+logger = logging.getLogger(__name__)
 
 Action = ContainmentActionType
 
@@ -40,6 +43,9 @@ class ContainmentService:
         self.organization: Organization = engine.organization
         self._get_current_time = get_current_time
         self._employees_by_id = {employee.id: employee for employee in self.organization.employees}
+        # Optional hook: called after a containment is applied, so the wiring can
+        # record it against C's incident. Default does nothing (standalone sim).
+        self.on_contained: Callable[[ContainmentRequest, list[ContainmentResult]], None] = lambda request, results: None
         self.reset()
 
     def reset(self) -> None:
@@ -98,6 +104,10 @@ class ContainmentService:
                 SimEventType.CONTAINMENT_ACTION,
                 data={"action": result.action.value, "summary": result.summary, "affected_count": result.affected_count},
             )
+        try:
+            self.on_contained(request, results)
+        except Exception:
+            logger.exception("on_contained hook failed for %s", request.action.value)
         return results
 
     def _contain_campaign(self, request: ContainmentRequest) -> list[ContainmentResult]:

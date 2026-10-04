@@ -10,7 +10,7 @@ backend instead of in isolation:
 | D1 | delivery → scoring (A + B) → incidents/campaigns (C) | done |
 | D2 | the fake login → C's password-reuse handler | done |
 | D3 | one reset for the whole demo, D's state + C's database | done |
-| D4 | "Contain campaign" → C's incident record | todo |
+| D4 | "Contain campaign" → C's incident record | done |
 | D5 | the simulation routes mounted on the live app | todo |
 
 This file grows one section per task.
@@ -202,3 +202,34 @@ is configured (the live app) and falls back to `reset_demo` when there isn't one
 **Test (`tests/test_reset_all.py`).** Builds up both sides — delivered mail in the
 engine, and a message, incident and evidence in the database — then calls
 `reset_all` and checks everything is cleared while the 24-employee org is back.
+
+---
+
+## D4 — Link "Contain campaign" to the incident
+
+**The goal.** When the admin approves "Contain campaign", D's simulation already
+quarantines, blocks and notifies. The admin's incident should also show that it
+has been dealt with, rather than staying open while the containment lives only in
+the simulation's state.
+
+**What was wired.** `ContainmentService` gained an `on_contained` hook, called
+after any containment is applied. `pipeline.attach_containment` points it at C's
+database: `mark_incidents_contained` finds the open incident(s) the containment
+touched — by the campaign of the contained messages, or by the affected employees'
+evidence — sets their status to `contained`, and publishes a `containment.done`
+event so the admin dashboard updates live.
+
+**Small shared-schema addition.** C's incident row always had a `status` column,
+but the `Incident` contract didn't expose it. It now carries `status` (default
+`"open"`), set from the row, so the UI can show "Contained". This is the only
+change to the shared schema, and incidents are built in just one place
+(`to_incident`), so nothing else is affected.
+
+**Approval still required.** Nothing here weakens the rule that containment needs
+an admin: `apply()` still refuses a non-admin before anything runs, and the hook
+only fires after a successful, approved containment.
+
+**Test (`tests/test_containment_incident.py`).** Runs the whole chain — deliver
+and score (D1), a password on the phishing page opens a CRITICAL incident (D2),
+then "Contain campaign" flips that incident to `contained`. A second test confirms
+a non-admin is still refused.
