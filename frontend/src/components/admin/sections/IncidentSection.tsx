@@ -6,7 +6,7 @@
  * with the reason behind every step.
  */
 
-import { clockTime } from "@/components/ui/format";
+import { clockTime, incidentTypeLabel } from "@/components/ui/format";
 import { RiskBadge } from "@/components/ui/RiskBadge";
 import { LIVE, liveApi } from "@/lib/api";
 import type { Incident, TimelineItem } from "@/lib/contracts";
@@ -45,7 +45,7 @@ export function IncidentSection({ incident }: { incident: Incident }) {
       <header className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">Incident {incident.id}</p>
-          <h3 className="mt-0.5 text-lg font-semibold text-ink">{incident.type}</h3>
+          <h3 className="mt-0.5 text-lg font-semibold text-ink">{incidentTypeLabel(incident.type)}</h3>
           <p className="mt-0.5 text-xs text-muted">Opened {clockTime(incident.created_at)}</p>
         </div>
         <RiskBadge risk={incident.severity} size="lg" />

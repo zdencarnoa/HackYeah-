@@ -10,7 +10,7 @@
 import { useState, type KeyboardEvent } from "react";
 
 import { RISK_TEXT, RiskBadge } from "@/components/ui/RiskBadge";
-import { timeAgo } from "@/components/ui/format";
+import { incidentTypeLabel, timeAgo } from "@/components/ui/format";
 import { SEVERITY_NAMES, Severity, type Campaign, type ContainmentResult, type Incident } from "@/lib/contracts";
 import { deliveredEmails, flaggedEmails, type Alert, type FlaggedEmail } from "@/lib/demo/selectors";
 import { useDemoState, useNow } from "@/lib/demo/store";
@@ -34,8 +34,6 @@ const TAB_LABEL: Record<Tab, string> = {
 };
 
 const name = (id: string) => EMPLOYEE_BY_ID[id]?.name ?? id;
-const TYPE_LABEL: Record<string, string> = { credential_phishing: "Credential phishing" };
-const typeLabel = (type: string) => TYPE_LABEL[type] ?? type.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase());
 
 export function LiveAdminConsole() {
   const now = useNow(1000);
@@ -211,7 +209,7 @@ function IncidentRow({ incident, campaign, selected, now, onOpen }: { incident: 
       >
         <div className="flex flex-wrap items-center gap-2">
           <RiskBadge risk={incident.severity} />
-          <span className="text-sm font-semibold">{typeLabel(incident.type)}</span>
+          <span className="text-sm font-semibold">{incidentTypeLabel(incident.type)}</span>
           {campaign && <span className="text-xs text-muted">· {campaign.message_ids.length} messages, {campaign.recipients.length} recipients</span>}
           <span className="ml-auto text-xs text-muted">{timeAgo(Date.parse(incident.created_at), now)}</span>
         </div>
@@ -247,7 +245,7 @@ function IncidentPanel({
               <RiskBadge risk={incident.severity} />
               <span className={`text-xs font-semibold ${RISK_TEXT[incident.severity]}`}>{incident.id} · {SEVERITY_NAMES[incident.severity]} incident</span>
             </div>
-            <h2 className="mt-2 text-lg leading-snug font-semibold">{typeLabel(incident.type)}</h2>
+            <h2 className="mt-2 text-lg leading-snug font-semibold">{incidentTypeLabel(incident.type)}</h2>
             <p className="mt-0.5 truncate text-sm text-muted">{incident.affected_employees.map(name).join(", ")}</p>
           </div>
           <button type="button" onClick={onClose} aria-label="Close details" className="grid size-8 shrink-0 place-items-center rounded-md text-muted ring-1 ring-inset ring-line hover:text-ink">
