@@ -45,7 +45,7 @@ def test_rendering_is_reproducible_and_carries_no_ground_truth(sim):
 
 
 def test_html_variant_link_shows_one_address_and_leads_to_another():
-    url = "https://login.micr0soft-example.test/verify?session=7f3a00c9"
+    url = "https://micr0soft-verify.example/verify?session=7f3a00c9"
     message = message_from_sim(BY_ID["cmp-01"], DELIVERED)
     assert message.urls == [
         Link(url=url, anchor_text="Verify your account now", found_in="html"),

@@ -1,0 +1,24 @@
+Received: from lakeside-logistics.example ([198.51.100.10]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:47:33 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=lakeside-logistics.example; dkim=pass
+ header.d=lakeside-logistics.example; dmarc=pass
+ header.from=lakeside-logistics.example
+From: Mary White <mary.white@lakeside-logistics.example>
+To: all@lakeside-logistics.example
+Subject: Reminder: benefits enrolment closes 15 October
+Date: Sat, 03 Oct 2026 14:47:33 +0000
+Message-ID: <leg-06@lakeside-logistics.example>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hello all,
+
+Open enrolment for the 2027 health and sports card benefits closes on 15 Octo=
+ber.
+You can review your choices in the HR Portal: https://hr.lakeside-logistics.e=
+xample/benefits
+
+If you have questions, my door is open.
+Mary (HR)

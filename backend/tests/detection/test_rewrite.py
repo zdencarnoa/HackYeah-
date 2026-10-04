@@ -9,7 +9,7 @@ from app.simulation.seed import load_emails
 from tests.detection.helpers import make_eml
 
 BY_ID = {sim.id: sim for sim in load_emails()}
-ATTACK_URL = "https://login.micr0soft-example.test/verify?session=7f3a00c9"
+ATTACK_URL = "https://micr0soft-verify.example/verify?session=7f3a00c9"
 
 
 @pytest.fixture(autouse=True)
@@ -78,7 +78,7 @@ def test_following_a_token_records_a_link_clicked_event():
     (event,) = rewrite.recorded_clicks
     assert event.type == SimEventType.LINK_CLICKED
     assert (event.employee_id, event.message_id) == ("e01", "cmp-01")
-    assert event.data == {"domain": "login.micr0soft-example.test", "url": ATTACK_URL, "source": "automatic"}
+    assert event.data == {"domain": "micr0soft-verify.example", "url": ATTACK_URL, "source": "automatic"}
     assert event.simulated is True
 
 
@@ -106,7 +106,7 @@ def test_configure_plugs_in_another_store_and_handler():
 
 
 @pytest.mark.parametrize(("url", "target"), [
-    (ATTACK_URL, "/login.micr0soft-example.test/verify?session=7f3a00c9"),
+    (ATTACK_URL, "/micr0soft-verify.example/verify?session=7f3a00c9"),
     ("http://parcelnow-redelivery.test", "/parcelnow-redelivery.test/"),
     ("https://helpdesk.lakeside-logistics.example/new", "/helpdesk.lakeside-logistics.example/new"),
     ("https://www.microsoft.com/login", None),

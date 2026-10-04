@@ -1,0 +1,48 @@
+Received: from micr0soft-example.test ([203.0.113.15]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:54:33 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=micr0soft-example.test; dkim=pass
+ header.d=micr0soft-example.test; dmarc=none
+ header.from=micr0soft-example.test
+From: Microsoft Security <account-security@micr0soft-example.test>
+To: alice.johnson@lakeside-logistics.example
+Subject: FINAL NOTICE: Your account will be suspended today
+Date: Sat, 03 Oct 2026 14:54:33 +0000
+Message-ID: <cmp-02@micr0soft-example.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_sim_cmp-02_0"
+
+--=_sim_cmp-02_0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Alice,
+
+This is your final notice. Your Microsoft 365 account (alice.johnson@lakeside=
+-logistics.example) has not been verified
+and will be suspended today at 17:00.
+
+Verify immediately to avoid losing access:
+https://login.micr0soft-example.test/verify?session=3D7f3a00c9
+
+Microsoft Security Team
+
+--=_sim_cmp-02_0
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body style=3D"font-family:Segoe UI,Arial,sans-serif;font-size:14px;col=
+or:#1b1b1b">
+<p style=3D"font-size:20px;font-weight:600">Microsoft 365</p>
+<p>Dear Alice,</p>
+<p>This is your <b>final notice</b>. Your Microsoft 365 account (alice.johnso=
+n@lakeside-logistics.example) has not been verified and will be suspended tod=
+ay at 17:00.</p>
+<p>Verify immediately to avoid losing access:<br>
+<a href=3D"https://login.micr0soft-example.test/verify?session=3D7f3a00c9">ht=
+tps://account.microsoft.example/verify</a></p>
+<p>Microsoft Security Team</p>
+</body></html>
+
+--=_sim_cmp-02_0--

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "camp-ms-verify",
+    "name": "Microsoft Account Verification",
+    "message_ids": [
+      "cmp-01",
+      "cmp-03",
+      "cmp-05",
+      "cmp-07",
+      "cmp-09",
+      "cmp-11",
+      "cmp-13",
+      "cmp-02",
+      "cmp-04",
+      "cmp-06",
+      "cmp-08",
+      "cmp-10",
+      "cmp-12",
+      "cmp-14"
+    ],
+    "recipients": [
+      "alice.johnson@lakeside-logistics.example",
+      "carol.williams@lakeside-logistics.example",
+      "tina.hall@lakeside-logistics.example",
+      "emily.davis@lakeside-logistics.example",
+      "frank.miller@lakeside-logistics.example",
+      "henry.moore@lakeside-logistics.example",
+      "isabel.taylor@lakeside-logistics.example"
+    ],
+    "departments": [
+      "Finance",
+      "Sales",
+      "Operations"
+    ],
+    "shared_traits": [
+      "Same sender domain: all 14 messages come from micr0soft-example.test",
+      "Same destination: every link leads to login.micr0soft-example.test",
+      "Similar wording: account suspension and identity verification",
+      "Delivered in two waves within 10 minutes"
+    ],
+    "updated_at": "2026-10-03T09:12:00+00:00"
+  }
+]
