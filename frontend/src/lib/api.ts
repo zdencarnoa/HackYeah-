@@ -148,9 +148,12 @@ export const liveApi = {
     return sim.ok ? { ok: true, data: { ok: true } } : sim;
   },
 
-  /** C's checklist: mark one response step done. */
-  completeChecklistItem: (itemId: string) =>
-    call<Incident>(`/api/checklist/${encodeURIComponent(itemId)}/complete`, post()),
+  /** C's checklist: tick or untick one response step. Containment steps answer 409 until approved. */
+  completeChecklistItem: (itemId: string, done = true) =>
+    call<Incident>(`/api/checklist/${encodeURIComponent(itemId)}/complete`, post({ done })),
+  /** C's checklist: the admin approves one containment step. */
+  approveChecklistItem: (itemId: string, approvedBy: string) =>
+    call<Incident>(`/api/checklist/${encodeURIComponent(itemId)}/approve`, post({ approved_by: approvedBy })),
 
   /** B's verdict for every demo email, keyed by message id (ML + rules + LLM text). */
   assessments: () => call<Record<string, Assessment>>("/api/assessments"),

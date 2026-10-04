@@ -252,6 +252,9 @@ export interface ChecklistItem {
   id?: string;
   /** C's step name, e.g. "revoke_sessions" (live only). */
   key?: string;
+  /** Containment steps wait for the admin's approval before they can be ticked (live only). */
+  needs_approval?: boolean;
+  approved_by?: string | null;
   action: string;
   rationale: string;
   done: boolean;

@@ -50,7 +50,21 @@ export function LiveAdminConsole() {
   const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
   const [emailTab, setEmailTab] = useState<DetailTab>("overview");
   const [tab, setTab] = useState<Tab>("incident");
-  const [acknowledged, setAcknowledged] = useState<string[]>([]);
+  const [acknowledged, setAcknowledged] = useState<string[]>(readAcknowledged);
+
+  /** Dismissing (or viewing) an incident's alert also clears its earlier, lower alerts:
+   * the HIGH "possible exposure" one should not pop up again after the CRITICAL one. */
+  function acknowledge(alert: Alert) {
+    const incidentKey = alert.key.split(":").slice(0, 2).join(":") + ":";
+    const covered = alerts
+      .filter((a) => a.key === alert.key || (a.key.startsWith(incidentKey) && a.severity <= alert.severity))
+      .map((a) => a.key);
+    setAcknowledged((current) => {
+      const next = [...new Set([...current, ...covered])];
+      writeAcknowledged(next);
+      return next;
+    });
+  }
   const [containment, setContainment] = useState<Record<string, ContainmentResult[]>>({});
   const [recoveryVersion, setRecoveryVersion] = useState(0);
 
@@ -81,6 +95,7 @@ export function LiveAdminConsole() {
   const selectedEmail = flagged.find((f) => f.email.id === selectedEmailId);
 
   function viewAlert(alert: Alert) {
+    acknowledge(alert);
     const incident = sorted.find((i) => alert.key.startsWith(`incident:${i.id}:`));
     if (incident) open(incident);
   }
@@ -97,7 +112,7 @@ export function LiveAdminConsole() {
         acknowledged={(alert) => acknowledged.includes(alert.key)}
         now={now}
         onView={viewAlert}
-        onDismiss={(alert) => setAcknowledged((current) => [...current, alert.key])}
+        onDismiss={acknowledge}
       />
 
       <div className="grid flex-1 gap-5 px-4 pt-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(26rem,0.9fr)]">
@@ -273,4 +288,22 @@ function IncidentPanel({
       </div>
     </section>
   );
+}
+
+const ACK_KEY = "security-copilot-live-acknowledged";
+
+function readAcknowledged(): string[] {
+  try {
+    return JSON.parse(window.localStorage.getItem(ACK_KEY) ?? "[]") as string[];
+  } catch {
+    return [];
+  }
+}
+
+function writeAcknowledged(keys: string[]): void {
+  try {
+    window.localStorage.setItem(ACK_KEY, JSON.stringify(keys));
+  } catch {
+    // private mode: dismissals last for this page only
+  }
 }
