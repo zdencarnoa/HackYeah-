@@ -6,9 +6,11 @@ severity but are never required.
 from __future__ import annotations
 
 from app.schemas import Evidence, Severity
+from app.simulation.seed import load_approved_logins
 
-# Placeholder: replace with D's ApprovedLogins list.
-APPROVED_LOGINS = {"login.company.example"}
+# The company's real sign-in domains (D's ApprovedLogins). A password typed on any
+# domain outside this set is treated as reuse on a phishing site.
+APPROVED_LOGINS = {login.domain for login in load_approved_logins()}
 
 _REPORT_SEVERITY = {
     "password": Severity.CRITICAL,

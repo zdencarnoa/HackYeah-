@@ -78,6 +78,9 @@ class AttackEngine:
         self.speed = 1.0
         self.scenario: str | None = None
         self.delivered_emails_by_id: dict[str, DeliveredEmail] = {}
+        # The original SimEmail by id, so the delivery pipeline can render it to a
+        # Message for scoring. Ground truth on it is never read outside the engine.
+        self.sim_email_by_id: dict[str, SimEmail] = {}
         self.inbox_message_ids_by_employee: dict[str, list[str]] = {
             employee.id: [] for employee in self.organization.employees
         }
@@ -217,6 +220,7 @@ class AttackEngine:
             links=tracked_links,
         )
         self.delivered_emails_by_id[sim_email.id] = delivered_email
+        self.sim_email_by_id[sim_email.id] = sim_email
         self.event_bus.publish(
             SimEventType.EMAIL_DELIVERED,
             message_id=sim_email.id,

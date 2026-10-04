@@ -29,7 +29,7 @@ def test_click_then_password_escalates_same_incident(ctx):
 def test_approved_login_domain_never_fires(ctx):
     client, published = ctx
     r = client.post("/api/integrations/chrome/password-reuse",
-                    json=push_for("alice@company.example", "login.company.example"))
+                    json=push_for("alice@company.example", "login.lakeside-logistics.example"))
     assert "ignored" in r.json()
     assert published == [] and client.get("/api/incidents").json() == []
 
