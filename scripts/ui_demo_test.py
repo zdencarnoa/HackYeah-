@@ -77,7 +77,11 @@ with sync_playwright() as p:
     if link.count() == 0:
         link = user.locator("button, a").filter(has_text="Verify").first
     link.click()
-    user.wait_for_timeout(1500)
+    try:  # a freshly started dev server compiles the page on its first visit
+        user.wait_for_url("**/demo/**", timeout=30000)
+    except Exception:
+        pass
+    user.wait_for_timeout(800)
     shot(user, "3_fake_login")
     check("5. lazna stranica za prijavu", "/demo/" in user.url, user.url)
     deadline = time.time() + 8

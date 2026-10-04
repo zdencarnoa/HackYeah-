@@ -27,3 +27,8 @@ export function fileSize(bytes: number): string {
 export function initials(name: string): string {
   return name.split(/\s+/).map((part) => part[0]).join("").slice(0, 2).toUpperCase();
 }
+
+/** C's incident type ("credential_phishing") as a heading ("Credential phishing"). */
+export function incidentTypeLabel(type: string): string {
+  return type.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase());
+}
