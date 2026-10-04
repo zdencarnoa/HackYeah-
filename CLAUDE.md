@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-This is a HackYeah hackathon project. Remote: https://github.com/zdencarnoa/HackYeah- (`main` plus one branch per area). The `backend/app/*` folders are empty placeholders so far. `idea.md` is the full product spec for **Security Copilot**: a phishing-detection and incident-response assistant for small and medium-sized organizations that have no security team. Read `idea.md` before making design decisions. It is the source of truth for scope, UX, and the demo script.
+This is a HackYeah hackathon project. Remote: https://github.com/zdencarnoa/HackYeah- (`main` plus one branch per area). The `backend/app/*` folders are empty placeholders so far. **Security Copilot** is a phishing-detection and incident-response assistant for small and medium-sized organizations that have no security team. The original spec (`idea.md`) has been removed from the repo; this file and `README.md` are now the source of truth for scope, UX, and the demo script. `WHY_THIS_MATTERS.md` has the sourced case for the product.
 
 Python 3.12 venv at the repo root (`.venv`). From `backend/`:
 - Install: `..\.venv\Scripts\python -m pip install -r requirements.txt`
@@ -30,7 +30,7 @@ Scoring integration (Person B; module notes in `backend/app/ml/README.md` and `b
 - Never compute or override risk elsewhere, and never let an LLM set it. Optional ML setup: `pip install -r requirements-ml.txt` and `python -m app.ml.download_model`; without it scoring falls back to TF-IDF or rules only.
 - Explanations for demo emails are cached in `app/llm/cache/`. After changing demo emails or detection wording, ask B to rebuild the cache, or those emails fall back to template text.
 
-## Intended stack (from idea.md §16, not yet chosen for certain)
+## Intended stack (from the original spec, not yet chosen for certain)
 
 - Frontend: Next.js + React + TypeScript + Tailwind; React Flow, D3, or Cytoscape for the dependency graph
 - Backend: Python + FastAPI
@@ -76,4 +76,4 @@ Demo attacker infrastructure uses reserved `.example` and `.test` domains only.
 
 Work in this order: a working end-to-end demo first, then UX polish, credible detection, clear explanations, the incident-response workflow, campaign correlation, the dependency visualization, and extra AI features last. A small flawless flow from detection to recovery beats many unfinished features.
 
-The demo scenario is in `idea.md` §18–23: a fake "Microsoft Security" email from `micr0soft-example.test` (idea.md says `.com`; changed to stay on reserved TLDs), Alice enters her password, the admin gets an alert, discovers a campaign of 14 messages and 7 recipients, views the blast radius, contains the campaign, and tracks recovery. Build features so this scenario runs smoothly.
+The demo scenario (also summarized in `README.md`): a fake "Microsoft Security" email from `micr0soft-example.test` (the original spec said `.com`; changed to stay on reserved TLDs), Alice enters her password, the admin gets an alert, discovers a campaign of 14 messages and 7 recipients, views the blast radius, contains the campaign, and tracks recovery. Build features so this scenario runs smoothly.
