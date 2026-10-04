@@ -43,3 +43,15 @@ def test_rejects_non_email_and_huge_files(monkeypatch):
     no_ml(monkeypatch)
     assert upload(b"\x00\x01 not an email").status_code == 422
     assert upload(b"a" * (MAX_UPLOAD_BYTES + 1)).status_code == 413
+
+
+def test_demo_assessments_cover_every_demo_email(monkeypatch):
+    from app.scoring import router as router_module
+    no_ml(monkeypatch)
+    router_module.demo_assessments.cache_clear()
+    body = client.get("/api/assessments").json()
+    router_module.demo_assessments.cache_clear()
+    assert set(body) == set(BY_ID)
+    assert body["cmp-01"]["risk"] == 2 and body["amb-01"]["risk"] == 1
+    assert all(body[i]["risk"] == 0 for i, sim in BY_ID.items()
+               if sim.scenario.label == "legitimate" and i != "amb-01")

@@ -9,7 +9,9 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 
+import { LIVE } from "../api";
 import type { ContainmentActionType, InteractionKind } from "../contracts";
+import { loadLiveAssessments } from "../live/assessments";
 import { EMAIL_BY_ID, ORG } from "../mocks";
 import { containmentPlan, passwordEntryFor } from "./selectors";
 import {
@@ -54,6 +56,14 @@ class DemoStore {
     window.addEventListener("storage", (event) => {
       if (event.key === STORAGE_KEY && event.newValue) this.receive(JSON.parse(event.newValue) as DemoState);
     });
+    if (LIVE) {
+      // B's live verdicts replace the mock ones; a new snapshot makes every screen re-read them.
+      void loadLiveAssessments().then((replaced) => {
+        if (replaced === 0) return;
+        this.state = { ...this.state };
+        this.notify();
+      });
+    }
   }
 
   subscribe = (listener: Listener): (() => void) => {

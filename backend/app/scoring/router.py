@@ -7,6 +7,8 @@ Inside the backend (scan on delivery) call app.scoring.analyze.analyze(message)
 directly instead of going through HTTP.
 """
 
+from functools import cache
+
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
 from app.detection.ingest import parse_eml
@@ -35,3 +37,19 @@ async def analyze_upload(file: UploadFile = File(...)) -> Assessment:
 def analyze_message(message: Message) -> Assessment:
     """An already parsed Message as JSON (for the UI's paste box or other services)."""
     return analyze(message)
+
+
+@cache
+def demo_assessments() -> dict[str, Assessment]:
+    """B's verdict for every demo email, computed once (~0.2 s each, explanations from
+    the offline LLM cache). The employee inbox reads these in live mode."""
+    from app.detection import message_from_sim
+    from app.simulation.seed import load_emails
+
+    return {sim.id: analyze(message_from_sim(sim), live_llm=False) for sim in load_emails()}
+
+
+@router.get("/api/assessments", response_model=dict[str, Assessment])
+def get_demo_assessments() -> dict[str, Assessment]:
+    """Assessments for all demo emails, keyed by message id (live mode of the UI)."""
+    return demo_assessments()

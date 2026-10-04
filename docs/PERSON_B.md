@@ -44,7 +44,8 @@ for recipient in message.recipients:
 
 ```python
 from app.scoring.router import router as scoring_router
-app.include_router(scoring_router)   # POST /api/analyze (.eml upload), POST /api/analyze/message (JSON)
+app.include_router(scoring_router)   # POST /api/analyze (.eml upload), POST /api/analyze/message (JSON),
+                                     # GET /api/assessments (B's verdict for every demo email, for the UI)
 ```
 
 **Load the model at startup** (in the FastAPI lifespan), not on the first email:
@@ -65,6 +66,10 @@ checklist_reason(incident_type, item_key, default) -> str         # always "": C
 ```
 
 They use the offline cache or the GPU server only (an admin is waiting), never the slow laptop model.
+
+**Frontend in live mode** loads `GET /api/assessments` once (`frontend/src/lib/live/assessments.ts`) and
+replaces the mock verdicts, so the inbox, risk cards and admin lists show B's live ML + LLM output.
+`main.py` precomputes it in the background at startup.
 
 ## The Assessment (in `app/schemas.py`)
 

@@ -138,10 +138,16 @@ export const liveApi = {
   completeRecoveryItem: (itemId: string) =>
     call<RecoveryStatus>(`/api/sim/recovery/${encodeURIComponent(itemId)}/done`, post()),
 
-  /** Back to a calm demo: the simulation first, then C's database. */
+  /**
+   * Back to a calm demo. D's /api/sim/reset already resets the simulation, C's database
+   * and A's links, and re-seeds D's organization. (C's old /api/dev/reset-and-seed must
+   * not follow it: it re-seeds a placeholder org, so later deliveries find no recipient.)
+   */
   async reset(): Promise<ApiResult<{ ok: true }>> {
     const sim = await call<AttackStatus>("/api/sim/reset", post());
-    if (!sim.ok) return sim;
-    return call<{ ok: true }>("/api/dev/reset-and-seed", post());
+    return sim.ok ? { ok: true, data: { ok: true } } : sim;
   },
+
+  /** B's verdict for every demo email, keyed by message id (ML + rules + LLM text). */
+  assessments: () => call<Record<string, Assessment>>("/api/assessments"),
 };

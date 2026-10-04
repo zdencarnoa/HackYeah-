@@ -12,7 +12,7 @@ from app.db import session
 from app.db.models import EmployeeRow
 from app.detection.router import router as detection_router
 from app.scoring.ml_signal import warm_up
-from app.scoring.router import router as scoring_router
+from app.scoring.router import demo_assessments, router as scoring_router
 from app.simulation import pipeline, runtime
 from app.simulation.org_seed import seed_org
 from app.simulation.router import api_router as sim_api_router
@@ -42,6 +42,9 @@ async def lifespan(app: FastAPI):
         runtime.engine, runtime.credentials, runtime.containment,
         session_factory=lambda: session.SessionLocal(), use_ml=ml_model is not None,
     )
+    # Precompute B's verdicts for the demo inbox in the background (~8 s), so the
+    # UI's first GET /api/assessments answers at once.
+    precompute = asyncio.create_task(asyncio.to_thread(demo_assessments))
     try:
         yield
     finally:

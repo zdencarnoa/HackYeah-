@@ -25,7 +25,7 @@ Detection integration:
 
 Scoring integration (Person B, full guide: `docs/PERSON_B.md`):
 - `app.scoring.analyze.analyze(message)` returns the shared `Assessment` (risk, explanation, recommended action, uncertainties). It runs `detect()` itself, so call it on the ORIGINAL message, once per email, before link rewriting. On delivery use `analyze(message, live_llm=False)` so it never waits on a model; put `assessment.risk` into C's `MessageIn.risk`.
-- `app.scoring.router.router` holds `POST /api/analyze` (.eml upload) and `POST /api/analyze/message` (JSON `Message`). C mounts it with `app.include_router(router)`. Call `app.scoring.ml_signal.warm_up()` in the app lifespan.
+- `app.scoring.router.router` holds `POST /api/analyze` (.eml upload), `POST /api/analyze/message` (JSON `Message`) and `GET /api/assessments` (verdicts for all demo emails; the UI loads it in live mode). C mounts it with `app.include_router(router)`. Call `app.scoring.ml_signal.warm_up()` in the app lifespan.
 - Text for C's incidents: `app.llm.helpers` implements C's `app/incidents/ai_hooks.py` contract (`incident_summary(incident)`, `employee_notification(incident, employee_id)`, `checklist_reason(...)`). They return `""` when there is no grounded LLM answer, so C's template is used.
 - Never compute or override risk elsewhere, and never let an LLM set it. Optional ML setup: `pip install -r requirements-ml.txt` and `python -m app.ml.download_model`; without it scoring falls back to TF-IDF or rules only.
 - Explanations for demo emails are cached in `app/llm/cache/`. After changing demo emails or detection wording, ask B to rebuild the cache, or those emails fall back to template text.
