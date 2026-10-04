@@ -7,19 +7,21 @@ from email.message import EmailMessage
 from email.utils import format_datetime
 
 from app.detection.ingest import parse_eml
-from app.schemas import Message, SimEmail
+from app.schemas import DeliveredEmail, Message, SimEmail
 
 # The dataset only has attachment names, types and sizes, so bodies are filler.
 PLACEHOLDER = b"SIMULATED ATTACHMENT. The demo dataset has no file content.\n"
 
 
-def message_from_sim(sim: SimEmail, delivered_at: datetime | None = None) -> Message:
+def message_from_sim(sim: SimEmail | DeliveredEmail, delivered_at: datetime | None = None) -> Message:
     """Parse a demo message as if it were uploaded, keeping D's id so every
-    component refers to it by the same key."""
+    component refers to it by the same key. Takes the SimEmail from the dataset or
+    the DeliveredEmail that the attack engine hands to `on_deliver`; both carry the
+    original links, so detection never sees a tracking link."""
     return parse_eml(render_eml(sim, delivered_at)).model_copy(update={"id": sim.id})
 
 
-def render_eml(sim: SimEmail, delivered_at: datetime | None = None) -> bytes:
+def render_eml(sim: SimEmail | DeliveredEmail, delivered_at: datetime | None = None) -> bytes:
     """The .eml that the receiving mail server would have stored.
 
     Ground truth (sim.scenario) and delivery scheduling are never written. The

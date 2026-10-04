@@ -9,6 +9,7 @@
 
 import { useState } from "react";
 
+import { LIVE } from "@/lib/api";
 import type { Incident } from "@/lib/contracts";
 import {
   alerts as alertsOf,
@@ -30,6 +31,7 @@ import { CampaignStrip } from "./CampaignStrip";
 import { DemoBar } from "./DemoBar";
 import { EmailDetailPanel, type DetailTab } from "./EmailDetailPanel";
 import { FlaggedEmailList } from "./FlaggedEmailList";
+import { LiveAdminConsole } from "./live/LiveAdminConsole";
 import { OverviewTiles } from "./OverviewTiles";
 
 type EmailKind = "campaign" | "single";
@@ -44,7 +46,12 @@ function readAcknowledged(): string[] {
   }
 }
 
+/** Live mode shows incidents from the API; otherwise the mock demo console. */
 export function AdminConsole() {
+  return LIVE ? <LiveAdminConsole /> : <MockAdminConsole />;
+}
+
+function MockAdminConsole() {
   const state = useDemoState();
   const now = useNow(500);
   const sessionId = state.session.id;

@@ -41,8 +41,9 @@ type BlastNode = Node<BlastNodeData, "blast">;
 
 const nodeTypes = { blast: BlastNodeView };
 
-export function BlastRadiusSection({ employeeId }: { employeeId: string }) {
-  const radius = useMemo(() => blastRadius(employeeId), [employeeId]);
+/** `radius` is the backend's answer in live mode; without it the mock organization is used. */
+export function BlastRadiusSection({ employeeId, radius: given }: { employeeId: string; radius?: BlastRadius }) {
+  const radius = useMemo(() => given ?? blastRadius(employeeId), [employeeId, given]);
   const { nodes, edges } = useMemo(() => layout(radius), [radius]);
   const reachable = radius.nodes.filter((n) => n.at_risk && n.kind !== "employee").length;
 
