@@ -33,7 +33,7 @@ if errorlevel 1 (
   start "Copilot - GPU tunnel" /min ssh -N -o ServerAliveInterval=30 -L 8001:localhost:8001 lambda-gpu
   echo [ok] GPU server up: tunnel to Qwen 14B on localhost:8001
 )
-powershell -NoProfile -Command "try { Invoke-RestMethod http://localhost:11434/api/version -TimeoutSec 3 | Out-Null; 'ok' } catch { 'no' }" | findstr ok >nul
+powershell -NoProfile -Command "try { Invoke-RestMethod http://127.0.0.1:11434/api/version -TimeoutSec 3 | Out-Null; 'ok' } catch { 'no' }" | findstr ok >nul
 if errorlevel 1 (echo [!] Ollama not running: no local LLM fallback) else (echo [ok] Ollama running: local qwen2.5:3b fallback)
 
 rem ---- 2. backend ------------------------------------------------------------
@@ -43,13 +43,15 @@ rem ---- 3. frontend -----------------------------------------------------------
 start "Copilot - frontend :3000" cmd /k "cd /d "%ROOT%\frontend" && npm run dev -- --port 3000"
 
 rem ---- 4. wait, reset, open ----------------------------------------------------
+rem Checks use 127.0.0.1: Windows PowerShell tries IPv6 ::1 first for "localhost" and
+rem only falls back after ~2 s, while uvicorn listens on IPv4 only.
 echo [..] Waiting for backend and frontend (the model loads in ~10-30 s)...
-powershell -NoProfile -Command "$ok=$false; for($i=0;$i -lt 90;$i++){ try { Invoke-RestMethod http://localhost:8000/api/sim/attack/status -TimeoutSec 2 | Out-Null; Invoke-WebRequest http://localhost:3000/ -UseBasicParsing -TimeoutSec 5 | Out-Null; $ok=$true; break } catch { Start-Sleep 2 } }; if(-not $ok){ exit 1 }"
+powershell -NoProfile -Command "$ok=$false; for($i=0;$i -lt 90;$i++){ try { Invoke-RestMethod http://127.0.0.1:8000/api/sim/attack/status -TimeoutSec 5 | Out-Null; Invoke-WebRequest http://127.0.0.1:3000/ -UseBasicParsing -TimeoutSec 30 | Out-Null; $ok=$true; break } catch { Start-Sleep 2 } }; if(-not $ok){ exit 1 }"
 if errorlevel 1 (
   echo [X] Backend or frontend did not start. Check the two new windows for errors.
   goto :fail
 )
-powershell -NoProfile -Command "Invoke-RestMethod -Method Post http://localhost:8000/api/sim/reset | Out-Null"
+powershell -NoProfile -Command "Invoke-RestMethod -Method Post http://127.0.0.1:8000/api/sim/reset | Out-Null"
 echo [ok] Demo reset
 start "" "http://localhost:3000/user"
 start "" "http://localhost:3000/admin"
