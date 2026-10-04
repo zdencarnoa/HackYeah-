@@ -123,7 +123,7 @@ def test_login_path(path, fires):
 
 def test_one_signal_per_rule_with_up_to_three_links():
     signals = signals_for_links(*[f"https://x{i}.example/login" for i in range(5)])
-    assert list(signals) == ["url.login_path"]
+    assert list(signals) == ["url.login_path", "url.foreign_domain"]
     assert signals["url.login_path"].technical_detail.count("login-path keyword") == 3
 
 
