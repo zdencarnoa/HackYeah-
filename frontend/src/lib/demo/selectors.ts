@@ -19,6 +19,8 @@ import {
   type RecoveryStatus,
   type TimelineItem,
 } from "../contracts";
+import { LIVE } from "../api";
+import { liveDeliveryTime } from "../live/deliveries";
 import { CAMPAIGNS, EMAILS, EMAIL_BY_ID, EMPLOYEE_BY_ID, ORG, campaignOf, type DemoEmail } from "../mocks";
 import {
   ATTACK_FIRST_OFFSET_S,
@@ -35,6 +37,7 @@ import {
 
 /** When an email lands in the inbox, or null when it has not been scheduled yet. */
 export function deliveryTime(email: DemoEmail, session: Session): number | null {
+  if (LIVE) return liveDeliveryTime(email.id); // D's attack engine decides, not a local clock
   if (email.deliver_offset_s < ATTACK_FIRST_OFFSET_S) {
     // Mail from before the attack is already in the inbox at reset, minutes apart.
     return session.createdAt - (ATTACK_FIRST_OFFSET_S - email.deliver_offset_s) * 60_000;

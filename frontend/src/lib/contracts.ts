@@ -248,6 +248,10 @@ export interface TimelineItem {
 }
 
 export interface ChecklistItem {
+  /** C's stable item id; present on live incidents, absent in the generated mocks. */
+  id?: string;
+  /** C's step name, e.g. "revoke_sessions" (live only). */
+  key?: string;
   action: string;
   rationale: string;
   done: boolean;

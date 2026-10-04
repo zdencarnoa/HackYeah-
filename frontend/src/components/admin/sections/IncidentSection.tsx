@@ -8,6 +8,7 @@
 
 import { clockTime } from "@/components/ui/format";
 import { RiskBadge } from "@/components/ui/RiskBadge";
+import { LIVE, liveApi } from "@/lib/api";
 import type { Incident, TimelineItem } from "@/lib/contracts";
 import { checklistItemIds } from "@/lib/demo/selectors";
 import { pastEvents } from "@/lib/demo/state";
@@ -72,7 +73,8 @@ export function IncidentSection({ incident }: { incident: Incident }) {
         <Panel className="p-0">
           <ul className="divide-y divide-line">
             {incident.checklist.map((item, i) => {
-              const id = ids[i];
+              // Live incidents carry C's item ids; the mock template ids only fit mock incidents.
+              const id = item.id ?? ids[i] ?? `${incident.id}:${i}`;
               const byContainment = item.done && !ticked.has(id);
               return (
                 <li key={id} className="flex gap-3 px-4 py-3">
@@ -80,7 +82,11 @@ export function IncidentSection({ incident }: { incident: Incident }) {
                     id={id}
                     type="checkbox"
                     checked={item.done}
-                    onChange={() => demoActions.setChecklistItem(id, !item.done)}
+                    onChange={() =>
+                      LIVE && item.id
+                        ? !item.done && void liveApi.completeChecklistItem(item.id) // C publishes incident.updated
+                        : demoActions.setChecklistItem(id, !item.done)
+                    }
                     className="mt-0.5 size-4 shrink-0 accent-low"
                   />
                   <label htmlFor={id} className="min-w-0 flex-1 cursor-pointer">

@@ -148,6 +148,10 @@ export const liveApi = {
     return sim.ok ? { ok: true, data: { ok: true } } : sim;
   },
 
+  /** C's checklist: mark one response step done. */
+  completeChecklistItem: (itemId: string) =>
+    call<Incident>(`/api/checklist/${encodeURIComponent(itemId)}/complete`, post()),
+
   /** B's verdict for every demo email, keyed by message id (ML + rules + LLM text). */
   assessments: () => call<Record<string, Assessment>>("/api/assessments"),
 };

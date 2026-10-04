@@ -110,6 +110,7 @@ export function DemoBar({ state, now }: { state: DemoState | null; now: number }
     setBusy(true);
     const result = await liveApi.reset();
     if (result.ok) {
+      demoActions.reset(); // clicks and password entries kept in this browser, in every window
       clearLiveAlerts();
       resetLiveIncidents();
       live.show(null, null);

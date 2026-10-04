@@ -11,8 +11,8 @@ import { useState, type ReactNode } from "react";
 
 import type { InteractionKind } from "@/lib/contracts";
 import { demoPageFor } from "@/lib/api";
-import { pastEvents } from "@/lib/demo/state";
-import { interactionsFor, passwordEntryFor } from "@/lib/demo/selectors";
+import { pastEvents, type DemoEvent } from "@/lib/demo/state";
+import { interactionsFor } from "@/lib/demo/selectors";
 import { demoActions, useDemoState, useNow } from "@/lib/demo/store";
 import { ORG } from "@/lib/mocks";
 import { shortTime } from "@/components/ui/format";
@@ -36,7 +36,11 @@ export function DecisionFlow({ employeeId, messageId }: { employeeId: string; me
   const click = pastEvents(state, now).find(
     (e) => e.kind === "link_clicked" && e.employeeId === employeeId && e.messageId === messageId,
   );
-  const passwordEntry = passwordEntryFor(state, now, employeeId);
+  // Only a password entered after clicking a link in THIS email belongs to its "What happened?".
+  const passwordEntry = pastEvents(state, now).find(
+    (e): e is Extract<DemoEvent, { kind: "password_reuse" }> =>
+      e.kind === "password_reuse" && e.employeeId === employeeId && e.messageId === messageId,
+  );
   const reports = interactionsFor(state, now, messageId).reports.filter((r) => r.employeeId === employeeId);
   const [choice, setChoice] = useState<InteractionKind | null>(() =>
     passwordEntry ? "password" : click ? "clicked" : null,

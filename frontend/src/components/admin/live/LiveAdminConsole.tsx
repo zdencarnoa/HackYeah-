@@ -12,8 +12,8 @@ import { useState, type KeyboardEvent } from "react";
 import { RISK_TEXT, RiskBadge } from "@/components/ui/RiskBadge";
 import { timeAgo } from "@/components/ui/format";
 import { SEVERITY_NAMES, Severity, type Campaign, type ContainmentResult, type Incident } from "@/lib/contracts";
-import type { Alert } from "@/lib/demo/selectors";
-import { useNow } from "@/lib/demo/store";
+import { deliveredEmails, flaggedEmails, type Alert, type FlaggedEmail } from "@/lib/demo/selectors";
+import { useDemoState, useNow } from "@/lib/demo/store";
 import { useLiveAlerts } from "@/lib/live/alerts";
 import { sortIncidents, useLiveIncidents } from "@/lib/live/incidents";
 import { EMPLOYEE_BY_ID } from "@/lib/mocks";
@@ -22,6 +22,8 @@ import { AdminHeader } from "../AdminHeader";
 import { AlertBanner } from "../AlertBanner";
 import { AlertNotifier } from "../AlertNotifier";
 import { DemoBar } from "../DemoBar";
+import { EmailDetailPanel, type DetailTab } from "../EmailDetailPanel";
+import { FlaggedEmailList } from "../FlaggedEmailList";
 import { IncidentSection } from "../sections/IncidentSection";
 import { Heading, Panel, Stat } from "../sections/parts";
 import { LiveBlastRadius, LiveCampaign, LiveContainment, LiveRecovery, compromisedIn } from "./LiveSections";
@@ -37,11 +39,18 @@ const typeLabel = (type: string) => TYPE_LABEL[type] ?? type.replace(/_/g, " ").
 
 export function LiveAdminConsole() {
   const now = useNow(1000);
+  const state = useDemoState();
+  // Mail delivered by D's engine and scored by B (lib/live/deliveries + assessments):
+  // the backend opens incidents only on interaction, so suspicious mail is listed here.
+  const flagged = flaggedEmails(state, now);
+  const deliveredCount = deliveredEmails(state, now).length;
   const { incidents, campaigns, loaded, error } = useLiveIncidents();
   const alerts = useLiveAlerts();
   const sorted = sortIncidents(incidents);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
+  const [emailTab, setEmailTab] = useState<DetailTab>("overview");
   const [tab, setTab] = useState<Tab>("incident");
   const [acknowledged, setAcknowledged] = useState<string[]>([]);
   const [containment, setContainment] = useState<Record<string, ContainmentResult[]>>({});
@@ -51,9 +60,27 @@ export function LiveAdminConsole() {
   const campaignOf = (i: Incident) => campaigns.find((c) => c.id === i.campaign_id);
 
   function open(incident: Incident, next: Tab = "incident") {
+    setSelectedEmailId(null);
     setSelectedId(incident.id);
     setTab(next);
   }
+
+  /** The incident a flagged email belongs to: one whose evidence names it, or its recipient's. */
+  function incidentOfEmail(email: FlaggedEmail): Incident | undefined {
+    return (
+      sorted.find((i) => i.evidence.some((e) => e.message_id === email.email.id)) ??
+      sorted.find((i) => i.affected_employees.some((id) => email.email.recipient_ids.includes(id)))
+    );
+  }
+
+  /** A flagged email opens its own details (B's verdict, recipients, its incident). */
+  function openFlagged(email: FlaggedEmail) {
+    setSelectedId(null);
+    setSelectedEmailId(email.email.id);
+    setEmailTab("overview");
+  }
+
+  const selectedEmail = flagged.find((f) => f.email.id === selectedEmailId);
 
   function viewAlert(alert: Alert) {
     const incident = sorted.find((i) => alert.key.startsWith(`incident:${i.id}:`));
@@ -98,7 +125,11 @@ export function LiveAdminConsole() {
               <div className="grid place-items-center rounded-xl border border-dashed border-line px-8 py-12 text-center">
                 <div>
                   <p className="font-semibold">No incidents yet</p>
-                  <p className="mt-1 text-sm text-muted">Everything delivered so far looks fine. Press D to open the demo controls and launch the simulated attack.</p>
+                  <p className="mt-1 text-sm text-muted">
+                    {flagged.length > 0
+                      ? "Suspicious emails have arrived (listed below). An incident opens as soon as someone clicks, enters a password or reports one."
+                      : "Everything delivered so far looks fine. Press D to open the demo controls and launch the simulated attack."}
+                  </p>
                 </div>
               </div>
             )}
@@ -108,9 +139,32 @@ export function LiveAdminConsole() {
               ))}
             </ul>
           </section>
+
+          <FlaggedEmailList
+            flagged={flagged}
+            deliveredCount={deliveredCount}
+            started={deliveredCount > 0}
+            selectedId={selectedEmail?.email.id ?? null}
+            now={now}
+            onSelect={openFlagged}
+          />
         </main>
 
-        {selected ? (
+        {selectedEmail ? (
+          <aside className="fixed inset-0 z-50 bg-bg/80 p-3 backdrop-blur-sm lg:sticky lg:inset-auto lg:top-20 lg:z-auto lg:h-[calc(100vh-10rem)] lg:bg-transparent lg:p-0 lg:backdrop-blur-none" aria-label="Selected email">
+            <EmailDetailPanel
+              key={selectedEmail.email.id}
+              email={selectedEmail}
+              incident={incidentOfEmail(selectedEmail)}
+              compromised={[...atRisk]}
+              tab={emailTab}
+              now={now}
+              onTab={setEmailTab}
+              onClose={() => setSelectedEmailId(null)}
+              onlyTabs={["overview", "people", "incident"]}
+            />
+          </aside>
+        ) : selected ? (
           <aside className="fixed inset-0 z-50 bg-bg/80 p-3 backdrop-blur-sm lg:sticky lg:inset-auto lg:top-20 lg:z-auto lg:h-[calc(100vh-10rem)] lg:bg-transparent lg:p-0 lg:backdrop-blur-none" aria-label="Selected incident">
             <IncidentPanel
               key={selected.id}
