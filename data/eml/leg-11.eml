@@ -1,0 +1,21 @@
+Received: from files.lakeside-logistics.example ([198.51.100.10]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:52:33 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=files.lakeside-logistics.example; dkim=pass
+ header.d=files.lakeside-logistics.example; dmarc=pass
+ header.from=files.lakeside-logistics.example
+From: File Storage <no-reply@files.lakeside-logistics.example>
+To: alice.johnson@lakeside-logistics.example
+Subject: Bob shared "Supplier payment run - October.xlsx" with you
+Date: Sat, 03 Oct 2026 14:52:33 +0000
+Message-ID: <leg-11@files.lakeside-logistics.example>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Bob Smith shared a file with you.
+
+Supplier payment run - October.xlsx
+Open: https://files.lakeside-logistics.example/s/finance/payment-run-oct
+
+You are receiving this because you are a member of the Finance team.

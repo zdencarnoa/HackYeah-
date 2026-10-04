@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db.models import ChecklistRow, IncidentRow
-from app.schemas_proposal import AreaProgress, RecoveryProgress
+from app.schemas import AreaProgress, RecoveryProgress
 
 from .ai_hooks import checklist_reason
 from .checklist_templates import AREAS, TEMPLATES

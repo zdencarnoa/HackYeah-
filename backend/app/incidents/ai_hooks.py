@@ -10,7 +10,7 @@ They receive structured evidence only, never raw email text.
 """
 from __future__ import annotations
 
-from app.schemas_proposal import Incident, Severity
+from app.schemas import Incident, Severity
 
 
 def _helpers():

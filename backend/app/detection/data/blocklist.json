@@ -1,0 +1,20 @@
+{
+  "updated": "2026-10-03",
+  "note": "Demo snapshot. Offline only. Reserved .example/.test domains and documentation IP ranges only. The Microsoft campaign domain is deliberately not listed: the demo catches it with no prior knowledge.",
+  "domains": [
+    "docusafe-esign.test",
+    "invoice-portal-pay.test",
+    "paperline-supp1ies.test",
+    "parcelnow-redelivery.test"
+  ],
+  "urls": [],
+  "senders": [
+    "sarah.mitchell.billing@freemail.test"
+  ],
+  "ips": [
+    "192.0.2.66",
+    "203.0.113.51",
+    "203.0.113.102",
+    "203.0.113.141"
+  ]
+}

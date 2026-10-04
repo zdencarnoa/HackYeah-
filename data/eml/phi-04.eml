@@ -1,0 +1,20 @@
+Received: from parcelnow-redelivery.test ([203.0.113.102]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:51:03 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=none
+ smtp.mailfrom=parcelnow-redelivery.test; dkim=none; dmarc=none
+ header.from=parcelnow-redelivery.test
+From: ParcelNow <delivery@parcelnow-redelivery.test>
+To: vincent.young@lakeside-logistics.example
+Subject: Delivery failed: pay 1.99 EUR to reschedule
+Date: Sat, 03 Oct 2026 14:51:03 +0000
+Message-ID: <phi-04@parcelnow-redelivery.test>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+We could not deliver your parcel because of unpaid customs fees (1.99 EUR).
+
+Reschedule within 48 hours or the parcel will be returned to the sender:
+http://parcelnow-redelivery.test/pay?ref=PN99812
+
+ParcelNow

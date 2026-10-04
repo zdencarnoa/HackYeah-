@@ -1,0 +1,59 @@
+Received: from micr0soft-example.test ([203.0.113.14]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:46:33 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=micr0soft-example.test; dkim=pass
+ header.d=micr0soft-example.test; dmarc=none
+ header.from=micr0soft-example.test
+From: Microsoft Security <security@micr0soft-example.test>
+To: alice.johnson@lakeside-logistics.example
+Subject: URGENT: Your account will be suspended
+Date: Sat, 03 Oct 2026 14:46:33 +0000
+Message-ID: <cmp-01@micr0soft-example.test>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_sim_cmp-01_0"
+
+--=_sim_cmp-01_0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Alice,
+
+We detected unusual sign-in activity on your Microsoft 365 account (alice.joh=
+nson@lakeside-logistics.example).
+To protect your data, your account will be suspended within 24 hours unless y=
+ou verify your identity.
+
+Verify your account now:
+https://login.micr0soft-example.test/verify?session=3D7f3a00c9
+
+If you do not complete verification, you will lose access to email and files.
+
+Microsoft Security Team
+Microsoft Corporation
+
+--=_sim_cmp-01_0
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body style=3D"font-family:Segoe UI,Arial,sans-serif;font-size:14px;col=
+or:#1b1b1b">
+<p style=3D"font-size:20px;font-weight:600">Microsoft 365</p>
+<p>Dear Alice,</p>
+<p>We detected unusual sign-in activity on your Microsoft 365 account (alice.=
+johnson@lakeside-logistics.example).<br>
+To protect your data, your account will be suspended within 24 hours unless y=
+ou verify your identity.</p>
+<p><a href=3D"https://login.micr0soft-example.test/verify?session=3D7f3a00c9"=
+ style=3D"display:inline-block;background:#0067b8;color:#ffffff;padding:10px =
+20px;text-decoration:none">Verify your account now</a></p>
+<p>If the button does not work, open this address: <a href=3D"https://login.m=
+icr0soft-example.test/verify?session=3D7f3a00c9">https://account.microsoft.ex=
+ample/security/verify</a></p>
+<p>If you do not complete verification, you will lose access to email and fil=
+es.</p>
+<p>Microsoft Security Team<br>
+Microsoft Corporation</p>
+</body></html>
+
+--=_sim_cmp-01_0--

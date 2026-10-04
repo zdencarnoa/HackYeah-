@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Pages pick a theme with data-theme: the employee mailbox is
+ * light, the admin console dark, so the two windows are easy to tell apart side
+ * by side. Use the semantic names (bg-panel, text-muted, text-critical, ...),
+ * never raw colors, so both themes stay consistent.
+ */
+
+:root,
+[data-theme="light"] {
+  --bg: #f3f4f7;
+  --panel: #ffffff;
+  --panel-2: #f7f8fa;
+  --line: #e2e5ea;
+  --ink: #15181d;
+  --muted: #5c6572;
+  --accent: #2459d6;
+  --accent-ink: #ffffff;
+
+  --low: #15803d;
+  --medium: #b45309;
+  --high: #c2410c;
+  --critical: #c8102e;
+  --sim: #6d28d9;
+}
+
+[data-theme="dark"] {
+  --bg: #0a0d12;
+  --panel: #111620;
+  --panel-2: #171e2a;
+  --line: #243041;
+  --ink: #e7ecf3;
+  --muted: #8d99ab;
+  --accent: #5b8cff;
+  --accent-ink: #0a0d12;
+
+  --low: #34d399;
+  --medium: #fbbf24;
+  --high: #fb923c;
+  --critical: #ff4d6a;
+  --sim: #b49bff;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --color-low: var(--low);
+  --color-medium: var(--medium);
+  --color-high: var(--high);
+  --color-critical: var(--critical);
+  --color-sim: var(--sim);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --animate-pulse-ring: pulse-ring 1.6s ease-out infinite;
+  --animate-slide-in: slide-in 0.35s ease-out;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--critical) 55%, transparent); }
+  100% { box-shadow: 0 0 0 14px transparent; }
+}
+
+/* Starts half visible: browsers pause animations in hidden or covered windows, and
+ * new alerts must stay readable even then. */
+@keyframes slide-in {
+  from { opacity: 0.5; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* The page behind a dark screen is dark too, so overscroll never flashes light.
+ * Tokens are scoped to the themed element, so the value is repeated here. */
+html:has([data-theme="dark"]) {
+  color-scheme: dark;
+  background: #0a0d12;
+}
+html:has([data-theme="dark"]) body {
+  background: #0a0d12;
+}

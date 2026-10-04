@@ -1,0 +1,23 @@
+Received: from logisticsweekly.example ([192.0.2.77]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:51:33 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=logisticsweekly.example; dkim=pass
+ header.d=logisticsweekly.example; dmarc=pass
+ header.from=logisticsweekly.example
+From: Logistics Weekly <newsletter@logisticsweekly.example>
+To: kevin.jackson@lakeside-logistics.example
+Subject: This week: port congestion in Rotterdam eases
+Date: Sat, 03 Oct 2026 14:51:33 +0000
+Message-ID: <leg-10@logisticsweekly.example>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Logistics Weekly - issue 212
+
+- Rotterdam congestion eases as new berths open
+- EU road toll changes from January
+- Interview: electrifying last-mile fleets
+
+Read online: https://logisticsweekly.example/issues/212
+Unsubscribe: https://logisticsweekly.example/unsubscribe

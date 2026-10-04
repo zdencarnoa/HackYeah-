@@ -1,0 +1,25 @@
+Received: from accountprotection.microsoft.example ([192.0.2.90]) by
+ mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 14:53:33 +0000
+Authentication-Results: mx.lakeside-logistics.example; spf=pass
+ smtp.mailfrom=accountprotection.microsoft.example; dkim=pass
+ header.d=accountprotection.microsoft.example; dmarc=pass
+ header.from=accountprotection.microsoft.example
+From: Microsoft <account-security-noreply@accountprotection.microsoft.example>
+To: oliver.martin@lakeside-logistics.example
+Subject: New app connected to your Microsoft account
+Date: Sat, 03 Oct 2026 14:53:33 +0000
+Message-ID: <leg-12@accountprotection.microsoft.example>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Microsoft account
+
+A new app, "Outlook for Android", was connected to the account o**k@lakeside-=
+logistics.example.
+
+If this was you, you can ignore this message.
+If not, review your account activity at https://account.microsoft.example/act=
+ivity
+
+Microsoft account team

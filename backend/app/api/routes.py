@@ -9,7 +9,7 @@ from app.campaigns.ingest import UnknownRecipient, ingest_message
 from app.db.models import CampaignRow
 from app.incidents import ai_hooks, checklist, service
 from app.incidents.dashboard import build_dashboard
-from app.schemas_proposal import (
+from app.schemas import (
     ApproveBody, Campaign, CompleteBody, Dashboard, Evidence, Incident, Interaction,
     InteractionResult, MessageIn, PubSubPush, RecoveryProgress, TextResult,
 )

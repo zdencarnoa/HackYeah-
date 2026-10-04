@@ -4,7 +4,7 @@ from sqlalchemy import distinct, func, select
 from sqlalchemy.orm import Session
 
 from app.db.models import CampaignRow, ChecklistRow, EvidenceRow, IncidentRow
-from app.schemas_proposal import Dashboard, Severity
+from app.schemas import Dashboard, Severity
 
 
 def build_dashboard(db: Session) -> Dashboard:

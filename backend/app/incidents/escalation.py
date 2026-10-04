@@ -5,7 +5,7 @@ severity but are never required.
 """
 from __future__ import annotations
 
-from app.schemas_proposal import Evidence, Severity
+from app.schemas import Evidence, Severity
 
 # Placeholder: replace with D's ApprovedLogins list.
 APPROVED_LOGINS = {"login.company.example"}

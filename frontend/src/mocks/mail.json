@@ -1,0 +1,4227 @@
+{
+  "generated_from": "499414d",
+  "demo_start": "2026-10-03T09:00:00+00:00",
+  "emails": [
+    {
+      "id": "leg-01",
+      "deliver_offset_s": 15,
+      "recipient_ids": [
+        "e05"
+      ],
+      "message": {
+        "id": "leg-01",
+        "sender": "helpdesk@lakeside-logistics.example",
+        "sender_name": "IT Helpdesk",
+        "reply_to": null,
+        "recipients": [
+          "emily.davis@lakeside-logistics.example"
+        ],
+        "subject": "Your password was changed",
+        "body_text": "Hi Emily,\n\nThis confirms that the password for your Lakeside Logistics account was changed today at 08:42.\n\nIf you made this change, no action is needed.\nIf you did not, contact the IT helpdesk on extension 2400 or open a ticket at https://helpdesk.lakeside-logistics.example/new.\n\nIT Helpdesk\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://helpdesk.lakeside-logistics.example/new",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from lakeside-logistics.example ([198.51.100.10]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:00:15 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=lakeside-logistics.example; dkim=pass header.d=lakeside-logistics.example; dmarc=pass header.from=lakeside-logistics.example"
+          ],
+          [
+            "From",
+            "IT Helpdesk <helpdesk@lakeside-logistics.example>"
+          ],
+          [
+            "To",
+            "emily.davis@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Your password was changed"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:00:15 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-01@lakeside-logistics.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:00:15Z"
+      },
+      "assessment": {
+        "message_id": "leg-01",
+        "risk": 0,
+        "score": 0,
+        "signals": [],
+        "ml_confidence": 0.3424,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.583817Z"
+      }
+    },
+    {
+      "id": "leg-02",
+      "deliver_offset_s": 40,
+      "recipient_ids": [
+        "e01"
+      ],
+      "message": {
+        "id": "leg-02",
+        "sender": "billing@paperline-supplies.example",
+        "sender_name": "Paperline Supplies Billing",
+        "reply_to": null,
+        "recipients": [
+          "alice.johnson@lakeside-logistics.example"
+        ],
+        "subject": "Invoice INV-20431 for September",
+        "body_text": "Dear Alice,\n\nPlease find attached invoice INV-20431 for office supplies delivered in September.\nAmount due: 1,284.60 EUR. Payment terms: 30 days, to the bank account already on file.\n\nKind regards,\nSarah Mitchell\nPaperline Supplies\n",
+        "body_html": null,
+        "urls": [],
+        "attachments": [
+          {
+            "filename": "INV-20431.pdf",
+            "content_type": "application/pdf",
+            "size_bytes": 88412,
+            "encrypted": false
+          }
+        ],
+        "headers": [
+          [
+            "Received",
+            "from paperline-supplies.example ([192.0.2.25]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:00:40 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=paperline-supplies.example; dkim=pass header.d=paperline-supplies.example; dmarc=pass header.from=paperline-supplies.example"
+          ],
+          [
+            "From",
+            "Paperline Supplies Billing <billing@paperline-supplies.example>"
+          ],
+          [
+            "To",
+            "alice.johnson@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Invoice INV-20431 for September"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:00:40 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-02@paperline-supplies.example>"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ],
+          [
+            "Content-Type",
+            "multipart/mixed; boundary=\"=_sim_leg-02_0\""
+          ]
+        ],
+        "received_at": "2026-10-03T09:00:40Z"
+      },
+      "assessment": {
+        "message_id": "leg-02",
+        "risk": 0,
+        "score": 0,
+        "signals": [],
+        "ml_confidence": 0.5305,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [
+          "Our text classifier is unsure about the wording of this email; this does not prove it is safe or malicious."
+        ],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.589853Z"
+      }
+    },
+    {
+      "id": "leg-03",
+      "deliver_offset_s": 70,
+      "recipient_ids": [
+        "e01",
+        "e02",
+        "e03",
+        "e04",
+        "e05",
+        "e06",
+        "e07",
+        "e08",
+        "e09",
+        "e10",
+        "e11",
+        "e12",
+        "e13",
+        "e14",
+        "e15",
+        "e16",
+        "e17",
+        "e18",
+        "e19",
+        "e20",
+        "e21",
+        "e22",
+        "e23",
+        "e24"
+      ],
+      "message": {
+        "id": "leg-03",
+        "sender": "james.clark@lakeside-logistics.example",
+        "sender_name": "James Clark",
+        "reply_to": null,
+        "recipients": [
+          "all@lakeside-logistics.example"
+        ],
+        "subject": "All-hands on Friday: Q3 results and the new Springfield depot",
+        "body_text": "Hi everyone,\n\nOur quarterly all-hands is this Friday at 15:00 in the main canteen, and online for drivers on the road.\nWe will go through Q3 results and the opening plan for the Springfield depot.\n\nSee you there,\nJames\n",
+        "body_html": null,
+        "urls": [],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from lakeside-logistics.example ([198.51.100.10]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:01:10 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=lakeside-logistics.example; dkim=pass header.d=lakeside-logistics.example; dmarc=pass header.from=lakeside-logistics.example"
+          ],
+          [
+            "From",
+            "James Clark <james.clark@lakeside-logistics.example>"
+          ],
+          [
+            "To",
+            "all@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "All-hands on Friday: Q3 results and the new Springfield depot"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:01:10 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-03@lakeside-logistics.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:01:10Z"
+      },
+      "assessment": {
+        "message_id": "leg-03",
+        "risk": 0,
+        "score": 0,
+        "signals": [],
+        "ml_confidence": 0.156,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.592174Z"
+      }
+    },
+    {
+      "id": "leg-04",
+      "deliver_offset_s": 95,
+      "recipient_ids": [
+        "e09"
+      ],
+      "message": {
+        "id": "leg-04",
+        "sender": "notifications@parcelnow.example",
+        "sender_name": "ParcelNow",
+        "reply_to": null,
+        "recipients": [
+          "isabel.taylor@lakeside-logistics.example"
+        ],
+        "subject": "Your shipment PN-558213 is out for delivery",
+        "body_text": "Hello,\n\nShipment PN-558213 (2 pallets, sender: Atlantic Packaging) is out for delivery today between 10:00 and 14:00.\nTrack it at https://track.parcelnow.example/PN-558213\n\nParcelNow\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://track.parcelnow.example/PN-558213",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from parcelnow.example ([192.0.2.40]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:01:35 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=parcelnow.example; dkim=pass header.d=parcelnow.example; dmarc=pass header.from=parcelnow.example"
+          ],
+          [
+            "From",
+            "ParcelNow <notifications@parcelnow.example>"
+          ],
+          [
+            "To",
+            "isabel.taylor@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Your shipment PN-558213 is out for delivery"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:01:35 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-04@parcelnow.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:01:35Z"
+      },
+      "assessment": {
+        "message_id": "leg-04",
+        "risk": 0,
+        "score": 1,
+        "signals": [
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 1,
+            "evidence": "Parts of the wording resemble phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 90%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.8968,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [
+            "Parts of the wording resemble phishing emails."
+          ],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.594207Z"
+      }
+    },
+    {
+      "id": "cmp-01",
+      "deliver_offset_s": 120,
+      "recipient_ids": [
+        "e01"
+      ],
+      "message": {
+        "id": "cmp-01",
+        "sender": "security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "alice.johnson@lakeside-logistics.example"
+        ],
+        "subject": "URGENT: Your account will be suspended",
+        "body_text": "Dear Alice,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (alice.johnson@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a00c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+        "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Alice,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (alice.johnson@lakeside-logistics.example).<br>\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p><a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\" style=\"display:inline-block;background:#0067b8;color:#ffffff;padding:10px 20px;text-decoration:none\">Verify your account now</a></p>\n<p>If the button does not work, open this address: <a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\">https://account.microsoft.example/security/verify</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team<br>\nMicrosoft Corporation</p>\n</body></html>\n",
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a00c9",
+            "anchor_text": "Verify your account now",
+            "found_in": "html"
+          },
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a00c9",
+            "anchor_text": "https://account.microsoft.example/security/verify",
+            "found_in": "html"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.14]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:02:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "alice.johnson@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "URGENT: Your account will be suspended"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:02:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-01@micr0soft-example.test>"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ],
+          [
+            "Content-Type",
+            "multipart/alternative; boundary=\"=_sim_cmp-01_0\""
+          ]
+        ],
+        "received_at": "2026-10-03T09:02:00Z"
+      },
+      "assessment": {
+        "message_id": "cmp-01",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "url.text_mismatch",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link shows account.microsoft.example but actually leads to login.micr0soft-example.test.",
+            "technical_detail": "anchor text shows account.microsoft.example (registrable microsoft.example); href host login.micr0soft-example.test (registrable micr0soft-example.test)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"To protect your data, your account will be suspended within 24 hours unless you verify your identity.\"",
+            "technical_detail": "credential_request phrases: 'verify your identity', 'verify your account'; found in body text, HTML body",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"URGENT: Your account will be suspended\"",
+            "technical_detail": "urgency phrases: 'urgent', 'will be suspended', 'unusual sign-in activity', 'within 24 hours', 'lose access'; found in subject, body text, HTML body",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9999,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to sign in quickly, which is a common trick in phishing scams.",
+            "They say your account will be suspended if you don’t act fast, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.599154Z"
+      }
+    },
+    {
+      "id": "leg-05",
+      "deliver_offset_s": 130,
+      "recipient_ids": [
+        "e05",
+        "e06",
+        "e08",
+        "e19"
+      ],
+      "message": {
+        "id": "leg-05",
+        "sender": "grace.wilson@lakeside-logistics.example",
+        "sender_name": "Grace Wilson",
+        "reply_to": null,
+        "recipients": [
+          "emily.davis@lakeside-logistics.example",
+          "frank.miller@lakeside-logistics.example",
+          "henry.moore@lakeside-logistics.example",
+          "steven.walker@lakeside-logistics.example"
+        ],
+        "subject": "Weekly pipeline review - Monday 10:00",
+        "body_text": "Hi team,\n\nCalendar invite for our weekly pipeline review. Please update your deals in the CRM before the meeting.\nRoom: Lakeview 2, or join from https://meet.lakeside-logistics.example/sales-weekly\n\nGrace\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://meet.lakeside-logistics.example/sales-weekly",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [
+          {
+            "filename": "invite.ics",
+            "content_type": "text/calendar",
+            "size_bytes": 1830,
+            "encrypted": false
+          }
+        ],
+        "headers": [
+          [
+            "Received",
+            "from lakeside-logistics.example ([198.51.100.10]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:02:10 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=lakeside-logistics.example; dkim=pass header.d=lakeside-logistics.example; dmarc=pass header.from=lakeside-logistics.example"
+          ],
+          [
+            "From",
+            "Grace Wilson <grace.wilson@lakeside-logistics.example>"
+          ],
+          [
+            "To",
+            "emily.davis@lakeside-logistics.example, frank.miller@lakeside-logistics.example, henry.moore@lakeside-logistics.example, steven.walker@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Weekly pipeline review - Monday 10:00"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:02:10 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-05@lakeside-logistics.example>"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ],
+          [
+            "Content-Type",
+            "multipart/mixed; boundary=\"=_sim_leg-05_0\""
+          ]
+        ],
+        "received_at": "2026-10-03T09:02:10Z"
+      },
+      "assessment": {
+        "message_id": "leg-05",
+        "risk": 0,
+        "score": 0,
+        "signals": [],
+        "ml_confidence": 0.0217,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.602270Z"
+      }
+    },
+    {
+      "id": "cmp-03",
+      "deliver_offset_s": 145,
+      "recipient_ids": [
+        "e03"
+      ],
+      "message": {
+        "id": "cmp-03",
+        "sender": "account-security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "carol.williams@lakeside-logistics.example"
+        ],
+        "subject": "Action required: verify your account within 24 hours",
+        "body_text": "Dear Carol,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (carol.williams@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a01c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a01c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.15]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:02:25 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <account-security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "carol.williams@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Action required: verify your account within 24 hours"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:02:25 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-03@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:02:25Z"
+      },
+      "assessment": {
+        "message_id": "cmp-03",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Action required: verify your account within 24 hours\"",
+            "technical_detail": "credential_request phrases: 'verify your account', 'verify your identity'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"Action required: verify your account within 24 hours\"",
+            "technical_detail": "urgency phrases: 'action required', 'within 24 hours', 'unusual sign-in activity', 'will be suspended', 'lose access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9999,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website address in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The email urges you to log in or update your account information quickly.",
+            "It asks you to take action within 24 hours, which is a common tactic used in phishing scams.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.604781Z"
+      }
+    },
+    {
+      "id": "cmp-05",
+      "deliver_offset_s": 170,
+      "recipient_ids": [
+        "e20"
+      ],
+      "message": {
+        "id": "cmp-05",
+        "sender": "no-reply@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "tina.hall@lakeside-logistics.example"
+        ],
+        "subject": "Security alert: unusual sign-in activity on your account",
+        "body_text": "Dear Tina,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (tina.hall@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a02c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+        "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Tina,</p>\n<p>We detected unusual sign-in activity on your Microsoft 365 account (tina.hall@lakeside-logistics.example).<br>\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.</p>\n<p><a href=\"https://login.micr0soft-example.test/verify?session=7f3a02c9\" style=\"display:inline-block;background:#0067b8;color:#ffffff;padding:10px 20px;text-decoration:none\">Verify your account now</a></p>\n<p>If you do not complete verification, you will lose access to email and files.</p>\n<p>Microsoft Security Team<br>\nMicrosoft Corporation</p>\n</body></html>\n",
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a02c9",
+            "anchor_text": "Verify your account now",
+            "found_in": "html"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.16]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:02:50 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <no-reply@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "tina.hall@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Security alert: unusual sign-in activity on your account"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:02:50 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-05@micr0soft-example.test>"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ],
+          [
+            "Content-Type",
+            "multipart/alternative; boundary=\"=_sim_cmp-05_0\""
+          ]
+        ],
+        "received_at": "2026-10-03T09:02:50Z"
+      },
+      "assessment": {
+        "message_id": "cmp-05",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"To protect your data, your account will be suspended within 24 hours unless you verify your identity.\"",
+            "technical_detail": "credential_request phrases: 'verify your identity', 'verify your account'; found in body text, HTML body",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"Security alert: unusual sign-in activity on your account\"",
+            "technical_detail": "urgency phrases: 'unusual sign-in activity', 'will be suspended', 'within 24 hours', 'lose access'; found in subject, body text, HTML body",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9998,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to log in or update your information to avoid suspension.",
+            "The email creates a sense of urgency by mentioning unusual activity on your account.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.608830Z"
+      }
+    },
+    {
+      "id": "leg-06",
+      "deliver_offset_s": 180,
+      "recipient_ids": [
+        "e01",
+        "e02",
+        "e03",
+        "e04",
+        "e05",
+        "e06",
+        "e07",
+        "e08",
+        "e09",
+        "e10",
+        "e11",
+        "e12",
+        "e13",
+        "e14",
+        "e15",
+        "e16",
+        "e17",
+        "e18",
+        "e19",
+        "e20",
+        "e21",
+        "e22",
+        "e23",
+        "e24"
+      ],
+      "message": {
+        "id": "leg-06",
+        "sender": "mary.white@lakeside-logistics.example",
+        "sender_name": "Mary White",
+        "reply_to": null,
+        "recipients": [
+          "all@lakeside-logistics.example"
+        ],
+        "subject": "Reminder: benefits enrolment closes 15 October",
+        "body_text": "Hello all,\n\nOpen enrolment for the 2027 health and sports card benefits closes on 15 October.\nYou can review your choices in the HR Portal: https://hr.lakeside-logistics.example/benefits\n\nIf you have questions, my door is open.\nMary (HR)\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://hr.lakeside-logistics.example/benefits",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from lakeside-logistics.example ([198.51.100.10]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:03:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=lakeside-logistics.example; dkim=pass header.d=lakeside-logistics.example; dmarc=pass header.from=lakeside-logistics.example"
+          ],
+          [
+            "From",
+            "Mary White <mary.white@lakeside-logistics.example>"
+          ],
+          [
+            "To",
+            "all@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Reminder: benefits enrolment closes 15 October"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:03:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-06@lakeside-logistics.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:03:00Z"
+      },
+      "assessment": {
+        "message_id": "leg-06",
+        "risk": 0,
+        "score": 0,
+        "signals": [],
+        "ml_confidence": 0.1835,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.610980Z"
+      }
+    },
+    {
+      "id": "cmp-07",
+      "deliver_offset_s": 195,
+      "recipient_ids": [
+        "e05"
+      ],
+      "message": {
+        "id": "cmp-07",
+        "sender": "security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "emily.davis@lakeside-logistics.example"
+        ],
+        "subject": "URGENT: Your account will be suspended",
+        "body_text": "Dear Emily,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (emily.davis@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a03c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a03c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.14]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:03:15 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "emily.davis@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "URGENT: Your account will be suspended"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:03:15 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-07@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:03:15Z"
+      },
+      "assessment": {
+        "message_id": "cmp-07",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"To protect your data, your account will be suspended within 24 hours unless you verify your identity.\"",
+            "technical_detail": "credential_request phrases: 'verify your identity', 'verify your account'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"URGENT: Your account will be suspended\"",
+            "technical_detail": "urgency phrases: 'urgent', 'will be suspended', 'unusual sign-in activity', 'within 24 hours', 'lose access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9999,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to sign in quickly, which is a common trick in phishing scams.",
+            "They say your account will be suspended if you don’t act fast, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.613393Z"
+      }
+    },
+    {
+      "id": "phi-01",
+      "deliver_offset_s": 200,
+      "recipient_ids": [
+        "e20"
+      ],
+      "message": {
+        "id": "phi-01",
+        "sender": "billing@paperline-supp1ies.test",
+        "sender_name": "Paperline Supplies Billing",
+        "reply_to": "sarah.mitchell.billing@freemail.test",
+        "recipients": [
+          "tina.hall@lakeside-logistics.example"
+        ],
+        "subject": "Updated bank details - invoice INV-20431",
+        "body_text": "Dear Tina,\n\nDue to an audit, our bank account has changed. Please pay invoice INV-20431 to the new account in the attached document\nand confirm once the transfer is done. This invoice is now overdue, please process it today.\n\nKind regards,\nSarah Mitchell\nPaperline Supplies\n",
+        "body_html": null,
+        "urls": [],
+        "attachments": [
+          {
+            "filename": "INV-20431_new_bank_details.html",
+            "content_type": "text/html",
+            "size_bytes": 12240,
+            "encrypted": false
+          }
+        ],
+        "headers": [
+          [
+            "Received",
+            "from paperline-supp1ies.test ([203.0.113.51]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:03:20 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=paperline-supp1ies.test; dkim=none; dmarc=none header.from=paperline-supp1ies.test"
+          ],
+          [
+            "From",
+            "Paperline Supplies Billing <billing@paperline-supp1ies.test>"
+          ],
+          [
+            "To",
+            "tina.hall@lakeside-logistics.example"
+          ],
+          [
+            "Reply-To",
+            "sarah.mitchell.billing@freemail.test"
+          ],
+          [
+            "Subject",
+            "Updated bank details - invoice INV-20431"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:03:20 +0000"
+          ],
+          [
+            "Message-ID",
+            "<phi-01@paperline-supp1ies.test>"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ],
+          [
+            "Content-Type",
+            "multipart/mixed; boundary=\"=_sim_phi-01_0\""
+          ]
+        ],
+        "received_at": "2026-10-03T09:03:20Z"
+      },
+      "assessment": {
+        "message_id": "phi-01",
+        "risk": 2,
+        "score": 31,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Paperline Supplies Billing', but the email comes from paperline-supp1ies.test, which is not a Paperline Supplies address.",
+            "technical_detail": "display name matches paperline keyword 'Paperline Supplies'; sender domain paperline-supp1ies.test (registrable paperline-supp1ies.test, not free-mail); paperline domains: paperline-supplies.example",
+            "source": "rule"
+          },
+          {
+            "id": "intel.ip",
+            "category": "known_bad",
+            "severity": 3,
+            "evidence": "This email was sent from a server (203.0.113.51) that is on our list of known phishing sources.",
+            "technical_detail": "topmost Received IP 203.0.113.51 matches ips entry; blocklist updated 2026-10-03",
+            "source": "intel"
+          },
+          {
+            "id": "intel.sender",
+            "category": "known_bad",
+            "severity": 3,
+            "evidence": "The email comes from paperline-supp1ies.test, which is on our list of known phishing domains.",
+            "technical_detail": "From billing@paperline-supp1ies.test matches domains entry 'paperline-supp1ies.test'; Reply-To sarah.mitchell.billing@freemail.test matches senders entry; blocklist updated 2026-10-03",
+            "source": "intel"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain paperline-supp1ies.test imitates Paperline Supplies: the letter 'l' was replaced by the digit '1'.",
+            "technical_detail": "paperline-supp1ies.test: registrable paperline-supp1ies.test; 'paperlinesupp1ies' normalizes to 'paperlinesupplies'; matches paperline name 'paperline-supplies' (same name, homoglyphs 1→l)",
+            "source": "rule"
+          },
+          {
+            "id": "content.payment_change",
+            "category": "payment_change",
+            "severity": 3,
+            "evidence": "The email says the bank account for a payment has changed: \"Updated bank details - invoice INV-20431\"",
+            "technical_detail": "payment_change phrases: 'updated bank details', 'bank account has changed', 'pay invoice inv-20431 to the new account'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "header.reply_to",
+            "category": "reply_to_mismatch",
+            "severity": 2,
+            "evidence": "If you reply, your answer goes to sarah.mitchell.billing@freemail.test, not to paperline-supp1ies.test, where the email claims to come from.",
+            "technical_detail": "Reply-To: sarah.mitchell.billing@freemail.test; From: billing@paperline-supp1ies.test",
+            "source": "rule"
+          },
+          {
+            "id": "attachment.html",
+            "category": "risky_attachment",
+            "severity": 2,
+            "evidence": "'INV-20431_new_bank_details.html' opens a web page from your computer, a common way to show a fake login or payment form.",
+            "technical_detail": "HTML attachment; filename 'INV-20431_new_bank_details.html', type text/html",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 1,
+            "evidence": "Parts of the wording resemble phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 81%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.8064,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email came from a fake Paperline Supplies address.",
+            "It was sent from a server known for sending phishing emails.",
+            "The email asked for a payment to be made to new bank details.",
+            "If you reply, it goes to a different email address than the one it claims to be from.",
+            "Parts of the wording resemble phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not change any payment details. Confirm by phone using a number you already know. Do not open the attachment. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.616762Z"
+      }
+    },
+    {
+      "id": "cmp-09",
+      "deliver_offset_s": 220,
+      "recipient_ids": [
+        "e06"
+      ],
+      "message": {
+        "id": "cmp-09",
+        "sender": "account-security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "frank.miller@lakeside-logistics.example"
+        ],
+        "subject": "Action required: verify your account within 24 hours",
+        "body_text": "Dear Frank,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (frank.miller@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a04c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a04c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.15]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:03:40 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <account-security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "frank.miller@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Action required: verify your account within 24 hours"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:03:40 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-09@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:03:40Z"
+      },
+      "assessment": {
+        "message_id": "cmp-09",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Action required: verify your account within 24 hours\"",
+            "technical_detail": "credential_request phrases: 'verify your account', 'verify your identity'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"Action required: verify your account within 24 hours\"",
+            "technical_detail": "urgency phrases: 'action required', 'within 24 hours', 'unusual sign-in activity', 'will be suspended', 'lose access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9999,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website address in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The email urges you to log in or update your account information quickly.",
+            "It asks you to take action within 24 hours, which is a common tactic used in phishing scams.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.619199Z"
+      }
+    },
+    {
+      "id": "leg-07",
+      "deliver_offset_s": 240,
+      "recipient_ids": [
+        "e01",
+        "e02",
+        "e03",
+        "e04",
+        "e05",
+        "e06",
+        "e07",
+        "e08",
+        "e09",
+        "e10",
+        "e11",
+        "e12",
+        "e13",
+        "e14",
+        "e15",
+        "e16",
+        "e17",
+        "e18",
+        "e19",
+        "e20",
+        "e21",
+        "e22",
+        "e23",
+        "e24"
+      ],
+      "message": {
+        "id": "leg-07",
+        "sender": "helpdesk@lakeside-logistics.example",
+        "sender_name": "IT Helpdesk",
+        "reply_to": null,
+        "recipients": [
+          "all@lakeside-logistics.example"
+        ],
+        "subject": "Planned maintenance: file storage offline Saturday 22:00-23:00",
+        "body_text": "Hi all,\n\nFile storage will be unavailable this Saturday between 22:00 and 23:00 for updates.\nPlease save open documents before then. No action is needed otherwise.\n\nIT Helpdesk\n",
+        "body_html": null,
+        "urls": [],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from lakeside-logistics.example ([198.51.100.10]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:04:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=lakeside-logistics.example; dkim=pass header.d=lakeside-logistics.example; dmarc=pass header.from=lakeside-logistics.example"
+          ],
+          [
+            "From",
+            "IT Helpdesk <helpdesk@lakeside-logistics.example>"
+          ],
+          [
+            "To",
+            "all@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Planned maintenance: file storage offline Saturday 22:00-23:00"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:04:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-07@lakeside-logistics.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:04:00Z"
+      },
+      "assessment": {
+        "message_id": "leg-07",
+        "risk": 0,
+        "score": 0,
+        "signals": [],
+        "ml_confidence": 0.1013,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.621222Z"
+      }
+    },
+    {
+      "id": "cmp-11",
+      "deliver_offset_s": 245,
+      "recipient_ids": [
+        "e08"
+      ],
+      "message": {
+        "id": "cmp-11",
+        "sender": "no-reply@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "henry.moore@lakeside-logistics.example"
+        ],
+        "subject": "Security alert: unusual sign-in activity on your account",
+        "body_text": "Dear Henry,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (henry.moore@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a05c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a05c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.16]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:04:05 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <no-reply@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "henry.moore@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Security alert: unusual sign-in activity on your account"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:04:05 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-11@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:04:05Z"
+      },
+      "assessment": {
+        "message_id": "cmp-11",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"To protect your data, your account will be suspended within 24 hours unless you verify your identity.\"",
+            "technical_detail": "credential_request phrases: 'verify your identity', 'verify your account'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"Security alert: unusual sign-in activity on your account\"",
+            "technical_detail": "urgency phrases: 'unusual sign-in activity', 'will be suspended', 'within 24 hours', 'lose access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9997,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to log in or update your information to avoid suspension.",
+            "The email creates a sense of urgency by mentioning unusual activity on your account.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.623683Z"
+      }
+    },
+    {
+      "id": "phi-02",
+      "deliver_offset_s": 260,
+      "recipient_ids": [
+        "e18"
+      ],
+      "message": {
+        "id": "phi-02",
+        "sender": "james.clark.ceo@freemail.test",
+        "sender_name": "James Clark",
+        "reply_to": null,
+        "recipients": [
+          "rachel.lewis@lakeside-logistics.example"
+        ],
+        "subject": "Quick favour - confidential",
+        "body_text": "Rachel,\n\nI'm in a meeting with the board and can't talk. I need you to buy 6 gift cards of 200 EUR each for a client thank-you.\nKeep this between us for now. Send me the codes by email as soon as you have them.\n\nJames\nSent from my phone\n",
+        "body_html": null,
+        "urls": [],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from freemail.test ([203.0.113.77]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:04:20 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=freemail.test; dkim=pass header.d=freemail.test; dmarc=none header.from=freemail.test"
+          ],
+          [
+            "From",
+            "James Clark <james.clark.ceo@freemail.test>"
+          ],
+          [
+            "To",
+            "rachel.lewis@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Quick favour - confidential"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:04:20 +0000"
+          ],
+          [
+            "Message-ID",
+            "<phi-02@freemail.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:04:20Z"
+      },
+      "assessment": {
+        "message_id": "phi-02",
+        "risk": 2,
+        "score": 12,
+        "signals": [
+          {
+            "id": "sender.colleague_name",
+            "category": "colleague_impersonation",
+            "severity": 3,
+            "evidence": "The sender uses the name of your colleague James Clark (Chief Executive Officer) but writes from a personal freemail.test address.",
+            "technical_detail": "display name matches employee e17 (james.clark@lakeside-logistics.example); sender domain freemail.test (registrable freemail.test, free-mail); organization domain lakeside-logistics.example",
+            "source": "rule"
+          },
+          {
+            "id": "content.gift_card",
+            "category": "gift_card",
+            "severity": 3,
+            "evidence": "The email asks for gift cards, which scammers like because they cannot be traced: \"I need you to buy 6 gift cards of 200 EUR each for a client thank-you.\"",
+            "technical_detail": "gift_card phrases: 'gift cards'; found in body text",
+            "source": "rule"
+          }
+        ],
+        "ml_confidence": 0.1839,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is highly risky and should not be trusted.",
+          "reasons": [
+            "The email pretends to be from a real person but uses a personal email address instead of a work one.",
+            "It asks for gift cards, which are often used in scams because they can't be tracked back to the scammer."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not buy gift cards. Check with the person directly, not by replying. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.625851Z"
+      }
+    },
+    {
+      "id": "cmp-13",
+      "deliver_offset_s": 270,
+      "recipient_ids": [
+        "e09"
+      ],
+      "message": {
+        "id": "cmp-13",
+        "sender": "security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "isabel.taylor@lakeside-logistics.example"
+        ],
+        "subject": "URGENT: Your account will be suspended",
+        "body_text": "Dear Isabel,\n\nWe detected unusual sign-in activity on your Microsoft 365 account (isabel.taylor@lakeside-logistics.example).\nTo protect your data, your account will be suspended within 24 hours unless you verify your identity.\n\nVerify your account now:\nhttps://login.micr0soft-example.test/verify?session=7f3a06c9\n\nIf you do not complete verification, you will lose access to email and files.\n\nMicrosoft Security Team\nMicrosoft Corporation\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a06c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.14]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:04:30 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "isabel.taylor@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "URGENT: Your account will be suspended"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:04:30 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-13@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:04:30Z"
+      },
+      "assessment": {
+        "message_id": "cmp-13",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"To protect your data, your account will be suspended within 24 hours unless you verify your identity.\"",
+            "technical_detail": "credential_request phrases: 'verify your identity', 'verify your account'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"URGENT: Your account will be suspended\"",
+            "technical_detail": "urgency phrases: 'urgent', 'will be suspended', 'unusual sign-in activity', 'within 24 hours', 'lose access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9999,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to sign in quickly, which is a common trick in phishing scams.",
+            "They say your account will be suspended if you don’t act fast, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.628244Z"
+      }
+    },
+    {
+      "id": "leg-08",
+      "deliver_offset_s": 300,
+      "recipient_ids": [
+        "e05"
+      ],
+      "message": {
+        "id": "leg-08",
+        "sender": "orders@nordicfreight.example",
+        "sender_name": "Nordic Freight Orders",
+        "reply_to": null,
+        "recipients": [
+          "emily.davis@lakeside-logistics.example"
+        ],
+        "subject": "PO 7781 confirmed - 12 containers, Baltimore to Rotterdam",
+        "body_text": "Hello Emily,\n\nWe confirm purchase order 7781 for 12 containers, Baltimore to Rotterdam, departing 14 October.\nThe signed order is attached for your records.\n\nBest regards,\nTom Baker\nNordic Freight\n",
+        "body_html": null,
+        "urls": [],
+        "attachments": [
+          {
+            "filename": "PO-7781-signed.pdf",
+            "content_type": "application/pdf",
+            "size_bytes": 154220,
+            "encrypted": false
+          }
+        ],
+        "headers": [
+          [
+            "Received",
+            "from nordicfreight.example ([192.0.2.61]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:05:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=nordicfreight.example; dkim=pass header.d=nordicfreight.example; dmarc=pass header.from=nordicfreight.example"
+          ],
+          [
+            "From",
+            "Nordic Freight Orders <orders@nordicfreight.example>"
+          ],
+          [
+            "To",
+            "emily.davis@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "PO 7781 confirmed - 12 containers, Baltimore to Rotterdam"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:05:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-08@nordicfreight.example>"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ],
+          [
+            "Content-Type",
+            "multipart/mixed; boundary=\"=_sim_leg-08_0\""
+          ]
+        ],
+        "received_at": "2026-10-03T09:05:00Z"
+      },
+      "assessment": {
+        "message_id": "leg-08",
+        "risk": 0,
+        "score": 1,
+        "signals": [
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 1,
+            "evidence": "Parts of the wording resemble phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 68%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.6793,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [
+            "Parts of the wording resemble phishing emails."
+          ],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.634211Z"
+      }
+    },
+    {
+      "id": "phi-03",
+      "deliver_offset_s": 330,
+      "recipient_ids": [
+        "e11"
+      ],
+      "message": {
+        "id": "phi-03",
+        "sender": "it-security@lakeside-it-support.test",
+        "sender_name": "IT Security",
+        "reply_to": null,
+        "recipients": [
+          "karen.thomas@lakeside-logistics.example"
+        ],
+        "subject": "MFA re-enrolment required",
+        "body_text": "Hello Karen,\n\nWe are moving to a new MFA system. You will receive several approval prompts on your phone today.\nPlease approve all of them so your account is migrated. If you do not approve, you will lose access tomorrow.\n\nTo finish enrolment, sign in at https://mfa-enrol.lakeside-it-support.test/start\n\nIT Security\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://mfa-enrol.lakeside-it-support.test/start",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from lakeside-it-support.test ([203.0.113.90]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:05:30 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=softfail smtp.mailfrom=lakeside-it-support.test; dkim=none; dmarc=fail header.from=lakeside-it-support.test"
+          ],
+          [
+            "From",
+            "IT Security <it-security@lakeside-it-support.test>"
+          ],
+          [
+            "To",
+            "karen.thomas@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "MFA re-enrolment required"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:05:30 +0000"
+          ],
+          [
+            "Message-ID",
+            "<phi-03@lakeside-it-support.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:05:30Z"
+      },
+      "assessment": {
+        "message_id": "phi-03",
+        "risk": 2,
+        "score": 36,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'IT Security', but the email comes from lakeside-it-support.test, which is not a Lakeside Logistics address.",
+            "technical_detail": "display name matches company keyword 'IT Security'; sender domain lakeside-it-support.test (registrable lakeside-it-support.test, not free-mail); company domains: lakeside-logistics.example",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain lakeside-it-support.test uses our company's name, but it is not our company's domain.",
+            "technical_detail": "lakeside-it-support.test: registrable lakeside-it-support.test; 'lakesideitsupport' normalizes to 'lakesideitsupport'; matches company name 'lakeside' (name embedded in a longer domain)",
+            "source": "rule"
+          },
+          {
+            "id": "content.mfa_code_request",
+            "category": "mfa_code_request",
+            "severity": 3,
+            "evidence": "The email asks you to share a sign-in code or approve sign-in prompts: \"Please approve all of them so your account is migrated.\"",
+            "technical_detail": "mfa_code_request phrases: 'approve all of them'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to mfa-enrol.lakeside-it-support.test, which uses our company's name but is not our company's website.",
+            "technical_detail": "mfa-enrol.lakeside-it-support.test: registrable lakeside-it-support.test; 'lakesideitsupport' normalizes to 'lakesideitsupport'; matches company name 'lakeside' (name embedded in a longer domain)",
+            "source": "url"
+          },
+          {
+            "id": "header.auth",
+            "category": "auth_failure",
+            "severity": 2,
+            "evidence": "The domain lakeside-it-support.test could not confirm that it sent this email, so the sender address may be forged.",
+            "technical_detail": "spf=softfail; dkim=none; dmarc=fail (from mx.lakeside-logistics.example)",
+            "source": "rule"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"To finish enrolment, sign in at https://mfa-enrol.lakeside-it-support.test/start\"",
+            "technical_detail": "credential_request phrases: 'sign in at https://'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"If you do not approve, you will lose access tomorrow.\"",
+            "technical_detail": "urgency phrases: 'lose access'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 93%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.9276,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from IT Security but uses a fake email address.",
+            "It asks you to share a sign-in code, which is a common trick to steal your account.",
+            "The link in the email leads to a website that looks like ours but isn't.",
+            "The email might have been sent from a fake address pretending to be real.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Never approve unexpected sign-in prompts or share verification codes. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.636846Z"
+      }
+    },
+    {
+      "id": "leg-09",
+      "deliver_offset_s": 360,
+      "recipient_ids": [
+        "e10"
+      ],
+      "message": {
+        "id": "leg-09",
+        "sender": "payroll@lakeside-logistics.example",
+        "sender_name": "Payroll",
+        "reply_to": null,
+        "recipients": [
+          "jack.anderson@lakeside-logistics.example"
+        ],
+        "subject": "Your September payslip is ready",
+        "body_text": "Hi Jack,\n\nYour payslip for September is available in the HR Portal under Documents > Payslips.\nFor security, payslips are not sent by email.\n\nPayroll team\n",
+        "body_html": null,
+        "urls": [],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from lakeside-logistics.example ([198.51.100.10]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:06:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=lakeside-logistics.example; dkim=pass header.d=lakeside-logistics.example; dmarc=pass header.from=lakeside-logistics.example"
+          ],
+          [
+            "From",
+            "Payroll <payroll@lakeside-logistics.example>"
+          ],
+          [
+            "To",
+            "jack.anderson@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Your September payslip is ready"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:06:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-09@lakeside-logistics.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:06:00Z"
+      },
+      "assessment": {
+        "message_id": "leg-09",
+        "risk": 0,
+        "score": 1,
+        "signals": [
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 1,
+            "evidence": "Parts of the wording resemble phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 75%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.7472,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [
+            "Parts of the wording resemble phishing emails."
+          ],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.638766Z"
+      }
+    },
+    {
+      "id": "phi-04",
+      "deliver_offset_s": 390,
+      "recipient_ids": [
+        "e22"
+      ],
+      "message": {
+        "id": "phi-04",
+        "sender": "delivery@parcelnow-redelivery.test",
+        "sender_name": "ParcelNow",
+        "reply_to": null,
+        "recipients": [
+          "vincent.young@lakeside-logistics.example"
+        ],
+        "subject": "Delivery failed: pay 1.99 EUR to reschedule",
+        "body_text": "We could not deliver your parcel because of unpaid customs fees (1.99 EUR).\n\nReschedule within 48 hours or the parcel will be returned to the sender:\nhttp://parcelnow-redelivery.test/pay?ref=PN99812\n\nParcelNow\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "http://parcelnow-redelivery.test/pay?ref=PN99812",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from parcelnow-redelivery.test ([203.0.113.102]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:06:30 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=none smtp.mailfrom=parcelnow-redelivery.test; dkim=none; dmarc=none header.from=parcelnow-redelivery.test"
+          ],
+          [
+            "From",
+            "ParcelNow <delivery@parcelnow-redelivery.test>"
+          ],
+          [
+            "To",
+            "vincent.young@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Delivery failed: pay 1.99 EUR to reschedule"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:06:30 +0000"
+          ],
+          [
+            "Message-ID",
+            "<phi-04@parcelnow-redelivery.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "7bit"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:06:30Z"
+      },
+      "assessment": {
+        "message_id": "phi-04",
+        "risk": 2,
+        "score": 30,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'ParcelNow', but the email comes from parcelnow-redelivery.test, which is not a ParcelNow address.",
+            "technical_detail": "display name matches parcelnow keyword 'ParcelNow'; sender domain parcelnow-redelivery.test (registrable parcelnow-redelivery.test, not free-mail); parcelnow domains: parcelnow.example",
+            "source": "rule"
+          },
+          {
+            "id": "intel.ip",
+            "category": "known_bad",
+            "severity": 3,
+            "evidence": "This email was sent from a server (203.0.113.102) that is on our list of known phishing sources.",
+            "technical_detail": "topmost Received IP 203.0.113.102 matches ips entry; blocklist updated 2026-10-03",
+            "source": "intel"
+          },
+          {
+            "id": "intel.link",
+            "category": "known_bad",
+            "severity": 3,
+            "evidence": "The link leads to parcelnow-redelivery.test, which is on our list of known phishing sites.",
+            "technical_detail": "link host parcelnow-redelivery.test matches domains entry 'parcelnow-redelivery.test'; blocklist updated 2026-10-03",
+            "source": "intel"
+          },
+          {
+            "id": "intel.sender",
+            "category": "known_bad",
+            "severity": 3,
+            "evidence": "The email comes from parcelnow-redelivery.test, which is on our list of known phishing domains.",
+            "technical_detail": "From delivery@parcelnow-redelivery.test matches domains entry 'parcelnow-redelivery.test'; blocklist updated 2026-10-03",
+            "source": "intel"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain parcelnow-redelivery.test uses the name ParcelNow, but it is not a ParcelNow address.",
+            "technical_detail": "parcelnow-redelivery.test: registrable parcelnow-redelivery.test; 'parcelnowredelivery' normalizes to 'parcelnowredelivery'; matches parcelnow name 'parcelnow' (name embedded in a longer domain)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to parcelnow-redelivery.test, which uses the name ParcelNow but is not a ParcelNow website.",
+            "technical_detail": "parcelnow-redelivery.test: registrable parcelnow-redelivery.test; 'parcelnowredelivery' normalizes to 'parcelnowredelivery'; matches parcelnow name 'parcelnow' (name embedded in a longer domain)",
+            "source": "url"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"Reschedule within 48 hours or the parcel will be returned to the sender\"",
+            "technical_detail": "urgency phrases: 'within 48 hours'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 93%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.9282,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is very likely a phishing attempt and should not be trusted.",
+          "reasons": [
+            "The email came from a server known for sending fake messages.",
+            "The email address does not match the real ParcelNow address.",
+            "The message urges you to act quickly, which is often a trick in scams.",
+            "The link in the email points to a website that pretends to be ParcelNow but isn't.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.641105Z"
+      }
+    },
+    {
+      "id": "leg-10",
+      "deliver_offset_s": 420,
+      "recipient_ids": [
+        "e12"
+      ],
+      "message": {
+        "id": "leg-10",
+        "sender": "newsletter@logisticsweekly.example",
+        "sender_name": "Logistics Weekly",
+        "reply_to": null,
+        "recipients": [
+          "kevin.jackson@lakeside-logistics.example"
+        ],
+        "subject": "This week: port congestion in Rotterdam eases",
+        "body_text": "Logistics Weekly - issue 212\n\n- Rotterdam congestion eases as new berths open\n- EU road toll changes from January\n- Interview: electrifying last-mile fleets\n\nRead online: https://logisticsweekly.example/issues/212\nUnsubscribe: https://logisticsweekly.example/unsubscribe\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://logisticsweekly.example/issues/212",
+            "anchor_text": null,
+            "found_in": "text"
+          },
+          {
+            "url": "https://logisticsweekly.example/unsubscribe",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from logisticsweekly.example ([192.0.2.77]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:07:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=logisticsweekly.example; dkim=pass header.d=logisticsweekly.example; dmarc=pass header.from=logisticsweekly.example"
+          ],
+          [
+            "From",
+            "Logistics Weekly <newsletter@logisticsweekly.example>"
+          ],
+          [
+            "To",
+            "kevin.jackson@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "This week: port congestion in Rotterdam eases"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:07:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-10@logisticsweekly.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "7bit"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:07:00Z"
+      },
+      "assessment": {
+        "message_id": "leg-10",
+        "risk": 0,
+        "score": 0,
+        "signals": [],
+        "ml_confidence": 0.0479,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.643331Z"
+      }
+    },
+    {
+      "id": "phi-05",
+      "deliver_offset_s": 450,
+      "recipient_ids": [
+        "e14"
+      ],
+      "message": {
+        "id": "phi-05",
+        "sender": "hr-portal@lakesidelogistics-hr.test",
+        "sender_name": "HR Portal",
+        "reply_to": null,
+        "recipients": [
+          "nancy.harris@lakeside-logistics.example"
+        ],
+        "subject": "Your HR Portal account will be deactivated",
+        "body_text": "Dear employee,\n\nYour HR Portal account has been flagged as inactive and will be deactivated in 12 hours.\nTo keep access to your payslips, confirm your login here: https://lakesidelogistics-hr.test/confirm\n\nHR Department\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://lakesidelogistics-hr.test/confirm",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from lakesidelogistics-hr.test ([203.0.113.115]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:07:30 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=lakesidelogistics-hr.test; dkim=none; dmarc=none header.from=lakesidelogistics-hr.test"
+          ],
+          [
+            "From",
+            "HR Portal <hr-portal@lakesidelogistics-hr.test>"
+          ],
+          [
+            "To",
+            "nancy.harris@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Your HR Portal account will be deactivated"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:07:30 +0000"
+          ],
+          [
+            "Message-ID",
+            "<phi-05@lakesidelogistics-hr.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:07:30Z"
+      },
+      "assessment": {
+        "message_id": "phi-05",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'HR Portal', but the email comes from lakesidelogistics-hr.test, which is not a Lakeside Logistics address.",
+            "technical_detail": "display name matches company keyword 'HR Portal'; sender domain lakesidelogistics-hr.test (registrable lakesidelogistics-hr.test, not free-mail); company domains: lakeside-logistics.example",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain lakesidelogistics-hr.test uses our company's name, but it is not our company's domain.",
+            "technical_detail": "lakesidelogistics-hr.test: registrable lakesidelogistics-hr.test; 'lakesidelogisticshr' normalizes to 'lakesidelogisticshr'; matches company name 'lakeside-logistics' (name embedded in a longer domain)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to lakesidelogistics-hr.test, which uses our company's name but is not our company's website.",
+            "technical_detail": "lakesidelogistics-hr.test: registrable lakesidelogistics-hr.test; 'lakesidelogisticshr' normalizes to 'lakesidelogisticshr'; matches company name 'lakeside-logistics' (name embedded in a longer domain)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"To keep access to your payslips, confirm your login here: https://lakesidelogistics-hr.test/confirm\"",
+            "technical_detail": "credential_request phrases: 'confirm your login'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"Your HR Portal account will be deactivated\"",
+            "technical_detail": "urgency phrases: 'will be deactivated'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 97%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on lakesidelogistics-hr.test.",
+            "technical_detail": "login-path keyword 'confirm' in lakesidelogistics-hr.test/confirm",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9676,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from HR but uses a fake email address.",
+            "The website link in the email mimics our company's name but is not legitimate.",
+            "It asks you to sign in and confirm your account details, which is a common trick in phishing.",
+            "The email pressures you to act quickly, saying your account will be deactivated if you do not respond.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.645483Z"
+      }
+    },
+    {
+      "id": "leg-11",
+      "deliver_offset_s": 480,
+      "recipient_ids": [
+        "e01"
+      ],
+      "message": {
+        "id": "leg-11",
+        "sender": "no-reply@files.lakeside-logistics.example",
+        "sender_name": "File Storage",
+        "reply_to": null,
+        "recipients": [
+          "alice.johnson@lakeside-logistics.example"
+        ],
+        "subject": "Bob shared \"Supplier payment run - October.xlsx\" with you",
+        "body_text": "Bob Smith shared a file with you.\n\nSupplier payment run - October.xlsx\nOpen: https://files.lakeside-logistics.example/s/finance/payment-run-oct\n\nYou are receiving this because you are a member of the Finance team.\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://files.lakeside-logistics.example/s/finance/payment-run-oct",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from files.lakeside-logistics.example ([198.51.100.10]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:08:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=files.lakeside-logistics.example; dkim=pass header.d=files.lakeside-logistics.example; dmarc=pass header.from=files.lakeside-logistics.example"
+          ],
+          [
+            "From",
+            "File Storage <no-reply@files.lakeside-logistics.example>"
+          ],
+          [
+            "To",
+            "alice.johnson@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Bob shared \"Supplier payment run - October.xlsx\" with you"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:08:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-11@files.lakeside-logistics.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "7bit"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:08:00Z"
+      },
+      "assessment": {
+        "message_id": "leg-11",
+        "risk": 0,
+        "score": 1,
+        "signals": [
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 1,
+            "evidence": "Parts of the wording resemble phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 80%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.804,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "We found no warning signs in this email.",
+          "reasons": [
+            "Parts of the wording resemble phishing emails."
+          ],
+          "source": "template"
+        },
+        "recommended_action": "No action is needed. If something still feels off, report the message.",
+        "assessed_at": "2026-10-03T16:38:52.647563Z"
+      }
+    },
+    {
+      "id": "phi-06",
+      "deliver_offset_s": 510,
+      "recipient_ids": [
+        "e03"
+      ],
+      "message": {
+        "id": "phi-06",
+        "sender": "share@fileshare-docs.test",
+        "sender_name": "Bob Smith via FileShare",
+        "reply_to": null,
+        "recipients": [
+          "carol.williams@lakeside-logistics.example"
+        ],
+        "subject": "Bob shared \"Salary adjustments 2027.pdf\" with you",
+        "body_text": "Bob Smith has shared a document with you.\n\nSalary adjustments 2027.pdf\nView document: https://fileshare-docs.test/view/8812ab\n\nSign in with your work email to view.\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://fileshare-docs.test/view/8812ab",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from fileshare-docs.test ([203.0.113.130]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:08:30 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=fileshare-docs.test; dkim=pass header.d=fileshare-docs.test; dmarc=none header.from=fileshare-docs.test"
+          ],
+          [
+            "From",
+            "Bob Smith via FileShare <share@fileshare-docs.test>"
+          ],
+          [
+            "To",
+            "carol.williams@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Bob shared \"Salary adjustments 2027.pdf\" with you"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:08:30 +0000"
+          ],
+          [
+            "Message-ID",
+            "<phi-06@fileshare-docs.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "7bit"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:08:30Z"
+      },
+      "assessment": {
+        "message_id": "phi-06",
+        "risk": 2,
+        "score": 9,
+        "signals": [
+          {
+            "id": "sender.colleague_name",
+            "category": "colleague_impersonation",
+            "severity": 2,
+            "evidence": "The sender uses the name of your colleague Bob Smith (Financial Controller) but writes from fileshare-docs.test, outside the company.",
+            "technical_detail": "display name matches employee e02 (bob.smith@lakeside-logistics.example); sender domain fileshare-docs.test (registrable fileshare-docs.test, not free-mail); organization domain lakeside-logistics.example",
+            "source": "rule"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Sign in with your work email to view.\"",
+            "technical_detail": "credential_request phrases: 'sign in with your work email'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 92%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.9205,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is highly risky and should not be trusted.",
+          "reasons": [
+            "The email comes from someone pretending to be a colleague named Bob Smith.",
+            "It asks you to sign in or confirm your account details, which is a common trick used by scammers.",
+            "The sender's email address is not from our company, but from 'fileshare-docs.test'.",
+            "Asking you to log in or confirm account details is a tactic often used in phishing attempts.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.649843Z"
+      }
+    },
+    {
+      "id": "leg-12",
+      "deliver_offset_s": 540,
+      "recipient_ids": [
+        "e15"
+      ],
+      "message": {
+        "id": "leg-12",
+        "sender": "account-security-noreply@accountprotection.microsoft.example",
+        "sender_name": "Microsoft",
+        "reply_to": null,
+        "recipients": [
+          "oliver.martin@lakeside-logistics.example"
+        ],
+        "subject": "New app connected to your Microsoft account",
+        "body_text": "Microsoft account\n\nA new app, \"Outlook for Android\", was connected to the account o**k@lakeside-logistics.example.\n\nIf this was you, you can ignore this message.\nIf not, review your account activity at https://account.microsoft.example/activity\n\nMicrosoft account team\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://account.microsoft.example/activity",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from accountprotection.microsoft.example ([192.0.2.90]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:09:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=accountprotection.microsoft.example; dkim=pass header.d=accountprotection.microsoft.example; dmarc=pass header.from=accountprotection.microsoft.example"
+          ],
+          [
+            "From",
+            "Microsoft <account-security-noreply@accountprotection.microsoft.example>"
+          ],
+          [
+            "To",
+            "oliver.martin@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "New app connected to your Microsoft account"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:09:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<leg-12@accountprotection.microsoft.example>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:09:00Z"
+      },
+      "assessment": {
+        "message_id": "leg-12",
+        "risk": 1,
+        "score": 3,
+        "signals": [
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 99%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.9851,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email has some warning signs. It may be legitimate, but be careful.",
+          "reasons": [
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "template"
+        },
+        "recommended_action": "Before clicking links or replying, confirm the request through another channel you trust.",
+        "assessed_at": "2026-10-03T16:38:52.651971Z"
+      }
+    },
+    {
+      "id": "phi-07",
+      "deliver_offset_s": 570,
+      "recipient_ids": [
+        "e04"
+      ],
+      "message": {
+        "id": "phi-07",
+        "sender": "sign@docusafe-esign.test",
+        "sender_name": "DocuSafe",
+        "reply_to": null,
+        "recipients": [
+          "david.brown@lakeside-logistics.example"
+        ],
+        "subject": "Please sign: Q4 supplier agreement",
+        "body_text": "You have a document waiting for your signature.\n\nQ4 supplier agreement - Paperline Supplies\nReview and sign: https://docusafe-esign.test/sign/q4-agreement\n\nThis link expires in 24 hours.\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://docusafe-esign.test/sign/q4-agreement",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from docusafe-esign.test ([203.0.113.141]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:09:30 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=softfail smtp.mailfrom=docusafe-esign.test; dkim=none; dmarc=none header.from=docusafe-esign.test"
+          ],
+          [
+            "From",
+            "DocuSafe <sign@docusafe-esign.test>"
+          ],
+          [
+            "To",
+            "david.brown@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "Please sign: Q4 supplier agreement"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:09:30 +0000"
+          ],
+          [
+            "Message-ID",
+            "<phi-07@docusafe-esign.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "7bit"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:09:30Z"
+      },
+      "assessment": {
+        "message_id": "phi-07",
+        "risk": 2,
+        "score": 11,
+        "signals": [
+          {
+            "id": "intel.ip",
+            "category": "known_bad",
+            "severity": 3,
+            "evidence": "This email was sent from a server (203.0.113.141) that is on our list of known phishing sources.",
+            "technical_detail": "topmost Received IP 203.0.113.141 matches ips entry; blocklist updated 2026-10-03",
+            "source": "intel"
+          },
+          {
+            "id": "intel.link",
+            "category": "known_bad",
+            "severity": 3,
+            "evidence": "The link leads to docusafe-esign.test, which is on our list of known phishing sites.",
+            "technical_detail": "link host docusafe-esign.test matches domains entry 'docusafe-esign.test'; blocklist updated 2026-10-03",
+            "source": "intel"
+          },
+          {
+            "id": "intel.sender",
+            "category": "known_bad",
+            "severity": 3,
+            "evidence": "The email comes from docusafe-esign.test, which is on our list of known phishing domains.",
+            "technical_detail": "From sign@docusafe-esign.test matches domains entry 'docusafe-esign.test'; blocklist updated 2026-10-03",
+            "source": "intel"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"This link expires in 24 hours.\"",
+            "technical_detail": "urgency phrases: 'expires in 24 hours'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "header.auth",
+            "category": "auth_failure",
+            "severity": 1,
+            "evidence": "The server that delivered this email is probably not allowed to send mail for docusafe-esign.test.",
+            "technical_detail": "spf=softfail; dkim=none; dmarc=none (from mx.lakeside-logistics.example)",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 1,
+            "evidence": "Parts of the wording resemble phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 76%",
+            "source": "ml"
+          }
+        ],
+        "ml_confidence": 0.7621,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is very likely a phishing attempt and should not be trusted.",
+          "reasons": [
+            "The email came from a server known for sending phishing messages.",
+            "It pressures you to click a link quickly, which is often a trick used by scammers.",
+            "The server sending the email isn't supposed to be able to send emails for the domain mentioned.",
+            "Parts of the wording resemble phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.654161Z"
+      }
+    },
+    {
+      "id": "cmp-02",
+      "deliver_offset_s": 600,
+      "recipient_ids": [
+        "e01"
+      ],
+      "message": {
+        "id": "cmp-02",
+        "sender": "account-security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "alice.johnson@lakeside-logistics.example"
+        ],
+        "subject": "FINAL NOTICE: Your account will be suspended today",
+        "body_text": "Dear Alice,\n\nThis is your final notice. Your Microsoft 365 account (alice.johnson@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a00c9\n\nMicrosoft Security Team\n",
+        "body_html": "<html><body style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1b1b1b\">\n<p style=\"font-size:20px;font-weight:600\">Microsoft 365</p>\n<p>Dear Alice,</p>\n<p>This is your <b>final notice</b>. Your Microsoft 365 account (alice.johnson@lakeside-logistics.example) has not been verified and will be suspended today at 17:00.</p>\n<p>Verify immediately to avoid losing access:<br>\n<a href=\"https://login.micr0soft-example.test/verify?session=7f3a00c9\">https://account.microsoft.example/verify</a></p>\n<p>Microsoft Security Team</p>\n</body></html>\n",
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a00c9",
+            "anchor_text": "https://account.microsoft.example/verify",
+            "found_in": "html"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.15]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:10:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <account-security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "alice.johnson@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "FINAL NOTICE: Your account will be suspended today"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:10:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-02@micr0soft-example.test>"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ],
+          [
+            "Content-Type",
+            "multipart/alternative; boundary=\"=_sim_cmp-02_0\""
+          ]
+        ],
+        "received_at": "2026-10-03T09:10:00Z"
+      },
+      "assessment": {
+        "message_id": "cmp-02",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "url.text_mismatch",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link shows account.microsoft.example but actually leads to login.micr0soft-example.test.",
+            "technical_detail": "anchor text shows account.microsoft.example (registrable microsoft.example); href host login.micr0soft-example.test (registrable micr0soft-example.test)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Verify immediately to avoid losing access\"",
+            "technical_detail": "credential_request phrases: 'verify immediately'; found in body text, HTML body",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"FINAL NOTICE: Your account will be suspended today\"",
+            "technical_detail": "urgency phrases: 'final notice', 'will be suspended', 'immediately', 'losing access'; found in subject, body text, HTML body",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9988,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to verify your account details immediately, which is a common trick in phishing scams.",
+            "It threatens to suspend your account if you don’t act quickly, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.657970Z"
+      }
+    },
+    {
+      "id": "cmp-04",
+      "deliver_offset_s": 620,
+      "recipient_ids": [
+        "e03"
+      ],
+      "message": {
+        "id": "cmp-04",
+        "sender": "no-reply@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "carol.williams@lakeside-logistics.example"
+        ],
+        "subject": "FINAL NOTICE: Your account will be suspended today",
+        "body_text": "Dear Carol,\n\nThis is your final notice. Your Microsoft 365 account (carol.williams@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a01c9\n\nMicrosoft Security Team\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a01c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.16]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:10:20 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <no-reply@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "carol.williams@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "FINAL NOTICE: Your account will be suspended today"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:10:20 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-04@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:10:20Z"
+      },
+      "assessment": {
+        "message_id": "cmp-04",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Verify immediately to avoid losing access\"",
+            "technical_detail": "credential_request phrases: 'verify immediately'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"FINAL NOTICE: Your account will be suspended today\"",
+            "technical_detail": "urgency phrases: 'final notice', 'will be suspended', 'immediately', 'losing access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9986,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to verify your account details immediately, which is a common trick in phishing scams.",
+            "It threatens to suspend your account if you don’t act quickly, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.660285Z"
+      }
+    },
+    {
+      "id": "cmp-06",
+      "deliver_offset_s": 640,
+      "recipient_ids": [
+        "e20"
+      ],
+      "message": {
+        "id": "cmp-06",
+        "sender": "security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "tina.hall@lakeside-logistics.example"
+        ],
+        "subject": "FINAL NOTICE: Your account will be suspended today",
+        "body_text": "Dear Tina,\n\nThis is your final notice. Your Microsoft 365 account (tina.hall@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a02c9\n\nMicrosoft Security Team\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a02c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.14]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:10:40 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "tina.hall@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "FINAL NOTICE: Your account will be suspended today"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:10:40 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-06@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:10:40Z"
+      },
+      "assessment": {
+        "message_id": "cmp-06",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Verify immediately to avoid losing access\"",
+            "technical_detail": "credential_request phrases: 'verify immediately'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"FINAL NOTICE: Your account will be suspended today\"",
+            "technical_detail": "urgency phrases: 'final notice', 'will be suspended', 'immediately', 'losing access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9985,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to verify your account details immediately, which is a common trick in phishing scams.",
+            "It threatens to suspend your account if you don’t act quickly, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.662493Z"
+      }
+    },
+    {
+      "id": "cmp-08",
+      "deliver_offset_s": 660,
+      "recipient_ids": [
+        "e05"
+      ],
+      "message": {
+        "id": "cmp-08",
+        "sender": "account-security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "emily.davis@lakeside-logistics.example"
+        ],
+        "subject": "FINAL NOTICE: Your account will be suspended today",
+        "body_text": "Dear Emily,\n\nThis is your final notice. Your Microsoft 365 account (emily.davis@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a03c9\n\nMicrosoft Security Team\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a03c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.15]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:11:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <account-security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "emily.davis@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "FINAL NOTICE: Your account will be suspended today"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:11:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-08@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:11:00Z"
+      },
+      "assessment": {
+        "message_id": "cmp-08",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Verify immediately to avoid losing access\"",
+            "technical_detail": "credential_request phrases: 'verify immediately'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"FINAL NOTICE: Your account will be suspended today\"",
+            "technical_detail": "urgency phrases: 'final notice', 'will be suspended', 'immediately', 'losing access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9987,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to verify your account details immediately, which is a common trick in phishing scams.",
+            "It threatens to suspend your account if you don’t act quickly, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.664768Z"
+      }
+    },
+    {
+      "id": "cmp-10",
+      "deliver_offset_s": 680,
+      "recipient_ids": [
+        "e06"
+      ],
+      "message": {
+        "id": "cmp-10",
+        "sender": "no-reply@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "frank.miller@lakeside-logistics.example"
+        ],
+        "subject": "FINAL NOTICE: Your account will be suspended today",
+        "body_text": "Dear Frank,\n\nThis is your final notice. Your Microsoft 365 account (frank.miller@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a04c9\n\nMicrosoft Security Team\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a04c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.16]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:11:20 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <no-reply@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "frank.miller@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "FINAL NOTICE: Your account will be suspended today"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:11:20 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-10@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:11:20Z"
+      },
+      "assessment": {
+        "message_id": "cmp-10",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Verify immediately to avoid losing access\"",
+            "technical_detail": "credential_request phrases: 'verify immediately'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"FINAL NOTICE: Your account will be suspended today\"",
+            "technical_detail": "urgency phrases: 'final notice', 'will be suspended', 'immediately', 'losing access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9986,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to verify your account details immediately, which is a common trick in phishing scams.",
+            "It threatens to suspend your account if you don’t act quickly, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.666944Z"
+      }
+    },
+    {
+      "id": "cmp-12",
+      "deliver_offset_s": 700,
+      "recipient_ids": [
+        "e08"
+      ],
+      "message": {
+        "id": "cmp-12",
+        "sender": "security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "henry.moore@lakeside-logistics.example"
+        ],
+        "subject": "FINAL NOTICE: Your account will be suspended today",
+        "body_text": "Dear Henry,\n\nThis is your final notice. Your Microsoft 365 account (henry.moore@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a05c9\n\nMicrosoft Security Team\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a05c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.14]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:11:40 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "henry.moore@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "FINAL NOTICE: Your account will be suspended today"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:11:40 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-12@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:11:40Z"
+      },
+      "assessment": {
+        "message_id": "cmp-12",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Verify immediately to avoid losing access\"",
+            "technical_detail": "credential_request phrases: 'verify immediately'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"FINAL NOTICE: Your account will be suspended today\"",
+            "technical_detail": "urgency phrases: 'final notice', 'will be suspended', 'immediately', 'losing access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9983,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to verify your account details immediately, which is a common trick in phishing scams.",
+            "It threatens to suspend your account if you don’t act quickly, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.669161Z"
+      }
+    },
+    {
+      "id": "cmp-14",
+      "deliver_offset_s": 720,
+      "recipient_ids": [
+        "e09"
+      ],
+      "message": {
+        "id": "cmp-14",
+        "sender": "account-security@micr0soft-example.test",
+        "sender_name": "Microsoft Security",
+        "reply_to": null,
+        "recipients": [
+          "isabel.taylor@lakeside-logistics.example"
+        ],
+        "subject": "FINAL NOTICE: Your account will be suspended today",
+        "body_text": "Dear Isabel,\n\nThis is your final notice. Your Microsoft 365 account (isabel.taylor@lakeside-logistics.example) has not been verified\nand will be suspended today at 17:00.\n\nVerify immediately to avoid losing access:\nhttps://login.micr0soft-example.test/verify?session=7f3a06c9\n\nMicrosoft Security Team\n",
+        "body_html": null,
+        "urls": [
+          {
+            "url": "https://login.micr0soft-example.test/verify?session=7f3a06c9",
+            "anchor_text": null,
+            "found_in": "text"
+          }
+        ],
+        "attachments": [],
+        "headers": [
+          [
+            "Received",
+            "from micr0soft-example.test ([203.0.113.15]) by mx.lakeside-logistics.example with ESMTPS; Sat, 03 Oct 2026 09:12:00 +0000"
+          ],
+          [
+            "Authentication-Results",
+            "mx.lakeside-logistics.example; spf=pass smtp.mailfrom=micr0soft-example.test; dkim=pass header.d=micr0soft-example.test; dmarc=none header.from=micr0soft-example.test"
+          ],
+          [
+            "From",
+            "Microsoft Security <account-security@micr0soft-example.test>"
+          ],
+          [
+            "To",
+            "isabel.taylor@lakeside-logistics.example"
+          ],
+          [
+            "Subject",
+            "FINAL NOTICE: Your account will be suspended today"
+          ],
+          [
+            "Date",
+            "Sat, 03 Oct 2026 09:12:00 +0000"
+          ],
+          [
+            "Message-ID",
+            "<cmp-14@micr0soft-example.test>"
+          ],
+          [
+            "Content-Type",
+            "text/plain; charset=\"utf-8\""
+          ],
+          [
+            "Content-Transfer-Encoding",
+            "quoted-printable"
+          ],
+          [
+            "MIME-Version",
+            "1.0"
+          ]
+        ],
+        "received_at": "2026-10-03T09:12:00Z"
+      },
+      "assessment": {
+        "message_id": "cmp-14",
+        "risk": 2,
+        "score": 27,
+        "signals": [
+          {
+            "id": "sender.brand_name",
+            "category": "brand_impersonation",
+            "severity": 3,
+            "evidence": "The sender calls itself 'Microsoft Security', but the email comes from micr0soft-example.test, which is not a Microsoft address.",
+            "technical_detail": "display name matches microsoft keyword 'Microsoft'; sender domain micr0soft-example.test (registrable micr0soft-example.test, not free-mail); microsoft domains: live.com, microsoft.com, microsoft.example, microsoft365.com, microsoftonline.com, office.com, office365.com, onedrive.com, outlook.com, sharepoint.com",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.sender",
+            "category": "lookalike_domain",
+            "severity": 3,
+            "evidence": "The sender's domain micr0soft-example.test imitates Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "rule"
+          },
+          {
+            "id": "lookalike.link",
+            "category": "suspicious_url",
+            "severity": 3,
+            "evidence": "The link leads to login.micr0soft-example.test, an imitation of Microsoft: the letter 'o' was replaced by the digit '0'.",
+            "technical_detail": "login.micr0soft-example.test: registrable micr0soft-example.test; 'micr0softexample' normalizes to 'microsoftexample'; matches microsoft name 'microsoft' (name embedded in a longer domain, homoglyphs 0→o)",
+            "source": "url"
+          },
+          {
+            "id": "content.credential_request",
+            "category": "credential_request",
+            "severity": 2,
+            "evidence": "The email asks you to sign in or confirm your account details: \"Verify immediately to avoid losing access\"",
+            "technical_detail": "credential_request phrases: 'verify immediately'; found in body text",
+            "source": "rule"
+          },
+          {
+            "id": "content.urgency",
+            "category": "urgency",
+            "severity": 2,
+            "evidence": "The email pushes you to act fast: \"FINAL NOTICE: Your account will be suspended today\"",
+            "technical_detail": "urgency phrases: 'final notice', 'will be suspended', 'immediately', 'losing access'; found in subject, body text",
+            "source": "rule"
+          },
+          {
+            "id": "ml.text",
+            "category": "ml_phishing",
+            "severity": 2,
+            "evidence": "The wording of this email closely matches known phishing emails.",
+            "technical_detail": "text classifier tfidf-fallback: p(phishing) = 100%",
+            "source": "ml"
+          },
+          {
+            "id": "url.login_path",
+            "category": "suspicious_url",
+            "severity": 1,
+            "evidence": "The link leads to a sign-in or verification page on login.micr0soft-example.test.",
+            "technical_detail": "login-path keyword 'verify' in login.micr0soft-example.test/verify",
+            "source": "url"
+          }
+        ],
+        "ml_confidence": 0.9986,
+        "ml_model": "tfidf-fallback",
+        "uncertainties": [],
+        "explanation": {
+          "summary": "This email is a high-risk phishing attempt.",
+          "reasons": [
+            "The email claims to be from Microsoft but uses a fake email address.",
+            "The website link in the email mimics Microsoft’s real site but uses a zero instead of an o.",
+            "The message urges you to verify your account details immediately, which is a common trick in phishing scams.",
+            "It threatens to suspend your account if you don’t act quickly, creating pressure to click without thinking.",
+            "The wording of this email closely matches known phishing emails."
+          ],
+          "source": "llm"
+        },
+        "recommended_action": "Do not enter your password. If you need the service, open it directly, not through the link. Do not click any links, open attachments or reply. Report the message.",
+        "assessed_at": "2026-10-03T16:38:52.671336Z"
+      }
+    }
+  ]
+}

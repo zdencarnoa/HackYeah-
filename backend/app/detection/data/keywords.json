@@ -1,0 +1,73 @@
+{
+  "_comment": "Task 6 content rules, per language. A phrase matches as whole words, ignoring case; the spaces and hyphens inside it match any whitespace or hyphen, so a phrase may span a line break. Patterns are regular expressions for what a phrase cannot say. Add Polish under \"pl\" with the same category keys.",
+  "en": {
+    "urgency": {
+      "phrases": [
+        "urgently", "immediately", "as soon as possible", "right away", "act now",
+        "final notice", "final warning", "last warning", "final reminder", "legal action",
+        "will be suspended", "will be deactivated", "will be disabled", "will be locked",
+        "will be closed", "will be deleted", "will be terminated", "will be blocked",
+        "lose access", "losing access", "unusual activity", "unusual sign-in activity",
+        "unusual login activity", "suspicious activity", "suspicious sign-in", "unauthorized access"
+      ],
+      "patterns": [
+        "(?<!not\\s)\\burgent\\b",
+        "(?<!no\\s)\\baction\\s+required\\b",
+        "\\bwithin\\s+\\d+\\s+(?:hours?|minutes?)\\b",
+        "\\b(?:expires?|expiring|deactivated|suspended|disabled|locked|closed|deleted|returned|blocked)\\s+(?:in|within)\\s+\\d+\\s+(?:hours?|minutes?)\\b"
+      ]
+    },
+    "credential_request": {
+      "phrases": [
+        "verify your account", "verify your identity", "verify your email", "verify your login",
+        "verify your password", "verify your details", "verify immediately", "verify now",
+        "confirm your account", "confirm your identity", "confirm your login", "confirm your password",
+        "confirm your credentials", "update your credentials", "update your password", "update your login",
+        "re-enter your password", "re-enter your login", "re-enter your credentials", "enter your password",
+        "validate your account", "reactivate your account", "unlock your account",
+        "sign in to keep", "sign in to verify", "sign in to confirm", "log in to verify", "log in to confirm"
+      ],
+      "patterns": [
+        "\\b(?:sign|log)[\\s-]*in\\s+(?:here|now|below|at\\s+https?://)",
+        "\\b(?:sign|log)[\\s-]*in\\s+with\\s+your\\s+(?:work\\s+|company\\s+|office\\s+|microsoft\\s+)?(?:email|account|password|credentials)\\b"
+      ]
+    },
+    "payment_change": {
+      "phrases": [
+        "updated bank details", "new bank details", "changed bank details", "change of bank details",
+        "change of bank account", "bank details have changed", "bank details have been updated",
+        "bank details have been changed", "bank account has changed", "bank account has been changed",
+        "bank account has been updated", "new bank account", "changed our bank", "changed our account",
+        "do not use the old account", "do not pay to the old account", "old account is no longer",
+        "no longer use the old account", "updated iban", "new iban", "updated banking details",
+        "new banking details"
+      ],
+      "patterns": [
+        "\\b(?:pay|transfer|send|remit)\\b[^.\\n]{0,60}?\\bto\\s+(?:the|our)\\s+new\\s+(?:bank\\s+)?account\\b",
+        "\\b(?:new|updated|changed|different)\\b[^.\\n]{0,80}?(?-i:\\b[A-Z]{2}\\d{2}(?:[ ]?[A-Z0-9]){11,30}\\b)"
+      ]
+    },
+    "gift_card": {
+      "phrases": [
+        "gift card", "gift cards", "gift voucher", "gift vouchers", "google play card", "google play cards",
+        "itunes card", "itunes cards", "apple card", "apple cards", "amazon voucher", "amazon vouchers",
+        "steam card", "steam cards", "paysafecard", "scratch off the code", "scratch the back"
+      ],
+      "patterns": []
+    },
+    "mfa_code_request": {
+      "phrases": [
+        "read me the code", "tell me the code", "send me the verification code", "send me the security code",
+        "6-digit code", "six-digit code", "one-time code", "one-time password",
+        "approve all of them", "approve all prompts", "approve all the prompts", "approve all requests",
+        "approve every prompt", "approve the prompts", "approve the sign-in request", "approve the login request",
+        "accept all prompts"
+      ],
+      "patterns": [
+        "\\b(?:send|give|text|forward)\\s+(?:me|us)\\s+(?:the|that|this)\\s+code\\b(?!\\s+(?:review|snippet|changes?|sample|files?|for))",
+        "\\b(?:verification|security|login|sign-in|authentication|mfa|2fa|one-time)\\s+codes?\\s+(?:you\\s+received|we\\s+(?:just\\s+)?sent|sent\\s+to\\s+your)"
+      ]
+    }
+  },
+  "pl": {}
+}

@@ -1,0 +1,44 @@
+device: cuda NVIDIA GH200 480GB
+loaded 82472 emails, 74854 after dedup (0 rows with conflicting labels, 7618 removed in total)
+Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights: 100%|██████████| 100/100 [00:00<00:00, 9734.27it/s]
+[transformers] [1mDistilBertForSequenceClassification LOAD REPORT[0m from: distilbert-base-uncased
+Key                     | Status     | 
+------------------------+------------+-
+vocab_projector.bias    | UNEXPECTED | 
+vocab_transform.weight  | UNEXPECTED | 
+vocab_layer_norm.bias   | UNEXPECTED | 
+vocab_transform.bias    | UNEXPECTED | 
+vocab_layer_norm.weight | UNEXPECTED | 
+pre_classifier.weight   | MISSING    | 
+classifier.weight       | MISSING    | 
+pre_classifier.bias     | MISSING    | 
+classifier.bias         | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+epoch 1 step 200/1306 loss 0.3123 (5s)
+epoch 1 step 400/1306 loss 0.0773 (9s)
+epoch 1 step 600/1306 loss 0.0573 (13s)
+epoch 1 step 800/1306 loss 0.0490 (17s)
+epoch 1 step 1000/1306 loss 0.0444 (21s)
+epoch 1 step 1200/1306 loss 0.0418 (25s)
+epoch 2 step 200/1306 loss 0.0159 (4s)
+epoch 2 step 400/1306 loss 0.0141 (9s)
+epoch 2 step 600/1306 loss 0.0130 (13s)
+epoch 2 step 800/1306 loss 0.0129 (17s)
+epoch 2 step 1000/1306 loss 0.0103 (21s)
+epoch 2 step 1200/1306 loss 0.0081 (25s)
+
+=== holdout source = CEAS_08 (honest) (n=33065) ===
+ROC-AUC 0.9893 | PR-AUC 0.9861
+              precision    recall  f1-score   support
+
+       legit     0.9671    0.9459    0.9563     17083
+    phishing     0.9434    0.9656    0.9544     15982
+
+    accuracy                         0.9554     33065
+   macro avg     0.9553    0.9557    0.9554     33065
+weighted avg     0.9557    0.9554    0.9554     33065
+
+confusion: TN=16158 FP=925 FN=550 TP=15432
