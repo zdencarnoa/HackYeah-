@@ -8,11 +8,15 @@
 
 import { clockTime, incidentTypeLabel } from "@/components/ui/format";
 import { RiskBadge } from "@/components/ui/RiskBadge";
+import { useState } from "react";
+
 import { LIVE, liveApi } from "@/lib/api";
-import type { Incident, TimelineItem } from "@/lib/contracts";
+import type { ChecklistItem, Incident, TimelineItem } from "@/lib/contracts";
 import { checklistItemIds } from "@/lib/demo/selectors";
 import { pastEvents } from "@/lib/demo/state";
 import { demoActions, useDemoState, useNow } from "@/lib/demo/store";
+import { refreshLiveIncidents } from "@/lib/live/incidents";
+import { ADMIN_EMPLOYEE_ID } from "@/lib/mocks";
 
 import { Heading, Panel, Stat } from "./parts";
 
@@ -20,6 +24,19 @@ export function IncidentSection({ incident }: { incident: Incident }) {
   const state = useDemoState();
   const now = useNow();
   const ids = checklistItemIds(incident);
+  const [checklistError, setChecklistError] = useState<string | null>(null);
+
+  /** Live: tick or untick in C. A containment step needs approval first; the admin's tick is that approval. */
+  async function toggleLive(item: ChecklistItem & { id: string }, done: boolean) {
+    setChecklistError(null);
+    if (done && item.needs_approval && !item.approved_by) {
+      const approved = await liveApi.approveChecklistItem(item.id, ADMIN_EMPLOYEE_ID);
+      if (!approved.ok) return setChecklistError(approved.error);
+    }
+    const result = await liveApi.completeChecklistItem(item.id, done);
+    if (result.ok) await refreshLiveIncidents();
+    else setChecklistError(result.error);
+  }
   // Items ticked by hand; the rest that are done were covered by approved containment.
   const ticked = new Set(pastEvents(state, now).flatMap((e) => (e.kind === "checklist" ? [e.itemId] : [])));
 
@@ -70,6 +87,7 @@ export function IncidentSection({ incident }: { incident: Incident }) {
         <Heading right={<span className="text-xs text-muted">{doneCount} of {incident.checklist.length} done</span>}>
           Recommended response
         </Heading>
+        {checklistError && <p className="mb-2 text-xs text-critical">That step could not be updated: {checklistError}</p>}
         <Panel className="p-0">
           <ul className="divide-y divide-line">
             {incident.checklist.map((item, i) => {
@@ -83,9 +101,7 @@ export function IncidentSection({ incident }: { incident: Incident }) {
                     type="checkbox"
                     checked={item.done}
                     onChange={() =>
-                      LIVE && item.id
-                        ? !item.done && void liveApi.completeChecklistItem(item.id) // C publishes incident.updated
-                        : demoActions.setChecklistItem(id, !item.done)
+                      LIVE && item.id ? void toggleLive({ ...item, id: item.id }, !item.done) : demoActions.setChecklistItem(id, !item.done)
                     }
                     className="mt-0.5 size-4 shrink-0 accent-low"
                   />
