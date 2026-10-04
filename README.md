@@ -92,11 +92,37 @@ python scripts/ui_demo_test.py
 | `DETECTION_BASE_URL` | `http://localhost:8000` | base for rewritten links |
 | `DEMO_SITE_URL` | `<base>/demo` | where the fake sign-in site lives |
 
-## LLM text
+## Models
 
-Explanations for new emails come from the GPU server's Qwen 14B (~5 s), else Ollama's
-`qwen2.5:3b` on the laptop (~30-60 s), else templates. Demo emails use cached LLM text
-(`backend/app/llm/cache/`), so the demo never depends on the network.
+### Phishing classifier (DistilBERT)
+
+The ML signal is a fine-tuned **DistilBERT** (`DistilBertForSequenceClassification`, 6 layers,
+~255 MB). The weights are too big for git, so they are published as the `model.safetensors` asset
+of the GitHub release/tag **`model-v1`**. Fetch them once per machine:
+
+```bash
+cd backend && ../.venv/bin/python -m app.ml.download_model
+```
+
+The repo is private, so this needs the GitHub CLI (`gh auth login`) or a `GITHUB_TOKEN`; the
+download is checked against its SHA-256. Without the weights scoring falls back to TF-IDF/rules and
+reports the missing model as an uncertainty. The ML score never sets HIGH or above on its own.
+
+### Explanation LLM (Qwen)
+
+The LLM is **not in the repo**: it is far too large for GitHub. It only writes explanations,
+summaries and recommendations; it never decides risk. Three tiers, tried in order:
+
+1. **GPU server**: Qwen2.5 with **14B parameters** on our GPU server (`app/llm/serve_openai.py`,
+   reached through an SSH tunnel on `localhost:8001`), ~5 s per answer.
+2. **Local backup**: Qwen2.5 **3B** (`qwen2.5:3b`) running in the **Ollama** app on the laptop
+   (`ollama pull qwen2.5:3b`), ~30-60 s on CPU.
+3. **Templates**: if neither model is reachable, the built-in template explanations are used,
+   so the demo always works.
+
+Explanations for the demo emails are pre-generated and cached in `backend/app/llm/cache/`, so they
+never wait on a model. `LLM_LIVE=0` turns the live tiers off. Overrides: `LLM_SERVER_URL`,
+`LLM_LOCAL_URL`, `LLM_LOCAL_MODEL`. Details: `backend/app/llm/README.md` and `docs/PERSON_B.md`.
 
 ## Demo scenario
 
