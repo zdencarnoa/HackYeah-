@@ -24,9 +24,20 @@ from sqlalchemy.orm import Session
 from app.campaigns.ingest import UnknownRecipient, ingest_message
 from app.detection import detect
 from app.detection.sim_eml import message_from_sim
-from app.schemas import DeliveredEmail, MessageIn, Severity
+from app.incidents.service import add_evidence, handle_password_reuse
+from app.schemas import (
+    DeliveredEmail,
+    Evidence,
+    MessageIn,
+    PasswordReuseEvent,
+    PubSubPush,
+    Severity,
+    SimEvent,
+    SimEventType,
+)
 from app.scoring.fusion import fuse
 from app.scoring.ml_signal import classify, ml_signal
+from app.simulation.credentials import CredentialSimulator, to_pubsub_push
 from app.simulation.engine import AttackEngine
 
 logger = logging.getLogger(__name__)
@@ -87,3 +98,29 @@ def attach(engine: AttackEngine, session_factory: SessionFactory, use_ml: bool =
     pipeline = DeliveryPipeline(engine, session_factory, use_ml=use_ml)
     engine.on_deliver = pipeline
     return pipeline
+
+
+def attach_credentials(credentials: CredentialSimulator, session_factory: SessionFactory) -> None:
+    """D2: feed the simulator's credential events into C's incident system.
+
+    When a password is entered on a phishing page, the simulator produces a
+    Chrome-style PASSWORD_REUSE_EVENT; we hand it to C's `handle_password_reuse`
+    through the same Pub/Sub shape its HTTP endpoint receives (a real Chrome feed
+    would POST that over the network). The follow-up unusual sign-in is filed as
+    `unusual_signin` evidence so it joins the incident timeline.
+    """
+
+    def on_password_reuse(event: PasswordReuseEvent) -> None:
+        push = PubSubPush.model_validate(to_pubsub_push(event))
+        with session_factory() as db:
+            handle_password_reuse(db, push)
+
+    def on_sim_event(event: SimEvent) -> None:
+        if event.type is SimEventType.UNUSUAL_SIGN_IN and event.employee_id:
+            with session_factory() as db:
+                add_evidence(db, Evidence(
+                    kind="unusual_signin", employee_id=event.employee_id,
+                    source="automatic", timestamp=event.at))
+
+    credentials.on_password_reuse = on_password_reuse
+    credentials.event_bus.subscribe(on_sim_event)

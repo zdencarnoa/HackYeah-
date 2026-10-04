@@ -8,7 +8,7 @@ backend instead of in isolation:
 | Task | What it connects | Status |
 |------|------------------|--------|
 | D1 | delivery → scoring (A + B) → incidents/campaigns (C) | done |
-| D2 | the fake login → C's password-reuse endpoint | todo |
+| D2 | the fake login → C's password-reuse handler | done |
 | D3 | one reset for the whole demo, D's state + C's database | todo |
 | D4 | "Contain campaign" → C's incident record | todo |
 | D5 | the simulation routes mounted on the live app | todo |
@@ -121,3 +121,57 @@ An in-memory database, seeded with D's org, with the pipeline attached:
 | `test_email_scored_evidence_is_filed_automatically` | one `email_scored` evidence item, tagged `automatic`, not reported |
 | `test_campaign_correlates_from_scored_messages` | the scored campaign messages cluster into one campaign |
 | `test_legitimate_mail_scores_low` | a normal supplier invoice scores LOW/MEDIUM |
+
+---
+
+## D2 — Turn a typed password into an incident
+
+**The goal.** In the demo Alice types her password on the fake Microsoft page.
+The admin should see a CRITICAL incident within seconds — before Alice reports
+anything. D2 connects the fake login to C's incident system.
+
+**The flow.**
+
+```
+Alice submits the fake login form
+     │
+     ▼
+CredentialSimulator           domain is not on the approved list →
+  fires a PASSWORD_REUSE        a Chrome-style event is produced
+     │
+     ▼
+handle_password_reuse (C)     files "password_reuse" evidence →
+     │                          opens a CRITICAL incident
+     ▼
+(a few seconds later)
+unusual sign-in               filed as "unusual_signin" evidence,
+                                added to the incident timeline
+```
+
+**What was wired (`pipeline.attach_credentials`).** One function sets two hooks on
+the credential simulator:
+
+- **Password reuse.** The simulator's event is wrapped in the same Pub/Sub shape
+  C's HTTP endpoint expects and handed straight to C's `handle_password_reuse`.
+  In-process, this is the exact function the endpoint calls; in production a real
+  Chrome feed would POST it over the network.
+- **Unusual sign-in.** The follow-up sign-in event is filed as `unusual_signin`
+  evidence, so it lands on the same incident's timeline.
+
+**One shared list made real.** C's code had a placeholder for the approved
+sign-in domains. It now reads D's real list from `data/approved_logins.json`, so
+a password on `login.lakeside-logistics.example` is safe and one on
+`micr0soft-verify.example` is an alarm. Both the simulator and C check this, so
+the "no false alarms" step holds on both sides.
+
+**Why nothing leaks.** The password itself is never sent — the fake page submits
+only a flag that a password was typed, and the event carries a label, not the
+secret.
+
+**Tests (`tests/test_credentials_bridge.py`).**
+
+| test | checks that… |
+|------|--------------|
+| `test_password_on_phishing_page_opens_an_incident` | a phishing-page password files `password_reuse` evidence and opens a CRITICAL incident, tagged automatic |
+| `test_follow_up_unusual_sign_in_joins_the_timeline` | the later sign-in is filed as `unusual_signin` evidence |
+| `test_password_on_approved_domain_is_silent` | a password on the real sign-in page fires nothing |
