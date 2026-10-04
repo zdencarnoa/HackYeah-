@@ -12,7 +12,12 @@ from app.scoring.templates import recommended_action
 UNSURE_LOW, UNSURE_HIGH = 0.35, 0.65
 
 
-def analyze(message: Message, use_ml: bool = True) -> Assessment:
+def analyze(message: Message, use_ml: bool = True, live_llm: bool = True) -> Assessment:
+    """Score one email. Call it on the ORIGINAL message, before A's link rewriting.
+
+    live_llm=False: explanations come only from the offline cache or templates, so the
+    call never waits on a model (use it for scan-on-delivery; keep True for "Is this safe?").
+    """
     detection = detect(message)
     uncertainties = list(detection.unchecked)
 
@@ -36,6 +41,6 @@ def analyze(message: Message, use_ml: bool = True) -> Assessment:
         ml_confidence=round(ml.probability, 4) if ml else None,
         ml_model=ml.model if ml else None,
         uncertainties=uncertainties,
-        explanation=explain_assessment(result.risk, result.signals, uncertainties),
+        explanation=explain_assessment(result.risk, result.signals, uncertainties, live=live_llm),
         recommended_action=recommended_action(result.risk, result.signals),
     )

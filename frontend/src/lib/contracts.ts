@@ -1,10 +1,9 @@
 /**
  * TypeScript mirror of the shared contracts.
  *
- * Source of truth: backend/app/schemas.py (A's detection section, D's simulation
- * section), B's backend/app/schemas_proposal_b.py and C's
- * backend/app/schemas_proposal.py. Keep field names identical; change these only
- * when the Python contracts change.
+ * Source of truth: backend/app/schemas.py (detection, scoring, incidents and
+ * simulation sections, all merged there). Keep field names identical; change these
+ * only when the Python contracts change.
  */
 
 // ---------------------------------------------------------------- A: detection
@@ -164,6 +163,8 @@ export interface BlastRadiusNode {
   kind: BlastNodeKind;
   sensitivity: Sensitivity | null;
   at_risk: boolean;
+  /** Why it is (or is not) reachable, in plain language. Optional: mock data omits it. */
+  reason?: string;
 }
 
 export interface BlastRadiusEdge {
@@ -194,6 +195,8 @@ export type ContainmentActionType =
 
 export interface ContainmentResult {
   action: ContainmentActionType;
+  /** Admin employee id. Optional: the mock store records it on the event instead. */
+  approved_by?: string;
   summary: string;
   affected_count: number;
   details: string[];
@@ -245,6 +248,10 @@ export interface TimelineItem {
 }
 
 export interface ChecklistItem {
+  /** C's stable item id; present on live incidents, absent in the generated mocks. */
+  id?: string;
+  /** C's step name, e.g. "revoke_sessions" (live only). */
+  key?: string;
   action: string;
   rationale: string;
   done: boolean;
@@ -278,3 +285,92 @@ export interface Interaction {
   employee_id: string;
   kind: InteractionKind;
 }
+
+// ------------------------------------------------- live API (backend only)
+
+/** POST /api/sim/containment. Containment always needs an admin's approval. */
+export interface ContainmentRequest {
+  action: ContainmentActionType;
+  campaign_id?: string | null;
+  message_ids?: string[];
+  employee_ids?: string[];
+  sender?: string | null;
+  domain?: string | null;
+  approved_by: string;
+}
+
+export interface AttackStatus {
+  scenario: string | null;
+  running: boolean;
+  speed: number;
+  demo_seconds_elapsed: number;
+  delivered_count: number;
+  total_count: number;
+  next_message_id: string | null;
+  next_delivery_at_seconds: number | null;
+}
+
+export interface TrackedLink {
+  token: string;
+  message_id: string;
+  employee_id: string;
+  url: string;
+}
+
+/** GET /api/sim/inbox/{employee_id}: links are already rewritten to /r/{token}. */
+export interface InboxMessage {
+  id: string;
+  sender_name: string;
+  sender_address: string;
+  reply_to: string | null;
+  subject: string;
+  body_text: string;
+  body_html: string | null;
+  links: TrackedLink[];
+  attachments: { filename: string; content_type: string; size_bytes: number }[];
+  delivered_at: string;
+}
+
+/** POST /api/interactions. */
+export interface InteractionResult {
+  guidance: string[];
+  /** What the system already knew, e.g. ["link_clicked", "password_reuse"]. */
+  already_detected: string[];
+  incident: Incident | null;
+}
+
+/** Simulated Chrome PASSWORD_REUSE_EVENT. It never contains the password. */
+export interface PasswordReuseEvent {
+  event_type: "passwordReuseEvent";
+  user: string;
+  employee_id: string | null;
+  url: string;
+  domain: string;
+  reused_credential: string;
+  timestamp: string;
+  simulated: boolean;
+}
+
+/** POST /api/analyze/signals. */
+export interface SignalsResponse {
+  message: Message;
+  signals: Signal[];
+  unchecked: string[];
+}
+
+/**
+ * The named events on GET /api/events (the payload is JSON). "message.scored" carries
+ * the Evidence row; "containment.done" and "recovery.updated" are declared in the
+ * backend's hub but nothing publishes them yet, so the UI also refetches after its own actions.
+ */
+export interface LiveEventMap {
+  "message.scored": Evidence;
+  "incident.created": Incident;
+  "incident.escalated": Incident;
+  "incident.updated": Incident;
+  "campaign.updated": Campaign;
+  "containment.done": ContainmentResult[];
+  "recovery.updated": RecoveryStatus;
+}
+
+export type LiveEventName = keyof LiveEventMap;

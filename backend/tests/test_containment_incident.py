@@ -4,7 +4,7 @@ import pytest
 from sqlalchemy import select
 
 from app.db import session as db_session
-from app.db.models import IncidentRow
+from app.db.models import EvidenceRow, IncidentRow
 from app.schemas import ContainmentActionType as Action
 from app.schemas import ContainmentRequest
 from app.simulation.containment import ContainmentService
@@ -41,14 +41,21 @@ def _campaign_message_ids(engine):
     return [m for m in engine.delivered_emails_by_id if m.startswith("cmp-")]
 
 
+def _alice_incident(db):
+    """The incident holding Alice's password-reuse evidence (the invoice-fraud campaign has its own)."""
+    return db.scalar(select(IncidentRow).join(EvidenceRow, EvidenceRow.incident_id == IncidentRow.id)
+                     .where(EvidenceRow.employee_id == ALICE, EvidenceRow.kind == "password_reuse"))
+
+
 def test_contain_campaign_marks_the_incident_contained(world):
     engine, credentials, containment, factory = world
     engine.jump_to_demo_second(AFTER_EVERYTHING)          # D1: all mail scored, campaign correlated
     credentials.record_password_entry(ALICE, PHISH_URL)    # D2: CRITICAL incident opens for Alice
 
     with factory() as db:
-        incident = db.scalar(select(IncidentRow))
+        incident = _alice_incident(db)
         assert incident is not None and incident.status == "open"
+        others = [i.id for i in db.scalars(select(IncidentRow)) if i.id != incident.id]
 
     containment.apply(ContainmentRequest(
         action=Action.CONTAIN_CAMPAIGN,
@@ -58,8 +65,9 @@ def test_contain_campaign_marks_the_incident_contained(world):
     ))
 
     with factory() as db:
-        incident = db.scalar(select(IncidentRow))
-        assert incident.status == "contained"
+        assert _alice_incident(db).status == "contained"
+        # Other campaigns (the invoice-fraud background incident) are not contained by this action.
+        assert all(db.get(IncidentRow, i).status == "open" for i in others)
 
 
 def test_containment_still_needs_admin_approval(world):

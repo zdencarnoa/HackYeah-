@@ -9,7 +9,8 @@ from tests.detection.helpers import make_eml
 EMAILS = load_emails()
 BY_ID = {sim.id: sim for sim in EMAILS}
 CAMPAIGN = [sim for sim in EMAILS if sim.scenario.campaign_id == "camp-ms-verify"]
-LEGIT = [sim for sim in EMAILS if sim.scenario.label == "legitimate"]
+# amb-01 is deliberately ambiguous (MEDIUM), so it is not held to the "no strong signal" bar.
+LEGIT = [sim for sim in EMAILS if sim.scenario.label == "legitimate" and sim.id != "amb-01"]
 
 
 def content_signals(text="Hello", **eml):

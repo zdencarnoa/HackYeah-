@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { LIVE } from "@/lib/api";
 import { Severity } from "@/lib/contracts";
+import { useLiveConnection } from "@/lib/live/events";
 import { ADMIN_EMPLOYEE_ID, EMPLOYEE_BY_ID, ORG } from "@/lib/mocks";
 import { initials } from "@/components/ui/format";
 
@@ -13,6 +14,7 @@ type Permission = NotificationPermission | "unsupported";
 
 export function AdminHeader() {
   const admin = EMPLOYEE_BY_ID[ADMIN_EMPLOYEE_ID];
+  const connection = useLiveConnection();
   const [permission, setPermission] = useState<Permission>(() =>
     typeof Notification === "undefined" ? "unsupported" : Notification.permission,
   );
@@ -39,15 +41,7 @@ export function AdminHeader() {
           </div>
         </div>
 
-        <span
-          className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${
-            LIVE ? "text-low ring-low/30" : "text-muted ring-line"
-          }`}
-          title={LIVE ? "Connected to the live API" : "Running on simulated demo data"}
-        >
-          <span aria-hidden className={`size-1.5 rounded-full ${LIVE ? "bg-low" : "bg-muted"}`} />
-          {LIVE ? "LIVE" : "DEMO DATA"}
-        </span>
+        <ConnectionBadge connection={connection} />
 
         <div className="ml-auto flex items-center gap-3">
           <AlertsButton permission={permission} onEnable={enableAlerts} />
@@ -96,5 +90,26 @@ function AlertsButton({ permission, onEnable }: { permission: Permission; onEnab
     >
       Enable alerts
     </button>
+  );
+}
+
+const CONNECTION_BADGE = {
+  demo: { label: "DEMO DATA", tone: "text-muted ring-line", dot: "bg-muted", title: "Running on simulated demo data" },
+  open: { label: "LIVE", tone: "text-low ring-low/30", dot: "bg-low", title: "Connected to the live API" },
+  connecting: { label: "CONNECTING", tone: "text-medium ring-medium/30", dot: "bg-medium", title: "Reconnecting to the live API. Alerts may be delayed." },
+  closed: { label: "OFFLINE", tone: "text-critical ring-critical/30", dot: "bg-critical", title: "The live API is not reachable. What you see may be out of date." },
+} as const;
+
+function ConnectionBadge({ connection }: { connection: "connecting" | "open" | "closed" }) {
+  const badge = CONNECTION_BADGE[LIVE ? connection : "demo"];
+  return (
+    <span
+      role="status"
+      className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${badge.tone}`}
+      title={badge.title}
+    >
+      <span aria-hidden className={`size-1.5 rounded-full ${badge.dot}`} />
+      {badge.label}
+    </span>
   );
 }

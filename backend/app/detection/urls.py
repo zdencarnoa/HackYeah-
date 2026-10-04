@@ -52,7 +52,24 @@ def check_urls(message: Message) -> DetectionResult:
         details = list(dict.fromkeys(detail for _, detail in hits))[:3]
         signals.append(Signal(id=rule_id, category=SignalCategory.SUSPICIOUS_URL, severity=severity,
                               evidence=hits[0][0], technical_detail="; ".join(details), source="url"))
+    if (signal := _foreign_links(message, urls)) is not None:
+        signals.append(signal)
     return DetectionResult(signals=signals)
+
+
+def _foreign_links(message: Message, urls: list["Url"]) -> Signal | None:
+    """Every link leads to a different website than the sender's. Weak: partners,
+    portals and newsletters do this all the time."""
+    sender = registrable(message.sender.rpartition("@")[2])
+    hosts = {registrable(url.host) for url in urls}
+    if not urls or not sender or sender in hosts:
+        return None
+    shown = sorted(hosts)[0]
+    return Signal(id="url.foreign_domain", category=SignalCategory.SUSPICIOUS_URL, severity=1,
+                  evidence=f"The link leads to {_quote(shown)}, which is not the sender's own website "
+                           f"({_quote(sender)}).",
+                  technical_detail=f"sender registrable {_quote(sender)}; link registrable {_quote(shown)}",
+                  source="url")
 
 
 def _text_mismatch(url: Url) -> tuple[str, str] | None:

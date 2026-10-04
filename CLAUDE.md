@@ -18,9 +18,17 @@ Every message enters detection as an `.eml`: `app.detection.parse_eml` parses up
 
 Detection integration:
 - On delivery, in this order: `message_from_sim(sim)`, then `detect(message)` on the original, then `rewrite_links(message, employee_id)` for each inbox copy. Never run `detect()` on a rewritten copy.
-- `app.detection.router.router` holds `POST /api/analyze/signals`, `GET /r/{token}` and a placeholder `/demo/{host}/{path}` page. C mounts it with `app.include_router(router)`.
+- Live app: mount only `app.detection.router.signals_router` (`POST /api/analyze/signals`). The simulation owns `/r/{token}` (fake sign-in page, `LINK_CLICKED`), so `rewrite_links` and detection's `/r` route are standalone and not used in the live path; D calls `message_from_sim(delivered)` then `detect()` on the original before anything is rewritten.
+- `app.detection.router.router` (signals plus the standalone `/r` and `/demo`) holds `POST /api/analyze/signals`, `GET /r/{token}` and a placeholder `/demo/{host}/{path}` page. C mounts it with `app.include_router(router)`.
 - A click emits a `SimEvent(type=link_clicked)` before redirecting, and only `.example`/`.test` domains are ever forwarded. Tokens are in memory and clicks are only logged until C calls `app.detection.rewrite.configure(store=..., on_click=...)`. D's reset calls `clear_links()`.
 - Env: `DETECTION_BASE_URL` (default `http://localhost:8000`) and `DEMO_SITE_URL` (default `<base>/demo`, where D's fake site goes).
+
+Scoring integration (Person B, full guide: `docs/PERSON_B.md`):
+- `app.scoring.analyze.analyze(message)` returns the shared `Assessment` (risk, explanation, recommended action, uncertainties). It runs `detect()` itself, so call it on the ORIGINAL message, once per email, before link rewriting. On delivery use `analyze(message, live_llm=False)` so it never waits on a model; put `assessment.risk` into C's `MessageIn.risk`.
+- `app.scoring.router.router` holds `POST /api/analyze` (.eml upload), `POST /api/analyze/message` (JSON `Message`) and `GET /api/assessments` (verdicts for all demo emails; the UI loads it in live mode). C mounts it with `app.include_router(router)`. Call `app.scoring.ml_signal.warm_up()` in the app lifespan.
+- Text for C's incidents: `app.llm.helpers` implements C's `app/incidents/ai_hooks.py` contract (`incident_summary(incident)`, `employee_notification(incident, employee_id)`, `checklist_reason(...)`). They return `""` when there is no grounded LLM answer, so C's template is used.
+- Never compute or override risk elsewhere, and never let an LLM set it. Optional ML setup: `pip install -r requirements-ml.txt` and `python -m app.ml.download_model`; without it scoring falls back to TF-IDF or rules only.
+- Explanations for demo emails are cached in `app/llm/cache/`. After changing demo emails or detection wording, ask B to rebuild the cache, or those emails fall back to template text.
 
 ## Intended stack (from idea.md §16, not yet chosen for certain)
 

@@ -61,11 +61,14 @@ def summary_messages(incident_type: str, severity: int, evidence_kinds: list[str
     return [{"role": "system", "content": SYSTEM}, {"role": "user", "content": task}]
 
 
-def rationale_messages(action: str, incident_type: str) -> list[dict]:
+def rationale_messages(item_key: str, incident_type: str, default: str) -> list[dict]:
+    facts = [f"Incident type: {incident_type}", f"Checklist step: {item_key.replace('_', ' ')}",
+             f"Why the step helps: {default}"]
     task = (
-        f"{_evidence_block([f'Incident type: {incident_type}', f'Recommended action: {action}'])}\n"
-        "In one sentence (max 30 words), explain to a non-expert administrator why this action helps in this "
-        "incident. Present it as guidance, not certainty. Return JSON: {\"rationale\": \"...\"}."
+        f"{_evidence_block(facts)}\n"
+        "Rewrite why this step helps in one plain sentence (max 30 words) for a non-expert administrator. "
+        "Keep the meaning, add no new facts, present it as guidance, not certainty. "
+        "Return JSON: {\"rationale\": \"...\"}."
     )
     return [{"role": "system", "content": SYSTEM}, {"role": "user", "content": task}]
 

@@ -39,7 +39,7 @@ def test_upload_returns_message_and_signals():
     assert body["message"]["sender"] == "security@micr0soft-verify.example"
     assert body["message"]["id"].startswith("eml-")
     assert FIVE <= {signal["category"] for signal in body["signals"]}
-    assert body["unchecked"] == []
+    assert len(body["unchecked"]) <= 1 and all("DMARC" in note for note in body["unchecked"])
     assert all(signal["evidence"] and signal["technical_detail"] for signal in body["signals"])
 
 

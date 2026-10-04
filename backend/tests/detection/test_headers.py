@@ -7,10 +7,13 @@ from app.simulation.seed import load_emails
 from tests.detection.helpers import make_eml
 
 MX = "mx.lakeside-logistics.example"
+DMARC_NONE_NOTE = ("We could not confirm this email really comes from paperline-supp1ies.test, "
+                   "because that domain publishes no DMARC policy.")
 SENDER = "Paperline Supplies Billing <billing@paperline-supp1ies.test>"
 EMAILS = load_emails()
 BY_ID = {sim.id: sim for sim in EMAILS}
-LEGIT = [sim for sim in EMAILS if sim.scenario.label == "legitimate"]
+# amb-01 is deliberately ambiguous (MEDIUM), so it is not held to the "no strong signal" bar.
+LEGIT = [sim for sim in EMAILS if sim.scenario.label == "legitimate" and sim.id != "amb-01"]
 CAMPAIGN = [sim for sim in EMAILS if sim.scenario.campaign_id == "camp-ms-verify"]
 
 
@@ -43,7 +46,7 @@ def by_id(result):
 ])
 def test_auth_results_become_one_combined_signal(auth, severity, evidence_start):
     result = check(auth)
-    assert result.unchecked == []
+    assert result.unchecked == ([DMARC_NONE_NOTE] if "dmarc=none" in auth else [])
     signal = by_id(result).get("header.auth")
     if severity is None:
         assert signal is None

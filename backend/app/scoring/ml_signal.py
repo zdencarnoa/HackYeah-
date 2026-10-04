@@ -19,6 +19,7 @@ log = logging.getLogger(__name__)
 ML_DIR = Path(__file__).resolve().parent.parent / "ml" / "models"
 # Probability -> signal severity. Capped at 2 so the model alone can never reach HIGH.
 STRONG, MODERATE = 0.90, 0.60
+FALLBACK = "tfidf-fallback"
 
 
 @dataclass(frozen=True)
@@ -42,7 +43,7 @@ class _Classifier:
         try:
             import joblib
             pipeline = joblib.load(ML_DIR / "baseline.joblib")["pipeline"]
-            return "tfidf-fallback", lambda text: float(pipeline.predict_proba([normalize(text)])[0, 1])
+            return FALLBACK, lambda text: float(pipeline.predict_proba([normalize(text)])[0, 1])
         except Exception as exc:
             log.warning("TF-IDF fallback unavailable (%s); scoring without ML", exc)
         return None, None
@@ -54,6 +55,15 @@ class _Classifier:
 
 
 _classifier: _Classifier | None = None
+
+
+def warm_up() -> str | None:
+    """Load the classifier now (e.g. in the app's lifespan) instead of on the first email.
+    Returns the model name, or None when scoring runs without ML."""
+    global _classifier
+    if _classifier is None:
+        _classifier = _Classifier()
+    return _classifier.name
 
 
 def classify(message: Message) -> MlResult | None:
@@ -69,7 +79,9 @@ def ml_signal(result: MlResult | None) -> Signal | None:
     if result is None or result.probability < MODERATE:
         return None
     pct = round(result.probability * 100)
-    if result.probability >= STRONG:
+    # The TF-IDF fallback over-flags modern notification emails (no synthetic data), so it
+    # only ever counts as weak evidence: alone it cannot lift a legitimate email to MEDIUM.
+    if result.probability >= STRONG and result.model != FALLBACK:
         severity, evidence = 2, "The wording of this email closely matches known phishing emails."
     else:
         severity, evidence = 1, "Parts of the wording resemble phishing emails."

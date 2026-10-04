@@ -106,7 +106,11 @@ def test_dashboard_tiles(ctx):
     assert d["latest_critical_incident_id"]
 
 
-def test_summary_and_notification_fall_back_to_templates(ctx):
+def test_summary_and_notification_fall_back_to_templates(ctx, monkeypatch):
+    # No LLM answer anywhere (B's offline cache off, no live model): C's templates must carry the text.
+    from app.llm import client as llm_client
+    monkeypatch.setattr(llm_client, "_cached", lambda: {})
+    monkeypatch.setenv("LLM_LIVE", "0")
     client, _ = ctx
     click(client)
     inc = password(client)

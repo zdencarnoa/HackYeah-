@@ -9,7 +9,11 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 
+import { LIVE, liveApi } from "../api";
 import type { ContainmentActionType, InteractionKind } from "../contracts";
+import { loadLiveAssessments } from "../live/assessments";
+import { syncDeliveries } from "../live/deliveries";
+import { reportLiveClick, reportLivePassword } from "../live/interactions";
 import { EMAIL_BY_ID, ORG } from "../mocks";
 import { containmentPlan, passwordEntryFor } from "./selectors";
 import {
@@ -54,6 +58,34 @@ class DemoStore {
     window.addEventListener("storage", (event) => {
       if (event.key === STORAGE_KEY && event.newValue) this.receive(JSON.parse(event.newValue) as DemoState);
     });
+    if (LIVE) {
+      // B's live verdicts replace the mock ones; a new snapshot makes every screen re-read them.
+      void loadLiveAssessments().then((replaced) => {
+        if (replaced > 0) this.refresh();
+      });
+      // Every window follows D's attack engine, so the inbox and the admin lists show
+      // exactly what the backend has delivered.
+      let firstPoll = true;
+      const poll = async () => {
+        const status = await liveApi.attackStatus();
+        if (!status.ok) return;
+        const change = syncDeliveries(status.data);
+        // A fresh backend (reset, nothing delivered) also clears clicks and passwords this
+        // browser kept from an earlier run, even when the reset happened before this page opened.
+        const freshBackend = firstPoll && status.data.delivered_count === 0 && Object.keys(this.state.events).length > 0;
+        firstPoll = false;
+        if (change === "reset" || freshBackend) this.update(() => initialState());
+        else if (change === "changed") this.refresh();
+      };
+      void poll();
+      window.setInterval(poll, 1000);
+    }
+  }
+
+  /** Re-render every screen after live data changed outside the event log. */
+  private refresh(): void {
+    this.state = { ...this.state };
+    this.notify();
   }
 
   subscribe = (listener: Listener): (() => void) => {
@@ -167,6 +199,7 @@ export const demoActions = {
   /** A click on a link in a delivered email, recorded before the page opens (A's /r/{token}). */
   recordClick(employeeId: string, messageId: string, url: string): void {
     addEvent({ id: newId("click"), kind: "link_clicked", at: Date.now(), employeeId, messageId, url, domain: hostOf(url) });
+    if (LIVE) void reportLiveClick(employeeId, messageId, url); // C's incident: possible exposure
   },
 
   /**
@@ -186,6 +219,7 @@ export const demoActions = {
       .sort((a, b) => b.at - a.at)[0];
     const firstEntry = !passwordEntryFor(state, now, employeeId);
     addEvent({ id: newId("pwd"), kind: "password_reuse", at: now, employeeId, messageId: lastClick?.messageId ?? null, url, domain });
+    if (LIVE) void reportLivePassword(employeeId, lastClick?.messageId ?? null); // C's incident: likely compromise
     if (firstEntry) {
       addEvent({
         id: newId("signin"), kind: "unusual_sign_in", at: now + UNUSUAL_SIGN_IN_DELAY_MS, employeeId,

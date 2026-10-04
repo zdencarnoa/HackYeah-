@@ -23,9 +23,10 @@ def llm_inputs(risk: Severity, signals: list[Signal], uncertainties: list[str]) 
     return evidence, unsure
 
 
-def explain_assessment(risk: Severity, signals: list[Signal], uncertainties: list[str]) -> Explanation:
+def explain_assessment(risk: Severity, signals: list[Signal], uncertainties: list[str],
+                       live: bool = True) -> Explanation:
     evidence, unsure = llm_inputs(risk, signals, uncertainties)
-    answer, _ = ask(explanation_messages(int(risk), evidence, unsure))
+    answer, _ = ask(explanation_messages(int(risk), evidence, unsure), live=live)
     ml_reasons = reasons([s for s in signals if s.source == "ml"])
 
     if answer is not None:

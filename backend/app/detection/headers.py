@@ -37,7 +37,12 @@ def check_headers(message: Message) -> DetectionResult:
     auth = read_auth_results(_values(message, "Authentication-Results"))
     signals = [s for s in (_auth_signal(auth, message), _reply_to_signal(message),
                            _return_path_signal(message)) if s is not None]
-    return DetectionResult(signals=signals, unchecked=[] if auth else [NO_AUTH_RESULTS])
+    unchecked = [] if auth else [NO_AUTH_RESULTS]
+    if auth.get("dmarc", ("", ""))[0] == "none":
+        domain = domain_of(message.sender) or "the sender's domain"
+        unchecked.append(f"We could not confirm this email really comes from {domain}, "
+                         "because that domain publishes no DMARC policy.")
+    return DetectionResult(signals=signals, unchecked=unchecked)
 
 
 def read_auth_results(values: list[str]) -> dict[str, tuple[str, str]]:

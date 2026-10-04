@@ -4,7 +4,20 @@
  * (e.g. http://localhost:8000) to use the live API as each endpoint lands.
  */
 
-import type { Assessment, Message } from "./contracts";
+import type {
+  Assessment,
+  AttackStatus,
+  BlastRadius,
+  Campaign,
+  ContainmentRequest,
+  ContainmentResult,
+  InboxMessage,
+  Incident,
+  InteractionKind,
+  InteractionResult,
+  Message,
+  RecoveryStatus,
+} from "./contracts";
 import { DEMO_EMPLOYEE_ID, EMAIL_BY_ID } from "./mocks";
 
 export const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/$/, "");
@@ -66,3 +79,79 @@ export function demoPageFor(url: string, employeeId?: string): string | null {
     return null;
   }
 }
+
+// ------------------------------------------------------------------ live API
+
+export type ApiResult<T> = { ok: true; data: T } | { ok: false; error: string; status: number | null };
+
+const UNREACHABLE = "We could not reach Security Copilot. Check that the backend is running.";
+
+/**
+ * One typed call to the backend. Never throws: a failure becomes `{ ok: false }` with
+ * a sentence a person can read, so a screen can show "live data unavailable" instead
+ * of going blank. In mock mode every call fails the same way and callers use mocks.
+ */
+async function call<T>(path: string, init?: RequestInit): Promise<ApiResult<T>> {
+  if (!LIVE) return { ok: false, error: "Live mode is off (NEXT_PUBLIC_API_URL is not set).", status: null };
+  try {
+    const response = await fetch(`${API_URL}${path}`, {
+      ...init,
+      headers: init?.body ? { "Content-Type": "application/json", ...init.headers } : init?.headers,
+    });
+    if (!response.ok) {
+      const detail = await response.json().catch(() => null);
+      const text = typeof detail?.detail === "string" ? detail.detail : `The request failed (${response.status}).`;
+      return { ok: false, error: text, status: response.status };
+    }
+    return { ok: true, data: (await response.json()) as T };
+  } catch {
+    return { ok: false, error: UNREACHABLE, status: null };
+  }
+}
+
+const post = (body?: unknown): RequestInit => ({ method: "POST", body: body === undefined ? undefined : JSON.stringify(body) });
+
+export const liveApi = {
+  incidents: () => call<Incident[]>("/api/incidents"),
+  incident: (id: string) => call<Incident>(`/api/incidents/${encodeURIComponent(id)}`),
+  campaigns: () => call<Campaign[]>("/api/campaigns"),
+  campaign: (id: string) => call<Campaign>(`/api/campaigns/${encodeURIComponent(id)}`),
+
+  /** C's decision flow: what the employee says happened. */
+  interact: (employeeId: string, messageId: string, kind: InteractionKind) =>
+    call<InteractionResult>("/api/interactions", post({ employee_id: employeeId, message_id: messageId, kind })),
+
+  /** D's attack engine. */
+  launchAttack: (scenario = "microsoft", speed = 4) =>
+    call<AttackStatus>(`/api/sim/attack/${encodeURIComponent(scenario)}?speed=${speed}`, post()),
+  pauseAttack: () => call<AttackStatus>("/api/sim/attack/control/pause", post()),
+  stepAttack: () => call<AttackStatus>("/api/sim/attack/control/step", post()),
+  attackStatus: () => call<AttackStatus>("/api/sim/attack/status"),
+  inbox: (employeeId: string) => call<InboxMessage[]>(`/api/sim/inbox/${encodeURIComponent(employeeId)}`),
+
+  /** Simulated blast radius. Note: not under /sim. */
+  blastRadius: (employeeId: string) => call<BlastRadius>(`/api/blast-radius/${encodeURIComponent(employeeId)}`),
+
+  /** Admin-approved, simulated containment. */
+  contain: (request: ContainmentRequest) => call<ContainmentResult[]>("/api/sim/containment", post(request)),
+  recovery: () => call<RecoveryStatus>("/api/sim/recovery"),
+  completeRecoveryItem: (itemId: string) =>
+    call<RecoveryStatus>(`/api/sim/recovery/${encodeURIComponent(itemId)}/done`, post()),
+
+  /**
+   * Back to a calm demo. D's /api/sim/reset already resets the simulation, C's database
+   * and A's links, and re-seeds D's organization. (C's old /api/dev/reset-and-seed must
+   * not follow it: it re-seeds a placeholder org, so later deliveries find no recipient.)
+   */
+  async reset(): Promise<ApiResult<{ ok: true }>> {
+    const sim = await call<AttackStatus>("/api/sim/reset", post());
+    return sim.ok ? { ok: true, data: { ok: true } } : sim;
+  },
+
+  /** C's checklist: mark one response step done. */
+  completeChecklistItem: (itemId: string) =>
+    call<Incident>(`/api/checklist/${encodeURIComponent(itemId)}/complete`, post()),
+
+  /** B's verdict for every demo email, keyed by message id (ML + rules + LLM text). */
+  assessments: () => call<Record<string, Assessment>>("/api/assessments"),
+};

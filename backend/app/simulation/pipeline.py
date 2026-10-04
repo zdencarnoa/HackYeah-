@@ -121,6 +121,17 @@ def attach_credentials(credentials: CredentialSimulator, session_factory: Sessio
                 add_evidence(db, Evidence(
                     kind="unusual_signin", employee_id=event.employee_id,
                     source="automatic", timestamp=event.at))
+        elif event.type is SimEventType.LINK_CLICKED and event.employee_id and event.message_id:
+            # A click opens a HIGH "possible exposure" incident in C, so only file it for
+            # mail scored MEDIUM or above; a click in a legitimate email is not evidence.
+            from app.db.models import MessageRow
+            with session_factory() as db:
+                message = db.get(MessageRow, event.message_id)
+                if message is not None and (message.risk or 0) >= Severity.MEDIUM:
+                    add_evidence(db, Evidence(
+                        kind="link_clicked", employee_id=event.employee_id, message_id=event.message_id,
+                        domain=(event.data or {}).get("domain") or None, source="automatic",
+                        timestamp=event.at))
 
     credentials.on_password_reuse = on_password_reuse
     return credentials.event_bus.subscribe(on_sim_event)  # unsubscribe handle
@@ -153,10 +164,12 @@ def reset_all(session_factory: SessionFactory) -> None:
     organization so ingestion can resolve recipients again.
     """
     from app.db.session import reset_db
+    from app.detection import clear_links
     from app.simulation import runtime
     from app.simulation.org_seed import seed_org
 
     runtime.reset_demo()  # D's state + a DEMO_RESET event
+    clear_links()         # A's tracked links from "Is this safe?" uploads
     reset_db()            # drop and recreate C's tables
     with session_factory() as db:
         seed_org(db)

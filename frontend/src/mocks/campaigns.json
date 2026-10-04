@@ -33,11 +33,34 @@
       "Operations"
     ],
     "shared_traits": [
-      "Same sender domain: all 14 messages come from micr0soft-example.test",
-      "Same destination: every link leads to login.micr0soft-example.test",
+      "Same sender domain: all 14 messages come from micr0soft-verify.example",
+      "Same destination: every link leads to micr0soft-verify.example",
       "Similar wording: account suspension and identity verification",
       "Delivered in two waves within 10 minutes"
     ],
     "updated_at": "2026-10-03T09:12:00+00:00"
+  },
+  {
+    "id": "camp-invoice-fraud",
+    "name": "camp-invoice-fraud",
+    "message_ids": [
+      "phi-01",
+      "phi-08",
+      "phi-09"
+    ],
+    "recipients": [
+      "tina.hall@lakeside-logistics.example",
+      "bob.smith@lakeside-logistics.example",
+      "david.brown@lakeside-logistics.example"
+    ],
+    "departments": [
+      "Finance"
+    ],
+    "shared_traits": [
+      "Same sender domain: all 3 messages come from paperline-supp1ies.test",
+      "Similar wording: account suspension and identity verification",
+      "Delivered in two waves within 4 minutes"
+    ],
+    "updated_at": "2026-10-03T09:07:00+00:00"
   }
 ]

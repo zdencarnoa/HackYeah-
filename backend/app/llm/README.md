@@ -28,17 +28,12 @@ Stop: `pkill -f serve_openai.py` on the box.
 
 ## For Person C
 
-```python
-from app.llm.helpers import checklist_rationale, employee_notification, incident_summary
-
-checklist_rationale("Revoke active sessions", "credential_phishing")
-employee_notification("Alice", "credential_phishing", ["email_scored", "link_clicked", "password_reuse"],
-                      domain="login.micr0soft-example.test")
-incident_summary("credential_phishing", Severity.CRITICAL, evidence_kinds,
-                 messages=14, recipients=7, departments=3, employee="Alice")
-```
-
-Checklist actions with a prepared rationale are the keys of `helpers.RATIONALE`.
+`helpers.py` implements the contract in `app/incidents/ai_hooks.py`:
+`incident_summary(incident)`, `employee_notification(incident, employee_id)` and
+`checklist_reason(incident_type, item_key, default)`. Each returns `""` when there is no
+grounded LLM answer, so `ai_hooks` falls back to C's template. `checklist_reason` always
+returns `""` on purpose: C's rationales are already plain and more precise. These calls
+use the cache or the GPU server only (`allow_local=False`), never the slow laptop model.
 
 ## Regenerate the cache (when demo emails, detection wording or prompts change)
 
@@ -51,5 +46,5 @@ python app/llm/generate_offline.py prompts.jsonl responses.jsonl   # GPU box
 python -m app.llm.batch import responses.jsonl     # laptop -> cache/responses.json
 ```
 
-Current cache: 195 answers (12 demo email explanations, 72 notifications,
-72 incident summaries, 39 checklist rationales); 194/195 pass the grounding check.
+Current cache: 697 answers (16 demo email explanations, 310 employee notifications,
+372 incident summaries: every combination of evidence kinds over C's 4 incident types).

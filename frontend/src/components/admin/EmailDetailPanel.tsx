@@ -43,6 +43,7 @@ export function EmailDetailPanel({
   now,
   onTab,
   onClose,
+  onlyTabs,
 }: {
   email: FlaggedEmail;
   incident: Incident | undefined;
@@ -51,8 +52,10 @@ export function EmailDetailPanel({
   now: number;
   onTab: (tab: DetailTab) => void;
   onClose: () => void;
+  /** Limit the tabs, e.g. in live mode where campaign, blast radius and recovery live on the incident. */
+  onlyTabs?: DetailTab[];
 }) {
-  const tabs = availableTabs(email, incident);
+  const tabs = availableTabs(email, incident).filter((t) => !onlyTabs || onlyTabs.includes(t));
   const active = tabs.includes(tab) ? tab : "overview";
   const { message } = email.email;
 
