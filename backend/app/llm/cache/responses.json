@@ -1,6 +1,12 @@
 {
+ "001fc5e12abd4844a6c65559": {
+  "summary": "This is a suspicious email that has been reported by an employee and scored as potentially harmful. The severity is high, indicating a significant risk."
+ },
  "00f72bba7029219f8ac47fd8": {
   "summary": "This is a malware attachment incident where an employee has opened a suspicious email and clicked on a link. Additionally, there is evidence suggesting password reuse and unusual sign-in activity, indicating potential further compromise."
+ },
+ "019299a2b906f428c0035e9a": {
+  "what_happened": "You opened an email and clicked on a link. This email was flagged as suspicious by our system, and it seems your password might have been reused, leading to an unusual sign-in attempt."
  },
  "02f82b484515c454b178782e": {
   "summary": "This is an invoice fraud incident where an employee has clicked on a suspicious link and reused their password, indicating potential compromise. Additionally, there was an unusual sign-in attempt, suggesting further unauthorized access might have occurred."
@@ -27,34 +33,37 @@
   "summary": "This is an invoice fraud attempt where a suspicious email was detected. The extent of the intrusion is limited to the email interaction as no further actions have been taken."
  },
  "09132a7dadae167a464b106c": {
-  "what_happened": "You received an email and clicked on a link that was scored as potentially harmful by our system."
+  "what_happened": "You received an email and clicked on a link that was designed to trick you into giving away your login details."
  },
  "0a9bd3d1b3afe895016da84e": {
-  "what_happened": "You received an email and clicked on a link that led to a suspicious website called docusafe-esign.test, which is related to a credential phishing attempt."
+  "what_happened": "You opened an email and clicked on a link that led to a suspicious website called docusafe-esign.test. This website might have tried to get your login information."
  },
  "0a9e39348627c9e81a5f978f": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led you to enter your password on a suspicious site."
  },
+ "0bc3454c36d45446010bafd2": {
+  "summary": "A suspicious email was reported by an employee, indicating potential phishing activity. The severity is rated as medium, suggesting the threat could cause significant harm if successful."
+ },
  "0be6a9d125b55ce2877c4133": {
   "summary": "This is a malware attachment incident where an employee has opened a suspicious email, clicked on a link within it, reused their password, and had an unusual sign-in attempt, indicating potential compromise."
+ },
+ "0cc116a6a48a77e4b267b796": {
+  "what_happened": "You received an email that was flagged as suspicious, and you clicked on a link within it. This has been reported to the security team."
  },
  "0e6339ac4e1b48c9010cecc8": {
   "what_happened": "A suspicious email was sent that might try to trick you into giving away your login details by directing you to a potentially unsafe website called fileshare-docs.test."
  },
  "10b7f64623fff3d63f3b5649": {
-  "summary": "This is a malware attachment incident where an employee has opened a suspicious email and clicked on a link. The severity is critical as it indicates potential unauthorized access or system compromise."
+  "summary": "This is a malware attachment incident where an employee has opened and clicked on a suspicious link associated with the email. The severity is critical."
  },
  "111a7e51dc0f04f852c7f903": {
   "summary": "This is an invoice fraud incident where an employee has clicked on a suspicious link and reused their password, indicating potential compromise."
  },
- "1585b8057d017054ba58b914": {
-  "rationale": "Isolating the device prevents the potential spread of malware and limits access to sensitive information."
- },
- "1674ea9d8121d8ebc06e3407": {
-  "rationale": "Holding pending payments reduces the risk of sending money to fraudsters who may be impersonating legitimate suppliers."
+ "118719a048ae38edae7264d8": {
+  "what_happened": "A suspicious email was detected and scored by our security system."
  },
  "16aa91d77f5cd76ca5fd08c5": {
-  "summary": "This is a malware attachment incident where an employee has opened a suspicious email and clicked on a link. Additionally, there is evidence suggesting that the employee may have reused passwords, which could be risky."
+  "summary": "This is a malware attachment incident where an employee has opened a suspicious email and clicked on a link. Additionally, there is evidence suggesting that the employee may have reused their password, which could be at risk."
  },
  "16cf6aebfda836492b35f941": {
   "summary": "This is an invoice fraud attack where an employee has clicked on a suspicious link and reused their password, indicating potential compromise."
@@ -62,23 +71,11 @@
  "1750c2b45e170f8d3bfed664": {
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link and used a reused password, leading to an unusual sign-in attempt. The employee has also reported this incident."
  },
- "175e01b85afc9b5ec8cce5e8": {
-  "rationale": "Documenting the incident helps in tracking what happened and can provide evidence if further action is needed."
- },
- "184e492cb50ec8cbc23679b1": {
-  "rationale": "Calling to confirm payment details helps verify the request is legitimate and not an attempt to fraudulently redirect funds."
- },
  "18a7cf2e824a450e54cda23f": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website."
  },
  "18c71907bd905f4c8a09bcc7": {
   "what_happened": "Someone tried to trick you into giving them your login information through an email."
- },
- "1a0cd6839ac4542629d73526": {
-  "rationine": "Monitoring your account activity helps you notice any unusual actions, which could indicate if your credentials were used without permission."
- },
- "1aa1e1764b48bfca9afd7344": {
-  "rationale": "Documenting the incident helps the company learn and improve its defenses against future attacks."
  },
  "1b3e2b3041b52a9e156de28f": {
   "summary": "This is a malware attachment incident where an employee received a suspicious email. The extent of the intrusion is unknown as no further details are provided."
@@ -89,17 +86,14 @@
  "1b991352bb7b9caebea565ad": {
   "summary": "This is a malware attachment incident where an employee either opened an email scored as suspicious or clicked on a link within it. The extent of the incident includes user reports indicating further interaction beyond just receiving the email."
  },
- "1ddbe90399cc9155a35bcaf0": {
-  "rationale": "Quarantining messages helps prevent potential fraud by isolating suspicious invoices for review before they can cause harm."
- },
- "20cc799c4fd6880b8bcfa331": {
-  "rationale": "Blocking the sender reduces the chance of receiving more harmful attachments."
- },
  "20db860f2171fb6bb6a4a440": {
   "summary": "This is an invoice fraud attempt where an employee received a suspicious email and clicked on a link within it, indicating some engagement with the fraudulent content."
  },
  "227eb8a0bfc32ddf8bda4cec": {
   "summary": "This is a malware attachment incident where an employee either opened an attachment or clicked on a link from a suspicious email. The employee also reused their password, which could have contributed to the risk."
+ },
+ "23d9e9a356854ecbe7d3fad7": {
+  "summary": "A suspicious email has been identified as potentially dangerous, indicating a possible phishing attempt aimed at compromising company security. The severity is marked as critical, suggesting the threat could pose significant risks."
  },
  "25fe2eeb1ced769b2f6eed1c": {
   "summary": "This is a malware attachment incident where an employee may have opened an infected file or clicked a suspicious link. The employee also reported reusing passwords and had an unusual login, suggesting further compromise."
@@ -120,7 +114,7 @@
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link and used a reused password, leading to an unusual sign-in attempt. The employee has also reported this incident."
  },
  "2fac77d06c4f242763929c42": {
-  "what_happened": "Your email was scored as suspicious, and it seems you clicked on a link in it. This led to a sign-in attempt with reused password, which is unusual."
+  "what_happened": "Someone tried to trick you into opening an unsafe attachment or clicking on a suspicious link. This might have also led to using a password that wasn't very strong or logging in from a place that seems unusual."
  },
  "2fd9ba220aa56fc226c241f2": {
   "what_happened": "Someone tried to trick you into clicking a link and giving away your password, which could have been used to create fake invoices."
@@ -135,13 +129,13 @@
   "summary": "This email is very likely a phishing attempt and should not be trusted."
  },
  "3079daa7c86791809be2c310": {
-  "what_happened": "Your email was flagged because it might contain harmful files that could damage your computer or compromise company information."
+  "what_happened": "Your email was flagged because it might contain harmful files."
  },
  "31e9d4cd9f27a1a0ae8a66f3": {
   "summary": "This is a malware attachment incident where an email containing a potentially harmful file was detected. The severity is critical, indicating the threat could cause significant damage if opened."
  },
- "32bc22d1c7aa3027bf0bf19c": {
-  "rationale": "Documenting the incident helps track what happened and how, aiding in preventing future issues."
+ "33771badfb228807f791851d": {
+  "summary": "This is a suspicious email attack with a high severity level. An employee has interacted with the email by clicking a link, indicating the attack may have progressed beyond just opening the email."
  },
  "341f1cb942a9cd516c0b37dd": {
   "reasons": [
@@ -169,11 +163,8 @@
  "36ee36f40e44091963a743ed": {
   "summary": "This is a malware attachment incident where an email containing a suspicious attachment was detected. The threat did not go beyond being identified in an email."
  },
- "38a6f605058c8712f764d3dd": {
-  "rationale": "Notifying affected users helps them avoid opening suspicious attachments that could contain harmful malware."
- },
  "39a9541973ed42f908b0d3df": {
-  "what_happened": "Someone tried to trick you into giving them your login details through an email, and you clicked on a link in that email."
+  "what_happened": "Someone tried to trick you into giving them your login information through an email, and you clicked on a link in that email."
  },
  "39e7ac89583ed4a25425f7ec": {
   "reasons": [
@@ -191,15 +182,6 @@
    "The sender's domain does not follow standard security practices, making it hard to verify the email's origin."
   ],
   "summary": "This email is very likely a phishing attempt and should not be trusted."
- },
- "3bf60cfedbd95f0472f7e8e9": {
-  "rationale": "Resetting your credentials can prevent the attacker from using your login details if they were compromised by the malware."
- },
- "3c4e95dafe7400d9a8e6d0fa": {
-  "rationale": "Revoking active sessions limits access that might have been compromised, reducing the risk of further unauthorized activity."
- },
- "3e03e6f69b259ff85d89703b": {
-  "rationale": "Blocking the sender reduces the chance of receiving further fraudulent invoices and protects the company's finances."
  },
  "41522d7811b5ed89d2960fc5": {
   "summary": "This is a credential phishing attack where an employee received a suspicious email and clicked on a link within it."
@@ -226,25 +208,22 @@
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this suspicious site."
  },
  "487dd99cefae25df3a587988": {
-  "summary": "This is a credential phishing attack where an employee clicked on a suspicious link after receiving a scored email. The extent of the breach includes the interaction with the phishing attempt but does not specify further actions taken by the employee."
+  "summary": "This is a credential phishing attack where an employee clicked on a suspicious link after receiving a potentially malicious email. The severity is critical as it indicates that there may be a risk of sensitive information being compromised."
  },
  "4d554f5bda9d3ad1154419a9": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
  },
  "4e38c3afde2d0454c6983885": {
-  "summary": "This is a critical credential phishing attack detected through an email analysis. The extent of the breach is not specified beyond the initial detection of the suspicious email."
+  "summary": "This is a critical credential phishing attack detected through an email. The extent of the breach is unknown from the provided information."
  },
  "4e40ecc061f326e88c07858a": {
   "what_happened": "Someone tried to trick you into clicking a link and giving away your password. This might have been part of an attempt to create fake invoices."
- },
- "4ff292a43e702bb4f3db3730": {
-  "rationale": "Searching for related messages can help identify and stop other potential phishing attempts targeting your colleagues."
  },
  "4ff4205e77d30fa50c8bf79a": {
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link and used a reused password, leading to an unusual sign-in attempt."
  },
  "518ab06b2a9c9bbc970777e5": {
-  "what_happened": "You received an email and clicked on a link that led to a suspicious website called fileshare-docs.test, which might be trying to get your login details."
+  "what_happened": "You received an email and clicked on a link that led to a suspicious website called fileshare-docs.test, which may have tried to get your login details."
  },
  "5522d28be3e1d9b15073beba": {
   "reasons": [
@@ -258,6 +237,9 @@
  "57fc275f0ad68a6e735c67ad": {
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link and used a reused password, indicating high risk."
  },
+ "585c11a9b31493f89434d584": {
+  "what_happened": "You received an email that was flagged as suspicious, and you clicked on a link within it. Additionally, there is a concern that your password might have been reused."
+ },
  "58da82ea94fcdc3841bf80f1": {
   "what_happened": "Someone tried to trick you into giving away your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
  },
@@ -267,14 +249,20 @@
  "5b74c631c287de1d6b8cbfd6": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
  },
+ "5ba9c0da05e80d36459fdae2": {
+  "summary": "An employee received a suspicious email which was scored as potentially harmful. The employee clicked on a link within the email and reused an existing password, indicating possible compromise."
+ },
  "5c07ce083bedceab65722bca": {
   "summary": "This is an invoice fraud incident where an employee has clicked on a suspicious link and reused their password, indicating potential compromise. Additionally, there was an unusual sign-in attempt reported by the user."
  },
  "5c9e7c99dc0185ac7f86bc4d": {
-  "what_happened": "Someone tried to trick you into giving away your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
+  "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
  },
  "5d1dacd48f1b55db74812b06": {
   "what_happened": "Someone tried to trick you into giving them your login information. You clicked on a link in an email that was part of this attempt."
+ },
+ "5e4c8ca955b2844b485527b1": {
+  "summary": "This is a suspicious email incident where an employee has clicked on a link in an email, indicating a potential phishing attempt. The severity is critical, suggesting significant risk."
  },
  "5e5f895ff3ec8b73d02bcd05": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
@@ -282,11 +270,11 @@
  "5ed1dcdaa245f19cb5646de2": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake Microsoft login page. You clicked on a link in the email, which led to this fake site."
  },
- "5fcf714f15287c4768b4276b": {
-  "rationale": "Isolating the device limits the potential spread of any malicious activity and protects other systems from being affected."
- },
  "601eb9a53f80643347da0ad0": {
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link and reused an existing password, indicating a high risk of sensitive information being compromised."
+ },
+ "61a155062933e56d9b92d774": {
+  "summary": "This is a suspicious email attack where an employee has clicked on a link within the email, indicating potential exposure to malware or other malicious content."
  },
  "61aa4a51d432cfb747361dd2": {
   "summary": "This is a malware attachment incident where an email containing a suspicious attachment was detected. The severity is high, indicating potential significant risk to our systems."
@@ -295,13 +283,10 @@
   "what_happened": "Someone tried to trick you into paying an invoice to the wrong account. This was reported and detected by our system."
  },
  "634b656d67dec3e52d7649e1": {
-  "summary": "This is a credential phishing attack, which aims to steal employee login details. The extent of the breach is currently unknown."
+  "summary": "This is a credential phishing attack, which aims to steal employee login details. The extent of the breach is currently unknown but requires immediate attention due to its critical nature."
  },
  "64031b73ce236f8fd1b9e14b": {
-  "summary": "This is a malware attachment incident where an employee has opened a suspicious email and clicked on a link. Additionally, there is evidence suggesting that the employee may have reused their password, which could be compromised."
- },
- "644598068d837f5f12b9f7d2": {
-  "rationale": "Holding pending payments reduces the risk of financial loss if an attacker gains access to sensitive information."
+  "summary": "This is a malware attachment incident where an employee has opened a suspicious email and clicked on a link. Additionally, there is evidence suggesting the reuse of passwords, which could further compromise accounts."
  },
  "660c39b02ee25e0556286c71": {
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link and used a reused password, leading to an unusual sign-in attempt."
@@ -317,11 +302,11 @@
  "669862d1a1f9bb95ed01fbf2": {
   "what_happened": "You opened an email and clicked on a link that led to a suspicious website trying to get your login details."
  },
- "6b569bf8032f3932dd0f0a29": {
-  "rationale": "Quarantining messages helps prevent potentially harmful attachments from spreading malware within the network."
- },
  "6d0266f5ef2bd53dc3d9bb92": {
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link and used a reused password, indicating potential exposure of login details."
+ },
+ "6e91fec790fa119dcd69506d": {
+  "summary": "An employee received a suspicious email which was scored as high risk. The employee clicked on a link within the email and used a reused password, leading to an unusual sign-in attempt."
  },
  "7067ce6c22ed1b1d3b847025": {
   "reasons": [
@@ -331,6 +316,15 @@
    "If you reply to the email, it doesn't go back to the sender's claimed address."
   ],
   "summary": "This email is highly likely to be a phishing attempt."
+ },
+ "70f31c1c86849332945b422f": {
+  "summary": "An employee has reported a suspicious email which scored high on our filters. The email contained a link that was clicked by the recipient, potentially leading to a password reuse scenario and an unusual sign-in attempt."
+ },
+ "73f8e088d1057a4d3ac0206a": {
+  "summary": "An employee has reported a suspicious email which was scored as high risk. The employee clicked on a link within the email and reused an existing password, indicating potential compromise."
+ },
+ "773a17256cb69f6b133dab51": {
+  "what_happened": "Someone tried to access your account using a suspicious email, and we noticed unusual activity like a clicked link and a report from you."
  },
  "7964c3632d72be965a8255c3": {
   "reasons": [
@@ -345,7 +339,7 @@
   "what_happened": "You opened an email and clicked on a link that led to a suspicious website pretending to be from Microsoft. This kind of site tries to trick people into giving away their login details."
  },
  "7bbd81cceec47a5d325884b1": {
-  "what_happened": "Your email was scored as suspicious by our system, and it seems you clicked on a link in it."
+  "what_happened": "Your email was scored as suspicious by our system because it contained elements commonly associated with phishing attempts. Additionally, it appears that a link within the email was clicked."
  },
  "7d26b3d6fb774f28e8c77491": {
   "reasons": [
@@ -356,14 +350,11 @@
   ],
   "summary": "This email is very likely a scam and should not be trusted."
  },
+ "7eab68bbb0e754268e862dfc": {
+  "what_happened": "Your email was flagged by our system as potentially suspicious, and someone reported it."
+ },
  "7f3a0c36cb82804723eeb670": {
   "summary": "This is an invoice fraud attempt where a suspicious email was detected. The extent of the intrusion is limited to the email interaction as of now."
- },
- "805ad5e5fb95892cbf8e5532": {
-  "rationale": "Blocking the domain prevents further communication and potential financial loss from fraudulent invoices."
- },
- "80678852648f0d6131d61178": {
-  "rationale": "Blocking the domain prevents employees from accessing potentially harmful websites that may steal their login details."
  },
  "81a0164320dbf67bcfd647e0": {
   "summary": "This is an invoice fraud attack where an employee received a suspicious email and clicked on a link within it, indicating the attack may have progressed beyond just the email phase."
@@ -372,10 +363,13 @@
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
  },
  "826a92431b6f0c1c129376fe": {
-  "summary": "This is a malware attachment incident where an employee has either opened an email scored as suspicious or clicked on a link within it. The severity is critical because there's evidence that the user reported something related to this activity."
+  "summary": "This is a malware attachment incident where an employee has either opened an email scored as suspicious or clicked on a link within it. The severity is critical because there's evidence that the user reported this activity, indicating potential exposure to harmful software."
  },
  "829ad2a3297208c235b27825": {
   "what_happened": "Someone tried to trick you into giving away your login information by sending an email and setting up a fake website that looks like it's from Microsoft."
+ },
+ "83089903c91fcde3679a9356": {
+  "summary": "An employee received a suspicious email which was scored as potentially harmful. The employee clicked on a link within the email."
  },
  "84f201c3ca698bb8101d8463": {
   "what_happened": "Someone tried to trick you into clicking a link related to an invoice, which might be part of a scam to cause financial harm to our company."
@@ -383,14 +377,23 @@
  "85e526a684d42531e8d7a8eb": {
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link and used a reused password, leading to an unusual sign-in attempt. The employee has also reported this incident."
  },
- "86d4dbd2cf6fc5a1321af536": {
-  "rationale": "Resetting your credentials can help protect your account from unauthorized access by fraudsters."
+ "89e71098e870d57be4d8ebd1": {
+  "what_happened": "You received an email that was flagged as suspicious, and you clicked on a link within it."
+ },
+ "8a8e7753f8106c94381278ba": {
+  "summary": "A suspicious email has been identified as potentially harmful, reaching an employee's inbox. The severity is marked as critical, indicating a high risk of threat."
  },
  "8b12c9650ad3d0958b99fba2": {
   "summary": "This is a credential phishing attack with a severity level of HIGH, as indicated by the scored email evidence."
  },
  "8b6d4964f2ce8cea7a744d9e": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
+ },
+ "901045854b520939082da933": {
+  "summary": "An employee received a suspicious email which was scored as potentially harmful. The employee clicked on a link within the email and reused an existing password, leading to an unusual sign-in attempt."
+ },
+ "93a00eeb9707abf02831fa55": {
+  "summary": "An employee has clicked on a suspicious link in an email, which scored high for being potentially malicious. This action may have exposed reused login credentials, leading to an unusual sign-in attempt."
  },
  "93b06d57e1233bb3f77bc479": {
   "what_happened": "You received an email and clicked on a link that led to a suspicious website called parcelnow-redelivery.test, which is related to a potential attempt to steal your login information."
@@ -410,6 +413,12 @@
  "982732b8071716674da36b9a": {
   "summary": "This is a credential phishing attack where an employee clicked on a suspicious link after receiving a potentially malicious email. The extent of the incident includes the interaction with the email and the click on the link."
  },
+ "98b110bc8dc0f95fe5b53e03": {
+  "summary": "An employee has clicked on a suspicious link in an email, which indicates a potential phishing attempt. The severity is critical because there's also evidence suggesting that the employee might have reused their password, increasing the risk of account compromise."
+ },
+ "9962cac59afa733d0f9f0e11": {
+  "what_happened": "You received an email that was flagged as suspicious, and you clicked on a link within it. This email also indicated that there might be a risk related to your password."
+ },
  "9b535962687c0aa46c706429": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
  },
@@ -417,16 +426,16 @@
   "summary": "This is a malware attachment incident where an employee received a suspicious email. The severity is high, indicating potential risks to our systems."
  },
  "9c0dc12c47cf2fff9dd681c8": {
-  "what_happened": "Someone tried to trick you into giving them your login details using an email. They might have asked you to visit a fake website called lakesidelogistics-hr.test to enter your information."
+  "what_happened": "Someone tried to trick you into giving them your login information using an email and a fake website called lakesidelogistics-hr.test."
+ },
+ "9d011c5e397a03714afc3c82": {
+  "summary": "An employee received a suspicious email which was scored as high risk. The employee clicked on a link within the email and reused an existing password, indicating potential compromise."
  },
  "9e432cca0ca094b07400e9d9": {
   "summary": "This is a credential phishing attack where an employee received a suspicious email and clicked on a link within it, potentially exposing their login details."
  },
  "9f718681f3a3f7dfcb3e5ce6": {
   "what_happened": "Someone received an email that was flagged as suspicious, and they clicked on a link within it. This action has been reported."
- },
- "a1236a48121953ebdec411ea": {
-  "rationale": "Enabling Multi-Factor Authentication adds an extra layer of protection, making it harder for others to misuse your credentials even if they are stolen."
  },
  "a20ff6cd74f1b8d1c788466b": {
   "what_happened": "Someone tried to trick you into clicking a link and giving away your password. This might have been part of an attempt to make unauthorized changes to payments or invoices."
@@ -446,9 +455,6 @@
  "a474cd451a5251074d78eae8": {
   "summary": "This is a malware attachment incident where an employee has opened a suspicious email, clicked on a link, reused a password, and had an unusual sign-in event. The extent of the compromise is unclear but indicates potential exposure to critical risk."
  },
- "a5af3b8243b53b58d28b3d88": {
-  "rationale": "Revoking active sessions limits access by any unauthorized user who might have gained credentials, helping protect your systems."
- },
  "a7bafcdf0c14658ee407a3e3": {
   "what_happened": "Someone tried to trick you into giving them your login information through an email. They might have asked you to visit a fake website called mfa-enrol.lakeside-it-support.test to enter your details."
  },
@@ -464,12 +470,6 @@
  "ad987ffc18d6d683f89230c5": {
   "summary": "This is an invoice fraud attempt where the attacker tries to trick someone into paying a fake invoice. The extent of the intrusion is known through analyzed email content."
  },
- "aeab885a4b69fcfee1ca1867": {
-  "rationale": "Blocking the sender prevents further potentially harmful messages from reaching you."
- },
- "afb5c042826fb4220f62a6d2": {
-  "rationale": "Holding payments reduces the risk of financial loss if the malware tries to steal money."
- },
  "b3d56e8e7e47f98c10b25acd": {
   "reasons": [
    "The email came from a server known for sending phishing emails.",
@@ -482,14 +482,17 @@
  "b5c13987feda6cc7d46aeae9": {
   "what_happened": "You opened an email and clicked on a link that led to a suspicious website. This website might have tried to get your login details."
  },
- "b67c498f96537f8b7ce91e22": {
-  "rationale": "Searching for related messages can help identify any other suspicious communications and prevent further potential fraud."
+ "b6d1e729147bd1cda8e37ae9": {
+  "summary": "An employee has reported a suspicious email which scored high for being potentially malicious. The employee clicked on a link within the email and reused an old password, leading to an unusual sign-in attempt."
  },
  "b7ef1cae5894cf07045a4b10": {
   "what_happened": "Someone tried to trick you into giving them your login information through an email. You clicked on a link in that email, which might have led you to enter your password on a fake website."
  },
  "b86879ded9b9f296d0a642b3": {
   "what_happened": "Someone tried to get your login information using a fake email and a trick link. You clicked the link and entered your password, which is why we're asking you to check your account security."
+ },
+ "b89ff279ff2aaeb7588565aa": {
+  "summary": "This is a suspicious email with a high severity risk, indicating potential malicious intent. The extent of its progression within the system is not detailed beyond being scored as suspicious."
  },
  "b8eca78c6fb0b2bd82aff936": {
   "what_happened": "Someone tried to trick you into giving them your login details by sending an email and setting up a fake website."
@@ -500,11 +503,11 @@
  "ba3ec197aea65bd4a2f233eb": {
   "summary": "This is a malware attachment incident where an employee has opened a suspicious email, clicked on a link within it, reused their password, and had an unusual sign-in attempt, indicating potential compromise."
  },
+ "baa3c974b9f55d058b57071d": {
+  "summary": "An employee received a suspicious email which was scored as potentially harmful. The employee clicked on a link within the email, indicating they may have been tricked into engaging further with the message."
+ },
  "bb23cb976ddf6d98aa82b906": {
   "summary": "This is an invoice fraud incident where an employee has clicked on a suspicious link after receiving a potentially fraudulent email. The extent of the incident includes user interaction with both the email and the link."
- },
- "bd55eab7488530673a88c316": {
-  "rationale": "Using Multi-Factor Authentication adds an extra layer of security, making it harder for fraudsters to access your accounts and alter invoices."
  },
  "bdb62b1acf843cc0ce961a27": {
   "summary": "This is a malware attachment incident where an employee has opened a suspicious email, clicked on a link, reused a password, and had an unusual sign-in activity. The severity is high due to multiple risky behaviors reported by the user."
@@ -521,9 +524,6 @@
  },
  "c175de4db815bfcaef5031af": {
   "summary": "This is a credential phishing attack where an employee received a suspicious email and clicked on a link within it, potentially exposing their login details."
- },
- "c2f8e6ded6aef0b8799d8284": {
-  "rationale": "Confirming payment details by phone helps verify the request came from a legitimate source, protecting against potential fraud."
  },
  "c3a987ff4d42ac80af8d7366": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
@@ -564,29 +564,20 @@
   ],
   "summary": "This email is a high-risk phishing attempt."
  },
- "cf7dbd2c2fbe3951244fa554": {
-  "rationale": "Searching for related messages helps identify if other employees received similar suspicious emails to prevent further potential infections."
- },
  "d04d57982b429c7f50013ee6": {
-  "summary": "This is a malware attachment incident where an employee has opened a suspicious email and clicked on a link. Additionally, there is evidence suggesting the reuse of passwords, which could have contributed to the risk."
- },
- "d115fdde6624bb2220687230": {
-  "rationale": "Blocking the domain prevents access to potentially harmful materials, reducing the risk of malware infecting your systems."
+  "summary": "This is a malware attachment incident where an employee has opened a suspicious email and clicked on a link. Additionally, there's evidence suggesting the reuse of passwords, which could be related to this incident."
  },
  "d30e9e67fdf356f9d5a2cd03": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake Microsoft login page. You clicked on a link in the email, which led to this fake site."
  },
- "d4e1dd05e1487ab8edc5f316": {
-  "rationale": "Notifying users helps them stay alert and protect their login details from being stolen by phishers."
- },
  "d63b807cfcae059b7cfe18f3": {
-  "what_happened": "A suspicious email that might try to trick you into giving away your login details was identified by our system."
+  "what_happened": "A suspicious email that might try to trick you into sharing your login details was identified by our system."
+ },
+ "d66bb2c8c38b27e524e291a5": {
+  "summary": "This is a suspicious email attack with a high severity level. An employee has interacted with the email by clicking a link."
  },
  "d6d6893d02cfbc7be7e7e112": {
   "summary": "This is an invoice fraud attack where an employee has clicked on a suspicious link after receiving a potentially malicious email. The severity is high due to the interaction with the threat."
- },
- "d780e5192bb51cce7caaf90e": {
-  "rationale": "Confirming payment details by phone helps verify requests and ensures you're not sending money to fraudsters."
  },
  "db3619886df3397e2dceb218": {
   "summary": "This is a malware attachment incident where an employee has opened a suspicious email, clicked on a link within it, and potentially reused their password, indicating the attack may have progressed further."
@@ -604,10 +595,10 @@
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website."
  },
  "dfa8dd63e6d6acd97d0a4dd6": {
-  "summary": "This is a malware attachment incident where an employee has opened a suspicious email, clicked on a link within it, and potentially reused their password, indicating the attack may have progressed further."
+  "summary": "This is a malware attachment incident where an employee has opened a suspicious email, clicked on a link within it, and potentially reused a password, indicating the attack may have progressed further."
  },
- "e2fcca375f4902c44146a621": {
-  "rationale": "Using Multi-Factor Authentication (MFA) adds an extra layer of security, making it harder for attackers to access your accounts even if they have your password."
+ "e1366ffa84b6c67f2d9bc843": {
+  "summary": "A suspicious email was detected, indicating a potential phishing attempt. The extent of the intrusion is unknown beyond the email being identified."
  },
  "e32b65c154e577dc2b360764": {
   "reasons": [
@@ -615,29 +606,23 @@
   ],
   "summary": "This email is considered safe."
  },
- "e651de25d132e9d34f9d6944": {
-  "rationale": "Quarantining messages helps prevent potential phishing emails from reaching and tricking other employees into sharing their login details."
- },
- "e74ea3e2d7c75151a3fd3690": {
-  "rationale": "Monitoring your account activity helps you notice any unusual transactions early, allowing quick action if your account has been compromised."
+ "ea3c7efae480ef6b682d381e": {
+  "summary": "An employee received a suspicious email which was scored as potentially harmful. The employee clicked on a link within the email and used a reused password, leading to an unusual sign-in attempt."
  },
  "eb0bc1d706aa0d8515ee7e53": {
   "summary": "This is a malware attachment incident where an employee received a suspicious email and clicked on a link within it. The severity is medium, indicating the threat progressed but did not fully succeed."
  },
- "edd021f1088732b29a0ce7da": {
-  "rationale": "Revoking active sessions limits access to potentially compromised accounts, reducing the risk of further damage from the malware."
+ "ec0f0dcf44c122f7234860f9": {
+  "summary": "An employee received a suspicious email which was scored as potentially harmful. The employee clicked on a link within the email and has a history of reusing passwords, increasing the risk."
  },
  "ee19085c7444e24e65a4bb35": {
-  "what_happened": "Someone received an email that was flagged as suspicious, and they clicked on a link in it. This led to a report about a possible security issue involving reused passwords."
+  "what_happened": "Someone received an email that was flagged as suspicious, and they clicked on a link within it. This action might have put your computer at risk."
  },
  "ee9127b866d8edfa8825f84e": {
   "summary": "This is an invoice fraud incident where an employee has clicked on a suspicious link and reused their password, indicating potential compromise. The severity is critical due to these risky behaviors."
  },
  "f11086e4a31daa47ce7b636b": {
-  "summary": "This is a malware attachment incident where an email containing a potentially harmful file was detected. The extent of the intrusion is unknown beyond the initial detection of the suspicious email."
- },
- "f3c8eb53d3d33c638c0b582c": {
-  "rationale": "Resetting your credentials can help protect your account from being accessed by unauthorized users who might have obtained your login information."
+  "summary": "This is a malware attachment incident where an employee has reported receiving a suspicious email. The severity is critical, indicating potential widespread impact within the system."
  },
  "f3fc70c1a5289dc5c4b0b404": {
   "summary": "This is an invoice fraud attack where an employee received a suspicious email and clicked on a link within it, indicating the attack progressed beyond just opening the email."
@@ -648,8 +633,11 @@
  "f596ad19e948c12036d0c54a": {
   "what_happened": "Someone tried to trick you into giving them your login details using an email. They might have asked you to visit a fake website called parcelnow-redelivery.test to enter your information."
  },
+ "f69bf317581bf94129b9f164": {
+  "summary": "An employee has reported a suspicious email which was scored as potentially harmful. The employee clicked on a link within the email and reused an existing password, indicating a possible compromise."
+ },
  "f6c97da708608956fa5740aa": {
-  "summary": "This is a credential phishing attempt where attackers try to trick employees into giving away their login details. The extent of the intrusion is known through an analyzed email score."
+  "summary": "This is a credential phishing attempt where attackers are trying to obtain employee login details. The extent of the breach is currently unknown as it was detected through an email analysis."
  },
  "f8df4d4bb872d361c862a9f6": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
@@ -666,17 +654,8 @@
  "fb0da748c1c1a4a7248fca8b": {
   "what_happened": "Someone tried to trick you into giving them your login information by sending an email and setting up a fake website. You clicked on a link in the email, which led to this fake site."
  },
- "fc7642a7ae158fe3451ca270": {
-  "rationale": "Notifying affected users helps them stay alert and avoid actions that might lead to financial loss."
- },
- "fdac851cc9841127bea05397": {
-  "rationale": "Monitoring your account activity helps you notice any unusual actions, which could indicate that a malicious attachment has started affecting your account."
- },
  "fe42893a4bbecbf45199d67f": {
-  "summary": "An employee has clicked on a suspicious link in an email, which is indicative of a credential phishing attempt. This suggests that there may be a risk of compromised login information due to password reuse."
- },
- "fe726ee4068564bb797fb061": {
-  "rationale": "Isolating the device prevents the potential malware from spreading to other computers on the network."
+  "summary": "This is a credential phishing attack where an employee clicked on a suspicious link in an email. The employee also reused an old password and had an unusual sign-in attempt, indicating potential unauthorized access."
  },
  "fe85dc267f181c4de5bcb2fb": {
   "summary": "This is an invoice fraud attempt where a suspicious email has been identified. The extent of the intrusion is unknown beyond the detection of the email."

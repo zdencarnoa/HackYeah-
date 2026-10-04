@@ -16,14 +16,13 @@ import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from app.incidents.checklist_templates import TEMPLATES  # C's incident types and checklist steps
 from app.llm.client import CACHE_FILE, parse_json
 from app.llm.explain import llm_inputs
-from app.llm.helpers import RATIONALE, _kinds_text
-from app.llm.prompts import (explanation_messages, fingerprint, notification_messages, rationale_messages,
-                             summary_messages)
+from app.llm.prompts import explanation_messages, fingerprint, notification_messages, summary_messages
 
 PROMPTS_FILE = CACHE_FILE.parent / "prompts.jsonl"
-INCIDENT_TYPES = ["credential_phishing", "invoice_fraud", "malware_attachment"]
+INCIDENT_TYPES = list(TEMPLATES)
 ESCALATION = ["email_scored", "link_clicked", "password_reuse", "unusual_signin", "user_report"]
 
 
@@ -61,8 +60,6 @@ def collect() -> dict[str, tuple[str, list[dict]]]:
     for kind, messages in _demo_explanations():
         add(kind, messages)
     for itype in INCIDENT_TYPES:
-        for action in RATIONALE:
-            add("rationale", rationale_messages(action, itype))
         for kinds in {tuple(k) for k in _escalation_sets()}:
             for severity in (1, 2, 3):
                 add("summary", summary_messages(itype, severity, list(kinds)))

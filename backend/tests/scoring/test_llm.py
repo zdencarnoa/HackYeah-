@@ -22,8 +22,8 @@ def no_cache_no_live(monkeypatch):
 
 
 def answer_with(monkeypatch, answer):
-    monkeypatch.setattr(explain_module, "ask", lambda messages, live=True: (answer, "cache"))
-    monkeypatch.setattr(helpers, "ask", lambda messages, live=True: (answer, "cache"))
+    monkeypatch.setattr(explain_module, "ask", lambda messages, live=True, allow_local=True: (answer, "cache"))
+    monkeypatch.setattr(helpers, "ask", lambda messages, live=True, allow_local=True: (answer, "cache"))
 
 
 def test_grounding_rejects_invented_domains_and_numbers():
@@ -62,29 +62,58 @@ def test_cache_lookup_uses_the_exact_prompt(monkeypatch):
     assert client.ask(explanation_messages(1, [EVIDENCE], [])) == (None, None)
 
 
-def test_helpers_fall_back_to_templates():
-    note = helpers.employee_notification("Alice", "credential_phishing", ["email_scored", "password_reuse"],
-                                         "login.micr0soft-example.test")
-    assert note.startswith("Hi Alice") and "Change your work password" in note
-    assert helpers.checklist_rationale("Revoke active sessions", "credential_phishing") == \
-        helpers.RATIONALE["Revoke active sessions"]
-    summary = helpers.incident_summary("credential_phishing", Severity.CRITICAL, ["password_reuse"],
-                                       messages=14, recipients=7, departments=3, employee="Alice")
-    assert "14 messages" in summary and "7 recipients" in summary
+def incident(*evidence, type_="credential_phishing", severity=Severity.CRITICAL):
+    from datetime import datetime, timezone
+    from app.schemas import Evidence, Incident
+    return Incident(id="inc-1", type=type_, severity=severity, affected_employees=["e01"], timeline=[],
+                    created_at=datetime.now(timezone.utc),
+                    evidence=[Evidence(employee_id="e01", **e) for e in evidence])
+
+
+ALICE_PHISHED = [{"kind": "email_scored"}, {"kind": "link_clicked", "domain": "micr0soft-verify.example"},
+                 {"kind": "password_reuse", "domain": "micr0soft-verify.example"}]
+
+
+def test_without_an_llm_answer_helpers_return_empty_so_c_uses_its_template():
+    inc = incident(*ALICE_PHISHED)
+    assert helpers.employee_notification(inc, "e01") == ""
+    assert helpers.incident_summary(inc) == ""
+    assert helpers.checklist_reason("credential_phishing", "revoke_sessions", "C's reason") == ""
 
 
 def test_llm_writes_the_story_but_steps_and_counts_stay_deterministic(monkeypatch):
     answer_with(monkeypatch, {"what_happened": "Your password was typed on a fake sign-in page.",
                               "summary": "A credential phishing attack reached the stage of a stolen password."})
-    note = helpers.employee_notification("Alice", "credential_phishing", ["password_reuse"])
+    inc = incident(*ALICE_PHISHED)
+    note = helpers.employee_notification(inc, "e01")
     assert note.startswith("Hi Alice,\nYour password was typed on a fake sign-in page.")
     assert "1. Change your work password now" in note
-    s = helpers.incident_summary("credential_phishing", Severity.CRITICAL, ["password_reuse"],
-                                 messages=14, recipients=7, departments=3, employee="Alice")
-    assert s.startswith("A credential phishing attack") and "14 messages, 7 recipients, 3 departments" in s
+    s = helpers.incident_summary(inc)
+    assert s.startswith("A credential phishing attack") and "3 detected automatically" in s
 
 
 def test_llm_text_with_invented_facts_is_dropped(monkeypatch):
-    answer_with(monkeypatch, {"what_happened": "Someone from evil.example logged in 5 times."})
-    note = helpers.employee_notification("Alice", "credential_phishing", ["password_reuse"])
-    assert "evil.example" not in note and note.startswith("Hi Alice,\nWe detected")
+    answer_with(monkeypatch, {"what_happened": "Someone from evil.example logged in 5 times.",
+                              "rationale": "Attackers from evil.example are blocked."})
+    assert helpers.employee_notification(incident(*ALICE_PHISHED), "e01") == ""
+    assert helpers.checklist_reason("credential_phishing", "block_sender_domain", "Blocks the sender.") == ""
+
+
+def test_c_hooks_use_b_helpers_when_an_llm_answer_exists(monkeypatch):
+    """Through Person C's real ai_hooks: B's text is used and labelled llm."""
+    from app.incidents import ai_hooks
+    answer_with(monkeypatch, {"what_happened": "A fake page received your password.",
+                              "summary": "Credential phishing reached a stolen password.",
+                              "rationale": "Ending sessions locks out anyone already signed in."})
+    inc = incident(*ALICE_PHISHED)
+    assert ai_hooks.incident_summary(inc)[1] == "llm"
+    assert ai_hooks.employee_notification(inc, "e01")[1] == "llm"
+    assert ai_hooks.checklist_reason("credential_phishing", "revoke_sessions", "C's reason") == "C's reason"
+
+
+def test_c_hooks_fall_back_to_c_templates_without_an_llm():
+    from app.incidents import ai_hooks
+    inc = incident(*ALICE_PHISHED)
+    assert ai_hooks.incident_summary(inc)[1] == "template"
+    assert ai_hooks.employee_notification(inc, "e01")[1] == "template"
+    assert ai_hooks.checklist_reason("credential_phishing", "revoke_sessions", "C's reason") == "C's reason"

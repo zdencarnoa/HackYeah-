@@ -1,15 +1,22 @@
-"""LLM helpers for Person C: employee notification, incident summary, checklist rationale.
+"""LLM helpers for Person C, matching the contract in app/incidents/ai_hooks.py:
 
-Each returns text from the cache or a live LLM when that answer passes the grounding
-check, else a deterministic template. C passes plain values, so these do not depend
-on the final Incident schema.
+    incident_summary(incident: Incident) -> str
+    employee_notification(incident: Incident, employee_id: str) -> str
+    checklist_reason(incident_type: str, item_key: str, default: str) -> str
+
+Each returns LLM text only when an answer passes the grounding check, else "" (an empty
+string, not None: C's hook turns None into the text "None"), so C's own deterministic
+template is used and labelled "template", not "llm". Answers come
+from the offline cache or the GPU server; the slow laptop model is skipped because an
+admin is waiting on these. The LLM never writes steps or counts: those stay deterministic.
 """
 from __future__ import annotations
 
+from functools import cache
+
 from app.llm.client import ask
 from app.llm.grounding import grounded
-from app.llm.prompts import notification_messages, rationale_messages, summary_messages
-from app.schemas import Severity
+from app.llm.prompts import notification_messages, summary_messages
 
 EVIDENCE_WORDS = {
     "email_scored": "a suspicious email was detected",
@@ -18,74 +25,76 @@ EVIDENCE_WORDS = {
     "unusual_signin": "an unusual sign-in followed",
     "user_report": "the employee reported what happened",
 }
-
-# Rationale per checklist action (C's templated checklists use these action texts).
-RATIONALE = {
-    "Revoke active sessions": "If the password was captured, revoking sessions stops an attacker who may already be signed in.",
-    "Reset credentials": "A new password makes the captured one useless.",
-    "Verify MFA configuration": "Attackers sometimes add their own sign-in method; checking MFA removes that backdoor.",
-    "Search for related messages": "Phishing usually arrives in waves, so other employees may have the same email.",
-    "Notify affected users": "People who know about the attack are far less likely to fall for the next email.",
-    "Monitor account activity": "Unusual activity in the next days can show whether the account was misused.",
-    "Document incident": "A written record helps the follow-up review and any reporting duties.",
-    "Quarantine messages": "Removing the emails from inboxes prevents further clicks.",
-    "Block sender": "Blocking the sender stops new messages from the same address.",
-    "Block domain": "Blocking the domain stops messages and links from the attacker's infrastructure.",
-    "Confirm payment details by phone": "A call to a known number is the surest way to catch a fake bank-detail change.",
-    "Hold pending payments": "Pausing the payment keeps money from going to an account the attacker controls.",
-    "Isolate the device": "Disconnecting the device stops malware from spreading or sending data out.",
-}
-DEFAULT_RATIONALE = "This step limits the possible damage while the incident is investigated."
+DOMAIN_PREFERENCE = ("password_reuse", "link_clicked", "email_scored")
 
 
 def _kinds_text(kinds: list[str]) -> str:
     return "; ".join(EVIDENCE_WORDS.get(k, k.replace("_", " ")) for k in kinds)
 
 
-def checklist_rationale(action: str, incident_type: str) -> str:
-    messages = rationale_messages(action, incident_type)
-    answer, _ = ask(messages)
-    text = answer.get("rationale") if answer else None
-    if isinstance(text, str) and 0 < len(text) <= 250 and grounded([text], [action, incident_type]):
-        return text.strip()
-    return RATIONALE.get(action, DEFAULT_RATIONALE)
-
-
-def _llm_text(answer: dict | None, key: str, max_len: int, facts: list[str]) -> str | None:
+def _ask_text(messages: list[dict], key: str, max_len: int, facts: list[str]) -> str:
+    answer, _ = ask(messages, allow_local=False)
     text = answer.get(key) if answer else None
     if isinstance(text, str) and 0 < len(text.strip()) <= max_len and grounded([text], facts):
         return text.strip()
-    return None
+    return ""
 
 
-def notification_steps(evidence_kinds: list[str]) -> list[str]:
+@cache
+def _employee_names() -> dict[str, str]:
+    try:
+        from app.simulation.seed import load_org
+        return {e.id: e.name for e in load_org().employees}
+    except Exception:  # no org data: fall back to the id
+        return {}
+
+
+def _first_name(employee_id: str) -> str:
+    return _employee_names().get(employee_id, employee_id).split()[0]
+
+
+def checklist_reason(incident_type: str, item_key: str, default: str) -> str:
+    """Always "" so C's own rationale is used.
+
+    C's rationales are already written in plain language and are more precise; in testing,
+    an LLM rewrite dropped the reason ("typed on an unapproved site") and addressed the
+    wrong reader. Kept in the contract so it can be switched on later if wanted.
+    """
+    return ""
+
+
+def notification_steps(evidence_kinds: set[str]) -> list[str]:
     """Deterministic, like Assessment.recommended_action: the LLM never writes instructions."""
     steps = ["Do not use the link or reply to the email."]
-    if "password_reuse" in evidence_kinds:
+    if evidence_kinds & {"password_reuse", "unusual_signin"}:
         steps = ["Change your work password now, on the real company sign-in page.",
                  "Do not approve any sign-in prompts you did not start.", *steps]
     return steps + ["Your administrator will follow up."]
 
 
-def employee_notification(name: str, incident_type: str, evidence_kinds: list[str], domain: str | None = None) -> str:
-    kinds = sorted(set(evidence_kinds))
-    answer, _ = ask(notification_messages(incident_type, kinds, domain))
-    what = _llm_text(answer, "what_happened", 400, [incident_type, _kinds_text(kinds), domain or ""])
-    if what is None:
-        where = f" on {domain}" if domain else ""
-        what = f"We detected a security issue connected to your account{where}: {_kinds_text(kinds)}."
-    numbered = "\n".join(f"{i}. {s}" for i, s in enumerate(notification_steps(kinds), 1))
-    return f"Hi {name},\n{what}\nPlease take these steps now:\n{numbered}"
+def employee_notification(incident, employee_id: str) -> str:
+    mine = [e for e in incident.evidence if e.employee_id == employee_id]
+    kinds = sorted({e.kind for e in mine})
+    if not kinds:
+        return ""
+    domain = next((e.domain for k in DOMAIN_PREFERENCE for e in mine if e.kind == k and e.domain), None)
+    what = _ask_text(notification_messages(incident.type, kinds, domain), "what_happened", 400,
+                     [incident.type, _kinds_text(kinds), domain or ""])
+    if not what:
+        return ""
+    numbered = "\n".join(f"{i}. {s}" for i, s in enumerate(notification_steps(set(kinds)), 1))
+    return f"Hi {_first_name(employee_id)},\n{what}\nPlease take these steps now:\n{numbered}"
 
 
-def incident_summary(incident_type: str, severity: Severity, evidence_kinds: list[str], *, messages: int,
-                     recipients: int, departments: int, employee: str) -> str:
-    kinds = sorted(set(evidence_kinds))
-    answer, _ = ask(summary_messages(incident_type, int(severity), kinds))
-    story = _llm_text(answer, "summary", 500, [incident_type, _kinds_text(kinds)])
-    if story is None:
-        story = (f"{severity.name.title()} {incident_type.replace('_', ' ')} incident. "
-                 f"Evidence so far: {_kinds_text(kinds)}.")
-    # Counts are facts from C's data, never generated.
-    return (f"{story} Scope: {messages} messages, {recipients} recipients, {departments} departments; "
-            f"most affected employee: {employee}.")
+def incident_summary(incident) -> str:
+    kinds = sorted({e.kind for e in incident.evidence})
+    story = _ask_text(summary_messages(incident.type, int(incident.severity), kinds), "summary", 500,
+                      [incident.type, _kinds_text(kinds)])
+    if not story:
+        return ""
+    # Counts come from C's incident, never from the model.
+    names = ", ".join(_employee_names().get(i, i) for i in incident.affected_employees) or "none yet"
+    auto = sum(1 for e in incident.evidence if e.source == "automatic")
+    done = sum(1 for c in incident.checklist if c.done)
+    return (f"{story} Affected employees: {names}. Evidence: {auto} detected automatically, "
+            f"{len(incident.evidence) - auto} reported. Checklist: {done} of {len(incident.checklist)} steps done.")

@@ -54,16 +54,17 @@ from app.scoring.ml_signal import warm_up
 warm_up()   # "distilbert-v1", "tfidf-fallback" or None (rules only)
 ```
 
-**Texts for C's incidents** (cached LLM text with a deterministic fallback):
+**Texts for C's incidents** — C calls these through `app/incidents/ai_hooks.py`; do not call them directly:
 
 ```python
-from app.llm.helpers import checklist_rationale, employee_notification, incident_summary
-checklist_rationale("Revoke active sessions", "credential_phishing")           # keys of helpers.RATIONALE
-employee_notification("Alice", "credential_phishing", ["email_scored", "link_clicked", "password_reuse"],
-                      domain="micr0soft-verify.example")
-incident_summary("credential_phishing", Severity.CRITICAL, evidence_kinds,
-                 messages=14, recipients=7, departments=3, employee="Alice")
+# app.llm.helpers, matching C's contract (each returns "" when there is no grounded LLM answer,
+# so ai_hooks uses C's own template and labels it "template")
+incident_summary(incident: Incident) -> str                       # LLM story + deterministic counts
+employee_notification(incident: Incident, employee_id: str) -> str  # LLM "what happened" + fixed steps
+checklist_reason(incident_type, item_key, default) -> str         # always "": C's rationale is better
 ```
+
+They use the offline cache or the GPU server only (an admin is waiting), never the slow laptop model.
 
 ## The Assessment (in `app/schemas.py`)
 
@@ -127,4 +128,5 @@ python -m pytest tests/scoring -q      # B's suite; never calls a live LLM (test
 ## Open items
 
 - **B4** (needs C2): confirm `POST /api/analyze` is reachable on the live app.
+- `ai_hooks._try` turns a `None` return into the text "None"; B's helpers return `""` to avoid it.
 - Rebuild the LLM cache after the last change to demo emails or detection wording, right before the demo.
