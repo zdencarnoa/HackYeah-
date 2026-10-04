@@ -29,7 +29,8 @@
       ],
       "patterns": [
         "\\b(?:sign|log)[\\s-]*in\\s+(?:here|now|below|at\\s+https?://)",
-        "\\b(?:sign|log)[\\s-]*in\\s+with\\s+your\\s+(?:work\\s+|company\\s+|office\\s+|microsoft\\s+)?(?:email|account|password|credentials)\\b"
+        "\\b(?:sign|log)[\\s-]*in\\s+with\\s+your\\s+(?:work\\s+|company\\s+|office\\s+|microsoft\\s+)?(?:email|account|password|credentials)\\b",
+"\\b(?:sign|log)[\\s-]*in\\s+with\\s+the\\s+account\\s+details\\b"
       ]
     },
     "payment_change": {
